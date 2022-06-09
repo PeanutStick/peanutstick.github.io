@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Change screen resolution with xandr | Peanutstick</title>
+  <title>CTF Beelzebub | Peanutstick</title>
   <meta name="keywords" content=" Linux ">
-  <meta name="description" content="Change screen resolution with xandr | Peanutstick">
+  <meta name="description" content="CTF Beelzebub | Peanutstick">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="netdiscoversudo netdiscover  rustscanrustscan -a 192.168.0.24 On the port 80 we have this page: gobustergobuster dir -t 100 -u http:&#x2F;&#x2F;192.168.0.24 -w ~&#x2F;Documents&#x2F;wordlist&#x2F;directory-list-medium.txt --w">
 <meta property="og:type" content="article">
@@ -880,9 +880,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Change_screen_resolution" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-CTF_Beelzebub" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Change screen resolution with xandr</h1>
+        <h1 class="article-title">CTF Beelzebub</h1>
     
     <div class="article-meta">
         
@@ -892,7 +892,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="Os">Os</a>
+            <a  data-rel="CTF">CTF</a>
             
         </span>
         
@@ -907,12 +907,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2021-08-01 11:14:01'>2021-08-02 04:15</time>
+            Created At : <time class="date" title='Updated At: 2022-06-09 12:12:02'>2022-06-09 19:29</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:320</span>
+        <span>Count:187</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -931,7 +931,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Find-the-right-sreen"><span class="toc-text">Find the right sreen</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Change-the-resolution"><span class="toc-text">Change the resolution</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#netdiscover"><span class="toc-text">netdiscover</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rustscan"><span class="toc-text">rustscan</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gobuster"><span class="toc-text">gobuster</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MD5-hash"><span class="toc-text">MD5 hash</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Beelzebub-website"><span class="toc-text">Beelzebub website</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ssh"><span class="toc-text">ssh</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -947,56 +947,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Find-the-right-sreen"><a href="#Find-the-right-sreen" class="headerlink" title="Find the right sreen"></a>Find the right sreen</h1><p>Type <code>xrandr</code>:</p>
-<pre class="line-numbers language-none"><code class="language-none">Screen 0: minimum 320 x 200, current 1920 x 1080, maximum 16384 x 16384
-eDP-1 connected primary 1920x1080+0+0 (normal left inverted right x axis y axis) 344mm x 194mm
-   1920x1080     59.98*+  59.97    59.96    59.93  
-   1680x1050     59.95    59.88  
-   1400x1050     59.98  
-   1600x900      59.99    59.94    59.95    59.82  
-   1280x1024     60.02  
-   1400x900      59.96    59.88  
-   1280x960      60.00  
-   1440x810      60.00    59.97  
-   1368x768      59.88    59.85  
-   1280x800      59.99    59.97    59.81    59.91  
-   1280x720      60.00    59.99    59.86    59.74  
-   1024x768      60.04    60.00  
-   960x720       60.00  
-   928x696       60.05  
-   896x672       60.01  
-   1024x576      59.95    59.96    59.90    59.82  
-   960x600       59.93    60.00  
-   960x540       59.96    59.99    59.63    59.82  
-   800x600       60.00    60.32    56.25  
-   840x525       60.01    59.88  
-   864x486       59.92    59.57  
-   700x525       59.98  
-   800x450       59.95    59.82  
-   640x512       60.02  
-   700x450       59.96    59.88  
-   640x480       60.00    59.94  
-   720x405       59.51    58.99  
-   684x384       59.88    59.85  
-   640x400       59.88    59.98  
-   640x360       59.86    59.83    59.84    59.32  
-   512x384       60.00  
-   512x288       60.00    59.92  
-   480x270       59.63    59.82  
-   400x300       60.32    56.34  
-   432x243       59.92    59.57  
-   320x240       60.05  
-   360x202       59.51    59.13  
-   320x180       59.84    59.32  
-DP-1-0 disconnected (normal left inverted right x axis y axis)
-DP-1-1 disconnected (normal left inverted right x axis y axis)
-DP-1-2 disconnected (normal left inverted right x axis y axis)
-DP-1-3 disconnected (normal left inverted right x axis y axis)
-HDMI-1-0 disconnected (normal left inverted right x axis y axis)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>I have 6 screen and 5 of them are disconnected.<br>The screen eDP-1 is connected.</p>
-<h1 id="Change-the-resolution"><a href="#Change-the-resolution" class="headerlink" title="Change the resolution"></a>Change the resolution</h1><pre class="line-numbers language-none"><code class="language-none">xrandr --output eDP-1 --auto<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
+        <h1 id="netdiscover"><a href="#netdiscover" class="headerlink" title="netdiscover"></a>netdiscover</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> netdiscover<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/wPXE4mX.png"></p>
+<h1 id="rustscan"><a href="#rustscan" class="headerlink" title="rustscan"></a>rustscan</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">rustscan -a <span class="token number">192.168</span>.0.24<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/ZMmX1d3.png"><br>On the port 80 we have this page:<br><img src="https://i.imgur.com/YSKXCIz.png"></p>
+<h1 id="gobuster"><a href="#gobuster" class="headerlink" title="gobuster"></a>gobuster</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gobuster <span class="token function">dir</span> -t <span class="token number">100</span> -u http://192.168.0.24 -w ~/Documents/wordlist/directory-list-medium.txt --wildcard switch<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/Ir5k95X.png"></p>
+<p>The javascript directory is forbiden:<br><img src="https://i.imgur.com/QYOBWFo.png"></p>
+<p>There is a phpmyadmin page, let’s see if there is a index.php.</p>
+<h1 id="MD5-hash"><a href="#MD5-hash" class="headerlink" title="MD5 hash"></a>MD5 hash</h1><p><img src="https://i.imgur.com/AFvlYty.png"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> -n beelzebub <span class="token operator">|</span> md5sum<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/NKJjOz5.png"><br>This string is a directory.</p>
+<h1 id="Beelzebub-website"><a href="#Beelzebub-website" class="headerlink" title="Beelzebub website"></a>Beelzebub website</h1><p>There is something but I can’t see it, the ip is hard coded in the website.<br><img src="https://i.imgur.com/BZZmSgD.png"><br>This in a wordpress website, I should see what is in the upload directory:<br><a href="http://192.168.0.24/d18e1e22becbd915b45e0e655429d487/wp-content/uploads/">http://192.168.0.24/d18e1e22becbd915b45e0e655429d487/wp-content/uploads/</a><br><img src="https://i.imgur.com/0B6j0lD.png"><br>If you browse to Talk To VALAK you can see this page:<br><img src="https://i.imgur.com/2I6emhE.png"><br>You can also found a password:</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">Cookie&#x3D;b7d0eff31b9cde9a862dc157bb33ec2a; Password&#x3D;M4k3Ad3a1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>I should do a scan on the word press website but it’s taking too much time to load, I will find the user on the login page of the VM.<br>User: Krampus<br>Password: M4k3Ad3a1</p>
+<h1 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> krampus@192.168.0.24<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Yes I’m in.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> .bash_history<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>I’m will copy past this:<br><img src="https://i.imgur.com/fcaTXwP.png"><br>I’m root.<br><img src="https://i.imgur.com/KYHfSJq.png"><br>Flag: 8955qpasq8qq807879p75e1rr24cr1a5</p>
 
       
        
