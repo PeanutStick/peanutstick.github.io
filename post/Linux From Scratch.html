@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Create a locale stream | Peanutstick</title>
+  <title>Install Linix From Scratch | Peanutstick</title>
   <meta name="keywords" content=" Linux ">
-  <meta name="description" content="Create a locale stream | Peanutstick">
+  <meta name="description" content="Install Linix From Scratch | Peanutstick">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="What is it ?Linux from scratch is a book that explain how install linux from scratch.https:&#x2F;&#x2F;linuxfromscratch.org&#x2F; Why  ?I would like to learn more about linux. I’t will not be the best distro, for da">
 <meta property="og:type" content="article">
@@ -885,9 +885,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Stream_audio_video_at_home" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Linux From Scratch" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Create a locale stream</h1>
+        <h1 class="article-title">Install Linix From Scratch</h1>
     
     <div class="article-meta">
         
@@ -897,7 +897,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="Service">Service</a>
+            <a  data-rel="Os">Os</a>
             
         </span>
         
@@ -912,12 +912,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-01-09 12:45:15'>2022-01-09 19:18</time>
+            Created At : <time class="date" title='Updated At: 2022-06-18 22:14:36'>2022-06-18 23:48</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:315</span>
+        <span>Count:680</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -936,7 +936,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why"><span class="toc-text">Why</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#How"><span class="toc-text">How</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#What-I%E2%80%99v-done"><span class="toc-text">What I’v done</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Problems"><span class="toc-text">Problems</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#What-I-should-try"><span class="toc-text">What I should try</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-it"><span class="toc-text">What is it ?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Why"><span class="toc-text">Why  ?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Disclamer"><span class="toc-text">Disclamer</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Install"><span class="toc-text">Install</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Partition"><span class="toc-text">Partition</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Setting-The-LFS-Variable"><span class="toc-text">Setting The $LFS Variable</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mounting-the-New-Partition"><span class="toc-text">Mounting the New Partition</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Source-directory"><span class="toc-text">Source directory</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Creating-a-limited-directory-layout-in-LFS-filesystem"><span class="toc-text">Creating a limited directory layout in LFS filesystem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-the-LFS-User"><span class="toc-text">Adding the LFS User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Setting-Up-the-Environment"><span class="toc-text">Setting Up the Environment</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -952,14 +952,69 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h1><p>Because we can’t use the music bot on discord anymore.<br>And a youtuber released a video yesterday where he show how to steal a stream on youtube, it’s Bugswriter.<br>I don’t want to steal a stream, I just want to use ffmpeg like a chad and play with it.</p>
-<h1 id="How"><a href="#How" class="headerlink" title="How"></a>How</h1><p>I want to use <code>ffmpeg</code> without ffserver, because ffserver has been removed on 2018-01-06.<br>And a webserver, I tried with python SimpleHTTPServer but I can’t use it because I have the error 501.<br><code>message Unsupported method (&#39;POST&#39;)</code><br>SO I’m gonna use <code>nginx</code></p>
-<h1 id="What-I’v-done"><a href="#What-I’v-done" class="headerlink" title="What I’v done"></a>What I’v done</h1><p>Create the web server.<br>Upload the stream:</p>
-<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">ffmpeg -i weeb_music.webm -f mp3 &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html&#x2F;stream<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>I don’t stream to <a href="http://localhost/stream">http://localhost:80/stream</a> because it’s not working well.<br>And if I can do it, everyone can do it too and it’s not good.<br>Maybe it’s possible to upload a revershell via ffmpeg and I will be fucked.<br>So you can only read via the web server.</p>
-<h1 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h1><p>When I start the stream, he upload it very fast (50x).<br>The output is not a stream but juste the file.<br><img src="https://i.imgur.com/qaqvaU3.png"></p>
-<p>If the file is loaded at 100% in my browser he will stop the download.<br>But if it’s the half of the music the browser wont load the rest of the stream. </p>
-<h1 id="What-I-should-try"><a href="#What-I-should-try" class="headerlink" title="What I should try"></a>What I should try</h1><p>Reduce the speed.<br>Don’t erase the buffer because youtube don’t do it to,maybe I can create an index.html and embed the stream.<br>Don’t use a file but a real stream, like the output of my browser or a video/music player.<br>Use the stream of MCP server??<br>I have to open the ports of my box, not the 80 or 8080 because of the bots.<br>Read the stream with vlc and ffplayer.</p>
+        <h1 id="What-is-it"><a href="#What-is-it" class="headerlink" title="What is it ?"></a>What is it ?</h1><p>Linux from scratch is a book that explain how install linux from scratch.<br><a href="https://linuxfromscratch.org/">https://linuxfromscratch.org/</a></p>
+<h1 id="Why"><a href="#Why" class="headerlink" title="Why  ?"></a>Why  ?</h1><p>I would like to learn more about linux. I’t will not be the best distro, for daily usage it’s better to use something else.</p>
+<h1 id="Disclamer"><a href="#Disclamer" class="headerlink" title="Disclamer"></a>Disclamer</h1><p>This is not a tutorial, I’m reading the book from the beginning, I skip some checking step here.</p>
+<h1 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h1><h2 id="Partition"><a href="#Partition" class="headerlink" title="Partition"></a>Partition</h2><p><a href="https://linuxfromscratch.org/lfs/view/stable/chapter02/creatingfilesystem.html">https://linuxfromscratch.org/lfs/view/stable/chapter02/creatingfilesystem.html</a><br>I don’t have free space left to create a new partition, I have to umout an existing partition to split it.<br>I need 20G of space.<br><img src="https://i.imgur.com/GmLWnCf.png"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">umount</span> /iso<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Then I resize it with gparted and create the new partition.<br>I create a <code>ext4</code> partiton.<br>I will use the <code>root user</code> for everything now.</p>
+<h2 id="Setting-The-LFS-Variable"><a href="#Setting-The-LFS-Variable" class="headerlink" title="Setting The $LFS Variable"></a>Setting The $LFS Variable</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">LFS</span><span class="token operator">=</span>/mnt/lfs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>It’s just a shortcut, instead of typing <code>/mnt/lfs</code> you can do <code>$LFS</code>.<br>To be sure do this command.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token variable">$LFS</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="Mounting-the-New-Partition"><a href="#Mounting-the-New-Partition" class="headerlink" title="Mounting the New Partition"></a>Mounting the New Partition</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> -pv <span class="token variable">$LFS</span>
+<span class="token function">mount</span> -v -t ext4 /dev/sda2 <span class="token variable">$LFS</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>I will add it to the fstab cuz it’s already late and I will restart my computer.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"/dev/sda2  /mnt/lfs ext4   defaults      1     1"</span> <span class="token operator">>></span> /etc/fstab<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="Source-directory"><a href="#Source-directory" class="headerlink" title="Source directory"></a>Source directory</h2><p><a href="https://linuxfromscratch.org/lfs/view/stable/chapter03/introduction.html">https://linuxfromscratch.org/lfs/view/stable/chapter03/introduction.html</a><br>In this few lines I create thee source directory, then I download the list with the required packages.<br>Then I download them via wget.</p>
+<p>Do it as root !</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">su</span> - root
+<span class="token function">mkdir</span> -v <span class="token variable">$LFS</span>/sources
+<span class="token function">chmod</span> -v a+wt <span class="token variable">$LFS</span>/sources
+<span class="token builtin class-name">cd</span> /tmp
+<span class="token function">curl</span> https://linuxfromscratch.org/lfs/view/stable/wget-list -o wget-list
+<span class="token function">wget</span> --input-file<span class="token operator">=</span>wget-list --continue --directory-prefix<span class="token operator">=</span><span class="token variable">$LFS</span>/sources<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>It’s downloading the patches too<br>I can verify the packages but, nop.</p>
+<h2 id="Creating-a-limited-directory-layout-in-LFS-filesystem"><a href="#Creating-a-limited-directory-layout-in-LFS-filesystem" class="headerlink" title="Creating a limited directory layout in LFS filesystem"></a>Creating a limited directory layout in LFS filesystem</h2><p><a href="https://linuxfromscratch.org/lfs/view/stable/chapter04/creatingminlayout.html">https://linuxfromscratch.org/lfs/view/stable/chapter04/creatingminlayout.html</a><br>As root with the LFS variable.<br>I’m creating the directories for the new system.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> -pv <span class="token variable">$LFS</span>/<span class="token punctuation">&#123;</span>etc,var<span class="token punctuation">&#125;</span> <span class="token variable">$LFS</span>/usr/<span class="token punctuation">&#123;</span>bin,lib,sbin<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> bin lib sbin<span class="token punctuation">;</span> <span class="token keyword">do</span>
+  <span class="token function">ln</span> -sv usr/<span class="token variable">$i</span> <span class="token variable">$LFS</span>/<span class="token variable">$i</span>
+<span class="token keyword">done</span>
+
+<span class="token keyword">case</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -m<span class="token variable">)</span></span> <span class="token keyword">in</span>
+  x86_64<span class="token punctuation">)</span> <span class="token function">mkdir</span> -pv <span class="token variable">$LFS</span>/lib64 <span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">esac</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>The cross compiler</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> -pv <span class="token variable">$LFS</span>/tools<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="Adding-the-LFS-User"><a href="#Adding-the-LFS-User" class="headerlink" title="Adding the LFS User"></a>Adding the LFS User</h2><p><a href="https://linuxfromscratch.org/lfs/view/stable/chapter04/addinguser.html">https://linuxfromscratch.org/lfs/view/stable/chapter04/addinguser.html</a><br><code>When logged in as user root, making a single mistake can damage or destroy a system.</code><br>As root, create the user lfs.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">groupadd</span> lfs
+<span class="token function">useradd</span> -s /bin/bash -g lfs -m -k /dev/null lfs
+<span class="token function">passwd</span> lfs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>Password: toor<br>Grant access to lfs to all directories.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">chown</span> -v lfs <span class="token variable">$LFS</span>/<span class="token punctuation">&#123;</span>usr<span class="token punctuation">&#123;</span>,/*<span class="token punctuation">&#125;</span>,lib,var,etc,bin,sbin,tools<span class="token punctuation">&#125;</span>
+<span class="token keyword">case</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -m<span class="token variable">)</span></span> <span class="token keyword">in</span>
+  x86_64<span class="token punctuation">)</span> <span class="token function">chown</span> -v lfs <span class="token variable">$LFS</span>/lib64 <span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">esac</span>
+<span class="token function">chown</span> -v lfs <span class="token variable">$LFS</span>/sources
+<span class="token function">su</span> - lfs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Now I can work as lfs instead of root, it’s better like that.</p>
+<h2 id="Setting-Up-the-Environment"><a href="#Setting-Up-the-Environment" class="headerlink" title="Setting Up the Environment"></a>Setting Up the Environment</h2><p>With the user lfs.<br>Create the .bash_profile</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> <span class="token operator">></span> ~/.bash_profile <span class="token operator">&lt;&lt;</span> <span class="token string">"EOF"
+`exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash`
+EOF</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>Create the .bashrc </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> <span class="token operator">></span> ~/.bashrc <span class="token operator">&lt;&lt;</span> <span class="token string">"EOF"
+`set +h umask 022 LFS=/mnt/lfs LC_ALL=POSIX LFS_TGT=$(uname -m)-lfs-linux-gnu PATH=/usr/bin if [ ! -L /bin ]; then PATH=/bin:$PATH; fi PATH=$LFS/tools/bin:$PATH CONFIG_SITE=$LFS/usr/share/config.site export LFS LC_ALL LFS_TGT PATH CONFIG_SITE`
+EOF</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>Several commercial distributions add a non-documented instantiation of <code>/etc/bash.bashrc</code> to the initialization of <strong>bash</strong>. This file has the potential to modify the <code>lfs</code> user’s environment in ways that can affect the building of critical LFS packages. To make sure the <code>lfs</code> user’s environment is clean, check for the presence of <code>/etc/bash.bashrc</code> and, if present, move it out of the way. As the <code>root</code> user, run:<br>As root run: </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">exit</span>
+<span class="token punctuation">[</span> <span class="token operator">!</span> -e /etc/bash.bashrc <span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token function">mv</span> -v /etc/bash.bashrc /etc/bash.bashrc.NOUSE
+<span class="token function">su</span> - lfs
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">LFS</span><span class="token operator">=</span>/mnt/lfs
+<span class="token builtin class-name">source</span> ~/.bash_profile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><a href="https://linuxfromscratch.org/lfs/view/stable/partintro/toolchaintechnotes.html">https://linuxfromscratch.org/lfs/view/stable/partintro/toolchaintechnotes.html</a><br>If it take too much time to compile I will do it later.<br>It’s already too hot in my room because of the heat wave, so if I compile I will die.</p>
 
       
        
