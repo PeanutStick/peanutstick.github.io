@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Cut an online video with ffmpeg | Peanutstick</title>
+  <title>I try Pop! OS | Peanutstick</title>
   <meta name="keywords" content=" Linux ">
-  <meta name="description" content="Cut an online video with ffmpeg | Peanutstick">
+  <meta name="description" content="I try Pop! OS | Peanutstick">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="WhyI have few problems with Arch, I wanted to see if it was my fault or if my computer is too old.I only have 3 hours of betterie life, plus I can’t run few games, on windows I can run the metro Exodu">
 <meta property="og:type" content="article">
@@ -929,9 +929,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Cut_an_online_video_with_ffmpeg" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-I_test_pop_OS" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Cut an online video with ffmpeg</h1>
+        <h1 class="article-title">I try Pop! OS</h1>
     
     <div class="article-meta">
         
@@ -941,7 +941,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="Other">Other</a>
+            <a  data-rel="OS">OS</a>
             
         </span>
         
@@ -956,12 +956,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-01-10 21:58:45'>2022-01-11 03:15</time>
+            Created At : <time class="date" title='Updated At: 2022-07-16 22:42:04'>2022-07-17 06:30</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:651</span>
+        <span>Count:365</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -980,7 +980,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-ffmpeg"><span class="toc-text">Why ffmpeg</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Trick"><span class="toc-text">Trick</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#My-idea"><span class="toc-text">My idea</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#My-script"><span class="toc-text">My script</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#End"><span class="toc-text">End</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why"><span class="toc-text">Why</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#My-thoughts"><span class="toc-text">My thoughts</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Batterie"><span class="toc-text">Batterie</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#The-games"><span class="toc-text">The games</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#For-the-rest"><span class="toc-text">For the rest</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pros"><span class="toc-text">Pros</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cons"><span class="toc-text">Cons</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusion</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -996,63 +996,33 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Why-ffmpeg"><a href="#Why-ffmpeg" class="headerlink" title="Why ffmpeg"></a>Why ffmpeg</h1><p>This tool can decode a video and re-encode it.<br>You can remove the audio or the video, change the codec or use it to stream a file.<br><img src="https://i.imgur.com/E6nBYs4.png"></p>
-<h1 id="Trick"><a href="#Trick" class="headerlink" title="Trick"></a>Trick</h1><p>You can input a youtube video without downloading it, to do this you need <code>youtube-dl</code>.</p>
-<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">youtube-dl -f best --get-url https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v&#x3D;H8w_Q57RQJc
-
-https:&#x2F;&#x2F;rr3---sn-n4g-ouxs.googlevideo.com&#x2F;videoplayback?expire&#x3D;1641865369&amp;ei&#x3D;OYzcYZ7yKNuMxN8P7feTIA&amp;ip&#x3D;93.23.130.72&amp;id&#x3D;o-AO5ZLYd00XMxzT1PjKh0Grtrh-mtnzmQcTys0s1Fx-UI&amp;itag&#x3D;18&amp;source&#x3D;youtube&amp;requiressl&#x3D;yes&amp;mh&#x3D;Q-&amp;mm&#x3D;31%2C29&amp;mn&#x3D;sn-n4g-ouxs%2Csn-n4g-jqbed&amp;ms&#x3D;au%2Crdu&amp;mv&#x3D;m&amp;mvi&#x3D;3&amp;pl&#x3D;21&amp;initcwndbps&#x3D;1763750&amp;vprv&#x3D;1&amp;mime&#x3D;video%2Fmp4&amp;ns&#x3D;R-N0c7jT-8ZOyFPbWVfuYpAG&amp;gir&#x3D;yes&amp;clen&#x3D;139964871&amp;ratebypass&#x3D;yes&amp;dur&#x3D;6538.507&amp;lmt&#x3D;1540303910458790&amp;mt&#x3D;1641842946&amp;fvip&#x3D;5&amp;fexp&#x3D;24001373%2C24007246&amp;c&#x3D;WEB&amp;txp&#x3D;5531432&amp;n&#x3D;tXjNIa-Hi2X8YEz&amp;sparams&#x3D;expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cratebypass%2Cdur%2Clmt&amp;sig&#x3D;AOq0QJ8wRgIhAPRj1ix2t8yS_B3M3QQaY0dCz4l-AaDkvF4r-sutJ50_AiEAk_E3dott1d4QWuDUqQkcSPtBRzIQi-rcNVeOV4Fg53E%3D&amp;lsparams&#x3D;mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig&#x3D;AG3C_xAwRQIgJInz5xNfosh2ocbFn41qMlAjCzdgTG0Xu3FjciwFCTkCIQCl7Jn3sVBFAmEnfXFmdH4k35tRXbMBB406wbAnyOLElQ%3D%3D<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>If you click on the big link you can see the video without the youtube things.</p>
-<p>now ffmpeg can read the video with this link.</p>
-<p>The command to get the youtube link is too big, so I’m gonna wrap it into a variable.</p>
-<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">link&#x3D;$(youtube-dl -f best --get-url https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v&#x3D;H8w_Q57RQJc)
-
-ffmpeg -i $link output.mp3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h1 id="My-idea"><a href="#My-idea" class="headerlink" title="My idea"></a>My idea</h1><p>I wanted to download every song in one youtube video, it was a pretty bad idea…<br>For exemple I wanted the full Album of VA-11 HALL-A.<br><img src="https://i.ibb.co/Vx6gzhy/VA-11yt.png"><br>I had to enter every title and every time code one by one.<br>I made the script in one afternoon and I took some time to understand how the programe work.</p>
-<p>So, to download a specific moment of the video you have to use <code>-ss</code> with <code>ffmpeg</code> to indicate when it start,<br>and use <code>t</code> for the duration or <code>to</code> for the next time code.</p>
-<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">ffmpeg -i &quot;$vid&quot; \
-	-ss 0 -to 120 &quot;output.mp3&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>So with it you can pick the song you like in theres lists on youtube.</p>
-<h1 id="My-script"><a href="#My-script" class="headerlink" title="My script"></a>My script</h1><p>This is my script, you have to guess how to use it, lol.<br>It’s made by a pro so it will be easy ( ͡° ͜ʖ ͡°).</p>
-<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">vid&#x3D;$(youtube-dl -f best --get-url $1)
-listtime&#x3D;(&quot;0&quot;)
-listtitle&#x3D;()
-i&#x3D;0
-while true
-do
-	echo -e &quot;The end: &quot;
-	read time
-	echo -e &quot;The title: &quot;
-	read title
-	title&#x3D;str&#x3D;&quot;$&#123;title&#x2F;&#x2F; &#x2F;_&#125;&quot;
-	listtime+&#x3D;(&quot;$time&quot;)
-	listtitle+&#x3D;(&quot;$title&quot;)
-	echo -e &quot;1: Continue &quot;
-	echo -e &quot;2: Start download&quot;
-	echo -n &quot;: &quot;
-	read choix	
-case $choix in
-		1)
-		clear
-		;;
-		2)
-		echo -n &quot;bye&quot;
-		clear
-		break
-		;;	
-esac
-done
-i&#x3D;0
-while [ $i -ne $&#123;#listtitle[@]&#125; ]
-do
-	title&#x3D;$&#123;listtitle[$i]&#125; 
-	start&#x3D;$&#123;listtime[$i]&#125;
-	((i++))
-	end&#x3D;$&#123;listtime[$i]&#125;
-	title&#x3D;$&#123;title:4&#125;
-	ffmpeg -i &quot;$vid&quot; \
-		-ss $start -to $end &quot;$&#123;title&#125;.mp3&quot;
-done<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="End"><a href="#End" class="headerlink" title="End"></a>End</h1><p>Don’t do what I’ve done, it’s useless, it’s faster to download the musics on 1337 or somewhere else.<br>you can use it if you like a song and want to pick this one amoug every songs.</p>
+        <h1 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h1><p>I have few problems with Arch, I wanted to see if it was my fault or if my computer is too old.<br>I only have 3 hours of betterie life, plus I can’t run few games, on windows I can run the metro Exodus, but on Arch CSGO is at 30 FPS…<br>So that’s why I wanted to try it </p>
+<h1 id="My-thoughts"><a href="#My-thoughts" class="headerlink" title="My thoughts"></a>My thoughts</h1><p><img src="https://i.imgur.com/Xbdvgjw.jpg"><br><img src="https://c.tenor.com/PRiY5cZA1TIAAAAd/cat-meme-face-cat-meme.gif"></p>
+<h1 id="Batterie"><a href="#Batterie" class="headerlink" title="Batterie"></a>Batterie</h1><p>It’s the same, nothing change, I have to play with the kernel to gain few minutes.<br><img src="https://pasteboard.co/d3K0VustgL93.png"><br>I can swith to integrated and use the saving mode, but it will be the same.<br>I’m interested of wish software do they use for the batterie, it’s not TLP or cpu auto freq.</p>
+<h1 id="The-games"><a href="#The-games" class="headerlink" title="The games"></a>The games</h1><p>I can run doki doki literature club, but CSGO don’t want to start.<br>I don’t really care about the games, for DDLC it’s a problem with wine.<br>For csgo I don’t know, it’s a linux native game, it’s weird I feel like my computer don’t like linux.<br>Host: 81FV Lenovo Legion Y530-15ICH</p>
+<h1 id="For-the-rest"><a href="#For-the-rest" class="headerlink" title="For the rest"></a>For the rest</h1><p>I don’t like the look, and there is too much animation, when I click on my file browser I want it to open instantly.</p>
+<p>The design of the file explorer is cool, it’s nautilus.<br>![<a href="https://i.imgur.com/siz3Gg4.png]">https://i.imgur.com/siz3Gg4.png]</a></p>
+<p>I also like the app luncher, it’s like rofi.<br><img src="https://pasteboard.co/thc3DLq87q51.png"></p>
+<p>I know i can change everything, but I really like the WM and my custom bar.<br>I also have to change the tool for the screenshots because it sucks.</p>
+<p>The package manager is old, hopefully they don’t use snap.</p>
+<h2 id="Pros"><a href="#Pros" class="headerlink" title="Pros"></a>Pros</h2><ul>
+<li>It’s simple</li>
+<li>You don’t have to open the terminal to use it</li>
+<li>Normal ppl would like the animations and all.</li>
+<li>The file explorer is cool</li>
+<li>Every thing you need is installed<br><img src="https://i.imgur.com/EeEMFIa.png"></li>
+</ul>
+<h2 id="Cons"><a href="#Cons" class="headerlink" title="Cons"></a>Cons</h2><ul>
+<li>Design</li>
+<li>Package manager</li>
+<li>screenshot tool</li>
+<li>The menus (Cuz there is no DE without menus)</li>
+<li>Can’t run CSGO without changing the settings</li>
+<li>Ask for confidentiality things and localisation</li>
+<li>The windows (I’m too lazy to move them with my mouse)</li>
+<li>vim is not installed<br><img src="https://i.gifer.com/I1qF.gif"></li>
+</ul>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>I just don’t like it, but you should give a try… or not.<br><img src="https://i.imgflip.com/5v0kxe.jpg"></p>
 
       
        
