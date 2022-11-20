@@ -1,0 +1,16 @@
+Running Steam on arch rolling 64-bit
+STEAM_RUNTIME is enabled automatically
+Pins up-to-date!
+Steam client's requirements are satisfied
+WARNING: Using default/fallback debugger launch
+/home/peanutstick/.local/share/Steam/ubuntu12_32/steam
+STEAM_RUNTIME_HEAVY: ./steam-runtime-heavy
+[2021-07-10 18:09:58] Startup - updater built Jun  8 2021 22:23:36
+[2021-07-10 18:09:58] Loading cached metrics from disk (/home/peanutstick/.local/share/Steam/package/steam_client_metrics.bin)
+[2021-07-10 18:09:58] Using the following download hosts for Public, Realm steamglobal
+[2021-07-10 18:09:58] 1. https://cdn.cloudflare.steamstatic.com, /client/, Realm 'steamglobal', weight was 100, source = 'update_hosts_cached.vdf'
+[2021-07-10 18:09:58] 2. https://cdn.akamai.steamstatic.com, /client/, Realm 'steamglobal', weight was 100, source = 'update_hosts_cached.vdf'
+[2021-07-10 18:09:58] 3. http://media.steampowered.com, /client/, Realm 'steamglobal', weight was 1, source = 'baked in'
+[2021-07-10 18:09:58] Verifying installation...
+[2021-07-10 18:09:58] Verification complete
+[2021-07-10 18:10:35] Shutdown
