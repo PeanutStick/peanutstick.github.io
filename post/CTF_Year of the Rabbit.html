@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CTF Eric | Peanutstick</title>
+  <title>CTF Year of the Rabbit | Peanutstick</title>
   <meta name="keywords" content=" Linux ">
-  <meta name="description" content="CTF Eric | Peanutstick">
+  <meta name="description" content="CTF Year of the Rabbit | Peanutstick">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="rustscanrustscan -a 10.10.101.203 PORT   STATE SERVICE REASON21&#x2F;tcp open  ftp     syn-ack22&#x2F;tcp open  ssh     syn-ack80&#x2F;tcp open  http    syn-ack gobustergobuster dir -u http:&#x2F;&#x2F;10.10.101.203 -x txt,ht">
 <meta property="og:type" content="article">
@@ -1119,9 +1119,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-CTF_Eric" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-CTF_Year of the Rabbit" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">CTF Eric</h1>
+        <h1 class="article-title">CTF Year of the Rabbit</h1>
     
     <div class="article-meta">
         
@@ -1146,12 +1146,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-10-20 14:45:37'>2022-10-20 14:11</time>
+            Created At : <time class="date" title='Updated At: 2023-02-02 13:46:12'>2023-02-02 19:20</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:4</span>
+        <span>Count:182</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1170,7 +1170,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Netdiscover"><span class="toc-text">Netdiscover</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Rustscan"><span class="toc-text">Rustscan</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Port-80"><span class="toc-text">Port 80</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#rustscan"><span class="toc-text">rustscan</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gobuster"><span class="toc-text">gobuster</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sup3r-s3cr3t-fl4g-php"><span class="toc-text">sup3r_s3cr3t_fl4g.php</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Crack-FTP"><span class="toc-text">Crack FTP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Connect-to-ftp"><span class="toc-text">Connect to ftp</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSH"><span class="toc-text">SSH</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1186,9 +1186,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Netdiscover"><a href="#Netdiscover" class="headerlink" title="Netdiscover"></a>Netdiscover</h1><p><img src="https://i.imgur.com/4Icv0ON.png"></p>
-<h1 id="Rustscan"><a href="#Rustscan" class="headerlink" title="Rustscan"></a>Rustscan</h1><p><img src="https://i.imgur.com/NBdWoXR.png"></p>
-<h1 id="Port-80"><a href="#Port-80" class="headerlink" title="Port 80"></a>Port 80</h1><p><img src="https://i.imgur.com/rJ5l1gf.png"></p>
+        <h1 id="rustscan"><a href="#rustscan" class="headerlink" title="rustscan"></a>rustscan</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">rustscan -a <span class="token number">10.10</span>.101.203<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>PORT   STATE SERVICE REASON<br>21/tcp open  ftp     syn-ack<br>22/tcp open  ssh     syn-ack<br>80/tcp open  http    syn-ack</p>
+<h1 id="gobuster"><a href="#gobuster" class="headerlink" title="gobuster"></a>gobuster</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gobuster <span class="token function">dir</span> -u http://10.10.101.203 -x txt,html,php -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/NUXHngj.png"></p>
+<p><img src="https://i.imgur.com/5VmDQWI.png"><br>Inside style.css:<br><img src="https://i.imgur.com/FIp6QOI.png"></p>
+<h1 id="sup3r-s3cr3t-fl4g-php"><a href="#sup3r-s3cr3t-fl4g-php" class="headerlink" title="sup3r_s3cr3t_fl4g.php"></a>sup3r_s3cr3t_fl4g.php</h1><p><img src="https://i.imgur.com/iTQWmhT.png"><br>I’m forced to watch it.<br>He say, your looking at the wrong place.<br>So open burpsuit:<br><img src="https://i.imgur.com/Rw4Y21o.png"><br><a href="http://10.10.101.203/WExYY2Cv-qU/">http://10.10.101.203/WExYY2Cv-qU/</a> is the hiden directory.</p>
+<p><img src="https://i.imgur.com/FlznYtd.png"></p>
+<p>This is the picture:<br><img src="https://i.imgur.com/dc7eugO.png"><br>I donwload it and do a strings on it.<br><img src="https://i.imgur.com/U6RAgWn.png"><br>We have a user with lot of passwords, let’s try them with hydra.</p>
+<h1 id="Crack-FTP"><a href="#Crack-FTP" class="headerlink" title="Crack FTP"></a>Crack FTP</h1><p>user: ftpuser</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hydra -l ftpuser -P passwords.txt ftp://10.10.101.203 -V<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/CGEkq3V.png"></p>
+<p>password: 5iez1wGXKfPKQ</p>
+<h1 id="Connect-to-ftp"><a href="#Connect-to-ftp" class="headerlink" title="Connect to ftp"></a>Connect to ftp</h1><p><img src="https://i.imgur.com/fqQjgBl.png"></p>
+<p>File: Eli&#39;s_Creds.txt<br><img src="https://i.imgur.com/sGGDRUD.png"><br>Brainfuck<br><a href="https://www.dcode.fr/brainfuck-language">https://www.dcode.fr/brainfuck-language</a></p>
+<p>User: eli<br>Password: DSpDiM1wAEwid</p>
+<h1 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h1><p><img src="https://i.imgur.com/r5q4jsZ.png"></p>
+<p>Gwendoline is a user ?<br>I don’t have the time to to the rest. I’m going back to work in few minutes.<br><img src="https://i.imgur.com/0EWV9nI.png"><br>But I saw this file who can be interesing:<br><a href="https://i.imgur.com/nW0pHNV.png">https://i.imgur.com/nW0pHNV.png</a><br>I will continue later.</p>
 
       
        
