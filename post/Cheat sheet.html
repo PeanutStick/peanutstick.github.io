@@ -6,16 +6,16 @@
   <meta name="keywords" content=" Linux ">
   <meta name="description" content="CheatSheet for the OSCP | Peanutstick">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="First ennumerationPingIf the TTL is at 64 it’s linux, if it’s 128 or 32 it’s windows.https:&#x2F;&#x2F;subinsb.com&#x2F;default-device-ttl-values&#x2F; Nmap-A: OS detection-sV: Version-script&#x3D;: vulnerability check nmap -">
+<meta name="description" content="First ennumerationPingIf the TTL is at 64 it’s linux, if it’s 128 or 32 it’s windows.https:&#x2F;&#x2F;subinsb.com&#x2F;default-device-ttl-values&#x2F;The TTL decreases by one if the request goes through a router. Nmap-A">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CheatSheet for the OSCP">
 <meta property="og:url" content="https://peanutstick.github.io/post/Cheat%20sheet.html">
 <meta property="og:site_name" content="Peanutstick">
-<meta property="og:description" content="First ennumerationPingIf the TTL is at 64 it’s linux, if it’s 128 or 32 it’s windows.https:&#x2F;&#x2F;subinsb.com&#x2F;default-device-ttl-values&#x2F; Nmap-A: OS detection-sV: Version-script&#x3D;: vulnerability check nmap -">
+<meta property="og:description" content="First ennumerationPingIf the TTL is at 64 it’s linux, if it’s 128 or 32 it’s windows.https:&#x2F;&#x2F;subinsb.com&#x2F;default-device-ttl-values&#x2F;The TTL decreases by one if the request goes through a router. Nmap-A">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.imgur.com/lhWyDcJ.png">
 <meta property="article:published_time" content="2023-02-07T02:09:52.000Z">
-<meta property="article:modified_time" content="2023-02-08T21:34:11.787Z">
+<meta property="article:modified_time" content="2023-02-08T21:36:58.393Z">
 <meta property="article:author" content="Peanutstick">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
@@ -1122,12 +1122,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-02-08 22:34:11'>2023-02-07 03:09</time>
+            Created At : <time class="date" title='Updated At: 2023-02-08 22:36:58'>2023-02-07 03:09</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:741</span>
+        <span>Count:753</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1162,7 +1162,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="First-ennumeration"><a href="#First-ennumeration" class="headerlink" title="First ennumeration"></a>First ennumeration</h1><h2 id="Ping"><a href="#Ping" class="headerlink" title="Ping"></a>Ping</h2><p>If the TTL is at <code>64</code> it’s linux, if it’s <code>128</code> or <code>32</code> it’s windows.<br><a href="https://subinsb.com/default-device-ttl-values/">https://subinsb.com/default-device-ttl-values/</a></p>
+        <h1 id="First-ennumeration"><a href="#First-ennumeration" class="headerlink" title="First ennumeration"></a>First ennumeration</h1><h2 id="Ping"><a href="#Ping" class="headerlink" title="Ping"></a>Ping</h2><p>If the TTL is at <code>64</code> it’s linux, if it’s <code>128</code> or <code>32</code> it’s windows.<br><a href="https://subinsb.com/default-device-ttl-values/">https://subinsb.com/default-device-ttl-values/</a><br>The TTL decreases by one if the request goes through a router.</p>
 <h2 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h2><p>-A: OS detection<br>-sV: Version<br>-script=: vulnerability check</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nmap -A -sV -p- -script<span class="token operator">=</span>vuln <span class="token number">10.10</span>.177.26<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
