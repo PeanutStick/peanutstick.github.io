@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CTF IMF | Peanutstick</title>
+  <title>CTF Tomghost | Peanutstick</title>
   <meta name="keywords" content=" Linux ">
-  <meta name="description" content="CTF IMF | Peanutstick">
+  <meta name="description" content="CTF Tomghost | Peanutstick">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CTF Tomghost">
@@ -1107,9 +1107,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-CTF_IMF" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-CTF_Tmghost" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">CTF IMF</h1>
+        <h1 class="article-title">CTF Tomghost</h1>
     
     <div class="article-meta">
         
@@ -1134,12 +1134,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-10-03 18:41:31'>2021-10-04 01:40</time>
+            Created At : <time class="date" title='Updated At: 2023-02-11 12:29:17'>2023-03-11 19:30</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:93</span>
+        <span>Count:0</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1158,7 +1158,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#netdiscover"><span class="toc-text">netdiscover</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rustscan"><span class="toc-text">rustscan</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Port-80"><span class="toc-text">Port 80</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#First-flag"><span class="toc-text">First flag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#second-flag"><span class="toc-text">second flag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Login-page"><span class="toc-text">Login page</span></a></li></ol></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -1174,20 +1174,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="netdiscover"><a href="#netdiscover" class="headerlink" title="netdiscover"></a>netdiscover</h1><p><img src="https://i.imgur.com/fuY2sHT.png"><br>192.168.0.15</p>
-<h1 id="rustscan"><a href="#rustscan" class="headerlink" title="rustscan"></a>rustscan</h1><p>Only the port 80 is open</p>
-<h1 id="Port-80"><a href="#Port-80" class="headerlink" title="Port 80"></a>Port 80</h1><p>Apache/2.4.18</p>
-<h2 id="First-flag"><a href="#First-flag" class="headerlink" title="First flag"></a>First flag</h2><p>view-source:<a href="http://192.168.0.15/contact.php">http://192.168.0.15/contact.php</a><br>flag1{YWxsdGhlZmlsZXM=}<br>allthefiles</p>
-<h2 id="second-flag"><a href="#second-flag" class="headerlink" title="second flag"></a>second flag</h2><p><img src="https://i.imgur.com/oZU2hDV.png"><br><img src="https://i.imgur.com/98dPnS2.png"></p>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">ZmxhZzJ7YVcxbVlXUnRhVzVwYzNSeVlYUnZjZz09fQ&#x3D;&#x3D;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>Flag2:</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"ZmxhZzJ7YVcxbVlXUnRhVzVwYzNSeVlYUnZjZz09fQ=="</span> <span class="token operator">|</span> base64 --decode
-flag2<span class="token punctuation">&#123;</span>aW1mYWRtaW5pc3RyYXRvcg<span class="token operator">==</span><span class="token punctuation">&#125;</span>
-<span class="token builtin class-name">echo</span> <span class="token string">"aW1mYWRtaW5pc3RyYXRvcg=="</span> <span class="token operator">|</span> base64 --decode
-imfadministrator<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="Login-page"><a href="#Login-page" class="headerlink" title="Login page"></a>Login page</h2><p><a href="http://192.168.0.15/imfadministrator/">http://192.168.0.15/imfadministrator/</a><br><img src="https://i.imgur.com/7PsdWhh.png"><br>Roger is a user.<br>The password is hard coded in the cookie.<br><img src="https://i.imgur.com/OmFcMSL.png"><br>If I delete it he recreate an another cookie.<br><img src="https://i.imgur.com/CnGxnAa.png"><br>So, I have to create my own cookie.<br>The password may be good, but we also need the username.<br><img src="https://i.imgur.com/nyOyS0G.png"><br><img src="https://images-ext-1.discordapp.net/external/dWUrWtCIFN0q9J_z2DCYT6GIGZSiS2Xz2TVhvmVXl5I/https/i.imgur.com/AvhQj2H.png?width=1419&height=350"></p>
-
+        
       
        
     </div>

@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CTF IMF | Peanutstick</title>
+  <title>Install Kali with QEMU | Peanutstick</title>
   <meta name="keywords" content=" Linux ">
-  <meta name="description" content="CTF IMF | Peanutstick">
+  <meta name="description" content="Install Kali with QEMU | Peanutstick">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CTF Tomghost">
@@ -1107,9 +1107,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-CTF_IMF" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Install of kali on Arch with QEMU" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">CTF IMF</h1>
+        <h1 class="article-title">Install Kali with QEMU</h1>
     
     <div class="article-meta">
         
@@ -1119,7 +1119,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="CTF">CTF</a>
+            <a  data-rel="Tips">Tips</a>
             
         </span>
         
@@ -1134,12 +1134,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-10-03 18:41:31'>2021-10-04 01:40</time>
+            Created At : <time class="date" title='Updated At: 2023-02-12 10:38:13'>2023-02-11 01:56</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:93</span>
+        <span>Count:566</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1158,7 +1158,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#netdiscover"><span class="toc-text">netdiscover</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rustscan"><span class="toc-text">rustscan</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Port-80"><span class="toc-text">Port 80</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#First-flag"><span class="toc-text">First flag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#second-flag"><span class="toc-text">second flag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Login-page"><span class="toc-text">Login page</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why"><span class="toc-text">Why</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Donwnload-kali"><span class="toc-text">Donwnload kali</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Install-qemu"><span class="toc-text">Install qemu</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Create-a-bridge"><span class="toc-text">Create a bridge</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Remove-the-bridge"><span class="toc-text">Remove the bridge</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Start-the-VM"><span class="toc-text">Start the VM</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Start-without-display"><span class="toc-text">Start without display</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Script-it"><span class="toc-text">Script it</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Export-X11"><span class="toc-text">Export X11</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSH"><span class="toc-text">SSH</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bug-in-ssh"><span class="toc-text">Bug in ssh ?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Teste-co"><span class="toc-text">Teste co</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RDP"><span class="toc-text">RDP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Kali"><span class="toc-text">Kali</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Host"><span class="toc-text">Host</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Result"><span class="toc-text">Result:</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1174,19 +1174,106 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="netdiscover"><a href="#netdiscover" class="headerlink" title="netdiscover"></a>netdiscover</h1><p><img src="https://i.imgur.com/fuY2sHT.png"><br>192.168.0.15</p>
-<h1 id="rustscan"><a href="#rustscan" class="headerlink" title="rustscan"></a>rustscan</h1><p>Only the port 80 is open</p>
-<h1 id="Port-80"><a href="#Port-80" class="headerlink" title="Port 80"></a>Port 80</h1><p>Apache/2.4.18</p>
-<h2 id="First-flag"><a href="#First-flag" class="headerlink" title="First flag"></a>First flag</h2><p>view-source:<a href="http://192.168.0.15/contact.php">http://192.168.0.15/contact.php</a><br>flag1{YWxsdGhlZmlsZXM=}<br>allthefiles</p>
-<h2 id="second-flag"><a href="#second-flag" class="headerlink" title="second flag"></a>second flag</h2><p><img src="https://i.imgur.com/oZU2hDV.png"><br><img src="https://i.imgur.com/98dPnS2.png"></p>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">ZmxhZzJ7YVcxbVlXUnRhVzVwYzNSeVlYUnZjZz09fQ&#x3D;&#x3D;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>Flag2:</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"ZmxhZzJ7YVcxbVlXUnRhVzVwYzNSeVlYUnZjZz09fQ=="</span> <span class="token operator">|</span> base64 --decode
-flag2<span class="token punctuation">&#123;</span>aW1mYWRtaW5pc3RyYXRvcg<span class="token operator">==</span><span class="token punctuation">&#125;</span>
-<span class="token builtin class-name">echo</span> <span class="token string">"aW1mYWRtaW5pc3RyYXRvcg=="</span> <span class="token operator">|</span> base64 --decode
-imfadministrator<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+        <h1 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h1><p>Because I had lot of problems with python2 and 3 who broke my packages like wfuff.<br>Plus, it’s not that good to have lot of hacking tools on my main computer, it’s taking lot of space and the updates are longer.<br>I need more space to install cool games like nier automata.</p>
+<h1 id="Donwnload-kali"><a href="#Donwnload-kali" class="headerlink" title="Donwnload kali"></a>Donwnload kali</h1><p><a href="https://www.kali.org/get-kali/#kali-virtual-machines">https://www.kali.org/get-kali/#kali-virtual-machines</a><br><img src="https://i.imgur.com/6IEyKCt.png"></p>
+<h1 id="Install-qemu"><a href="#Install-qemu" class="headerlink" title="Install qemu"></a>Install qemu</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> pacman -S qemu<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="Create-a-bridge"><a href="#Create-a-bridge" class="headerlink" title="Create a bridge"></a>Create a bridge</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">ip</span> <span class="token function">link</span> <span class="token function">add</span> name br0 <span class="token builtin class-name">type</span> bridge
+<span class="token function">sudo</span> <span class="token function">ip</span> <span class="token function">link</span> <span class="token builtin class-name">set</span> br0 up
+<span class="token function">sudo</span> <span class="token function">ip</span> <span class="token function">link</span> <span class="token builtin class-name">set</span> enp34s0 master br0
+<span class="token function">sudo</span> <span class="token function">ip</span> addr <span class="token function">add</span> <span class="token number">192.168</span>.1.70/24 dev br0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="Login-page"><a href="#Login-page" class="headerlink" title="Login page"></a>Login page</h2><p><a href="http://192.168.0.15/imfadministrator/">http://192.168.0.15/imfadministrator/</a><br><img src="https://i.imgur.com/7PsdWhh.png"><br>Roger is a user.<br>The password is hard coded in the cookie.<br><img src="https://i.imgur.com/OmFcMSL.png"><br>If I delete it he recreate an another cookie.<br><img src="https://i.imgur.com/CnGxnAa.png"><br>So, I have to create my own cookie.<br>The password may be good, but we also need the username.<br><img src="https://i.imgur.com/nyOyS0G.png"><br><img src="https://images-ext-1.discordapp.net/external/dWUrWtCIFN0q9J_z2DCYT6GIGZSiS2Xz2TVhvmVXl5I/https/i.imgur.com/AvhQj2H.png?width=1419&height=350"></p>
+<h1 id="Remove-the-bridge"><a href="#Remove-the-bridge" class="headerlink" title="Remove the bridge"></a>Remove the bridge</h1><p>don’t do this rn, it will be used later</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">ip</span> <span class="token function">link</span> <span class="token builtin class-name">set</span> dev enp34s0 nomaster
+<span class="token function">sudo</span> <span class="token function">ip</span> <span class="token function">link</span> delete dev br0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h1 id="Start-the-VM"><a href="#Start-the-VM" class="headerlink" title="Start the VM"></a>Start the VM</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">qemu-system-x86_64 <span class="token punctuation">\</span>
+    -enable-kvm <span class="token punctuation">\</span>
+    -m <span class="token number">4096</span> <span class="token punctuation">\</span>
+    -smp <span class="token number">4</span> -cpu <span class="token function">host</span> <span class="token punctuation">\</span>
+	-net nic,model<span class="token operator">=</span>virtio <span class="token punctuation">\</span>
+    -net bridge,br<span class="token operator">=</span>br0 <span class="token punctuation">\</span>
+    -drive <span class="token assign-left variable">file</span><span class="token operator">=</span>kali-linux-2022.4-qemu-amd64.qcow2,media<span class="token operator">=</span>disk,if<span class="token operator">=</span>virtio<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Now let’s see the IP of kali:<br>192.168.1.111</p>
+<p><img src="https://i.imgur.com/lipYsw4.png"></p>
+<p>Enable ssh in kali:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemctl start <span class="token function">ssh</span>
+<span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> <span class="token function">ssh</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h1 id="Start-without-display"><a href="#Start-without-display" class="headerlink" title="Start without display"></a>Start without display</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">qemu-system-x86_64 <span class="token punctuation">\</span>
+    -enable-kvm <span class="token punctuation">\</span>
+    -m <span class="token number">4096</span> <span class="token punctuation">\</span>
+    -smp <span class="token number">4</span> -cpu <span class="token function">host</span> <span class="token punctuation">\</span>
+    -nographic <span class="token punctuation">\</span>
+	-net nic,model<span class="token operator">=</span>virtio <span class="token punctuation">\</span>
+    -net bridge,br<span class="token operator">=</span>br0 <span class="token punctuation">\</span>
+    -drive <span class="token assign-left variable">file</span><span class="token operator">=</span>kali-linux-2022.4-qemu-amd64.qcow2,media<span class="token operator">=</span>disk,if<span class="token operator">=</span>virtio<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<p><img src="https://i.imgur.com/KHTCFET.png"></p>
+<h1 id="Script-it"><a href="#Script-it" class="headerlink" title="Script it"></a>Script it</h1><p>Now I want a script for this, also, I don’t want the bridge to be here when I don’t use kali.<br>you have to replace enp34s0 by the name of your card (do ip a).<br>also replace 192.168.1.70 by something who can communicate in your local network.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> /usr/local/bin/kali
+
+<span class="token function">sudo</span> <span class="token function">ip</span> <span class="token function">link</span> <span class="token function">add</span> name br0 <span class="token builtin class-name">type</span> bridge
+<span class="token function">sudo</span> <span class="token function">ip</span> <span class="token function">link</span> <span class="token builtin class-name">set</span> br0 up
+<span class="token function">sudo</span> <span class="token function">ip</span> <span class="token function">link</span> <span class="token builtin class-name">set</span> enp34s0 master br0
+<span class="token function">sudo</span> <span class="token function">ip</span> addr <span class="token function">add</span> <span class="token number">192.168</span>.1.70/24 dev br0
+
+qemu-system-x86_64 <span class="token punctuation">\</span>
+    -enable-kvm <span class="token punctuation">\</span>
+    -m <span class="token number">4096</span> <span class="token punctuation">\</span>
+    -smp <span class="token number">4</span> -cpu <span class="token function">host</span> <span class="token punctuation">\</span>
+    -net nic,model<span class="token operator">=</span>virtio <span class="token punctuation">\</span>
+    -nographic <span class="token punctuation">\</span>
+    -net bridge,br<span class="token operator">=</span>br0 <span class="token punctuation">\</span>
+    -drive <span class="token assign-left variable">file</span><span class="token operator">=</span>/home/peanutstick/qemu_storage/kali-linux-2022.4-qemu-amd64.qcow2,media<span class="token operator">=</span>disk,if<span class="token operator">=</span>virtio
+
+<span class="token function">sudo</span> <span class="token function">ip</span> <span class="token function">link</span> <span class="token builtin class-name">set</span> dev enp34s0 nomaster
+<span class="token function">sudo</span> <span class="token function">ip</span> <span class="token function">link</span> delete dev br0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<h1 id="Export-X11"><a href="#Export-X11" class="headerlink" title="Export X11"></a>Export X11</h1><p>/etc/ssh/ssh_config </p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Host *
+ForwardAgent <span class="token function">yes</span>
+ForwardX11 <span class="token function">yes</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> -Y kali@192.168.1.111<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="Bug-in-ssh"><a href="#Bug-in-ssh" class="headerlink" title="Bug in ssh ?"></a>Bug in ssh ?</h1><p>If you can’t clear the terminal when you are logged, use this and try again.<br>Do this in kali.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"export TERM=xterm-256color"</span> <span class="token operator">></span> .zsh_rc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="Teste-co"><a href="#Teste-co" class="headerlink" title="Teste co"></a>Teste co</h1><p>Just run burpsuite and see:<br><img src="https://i.imgur.com/eyJPtEG.png"><br>yep, xorg is good</p>
+<h1 id="RDP"><a href="#RDP" class="headerlink" title="RDP"></a>RDP</h1><h2 id="Kali"><a href="#Kali" class="headerlink" title="Kali"></a>Kali</h2><p>Create the RDP server:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> pacman -S xrdp
+<span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> xrdp
+<span class="token function">sudo</span> systemctl start xrdp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="Host"><a href="#Host" class="headerlink" title="Host"></a>Host</h1><p>Install remmina:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> pacman -S remmina<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>Encrypt the password:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">remmina --encrypt-password<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Then enter the password.<br>Output:</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">Enter the password you want to encrypt: kali
+
+Encrypted password: Nq7turSoD7g&#x3D;
+
+Usage:
+rdp:&#x2F;&#x2F;username:Nq7turSoD7g&#x3D;@server
+vnc:&#x2F;&#x2F;username:Nq7turSoD7g&#x3D;@server
+vnc:&#x2F;&#x2F;server?VncUsername&#x3D;user\&amp;VncPassword&#x3D;Nq7turSoD7g%3D<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Connect to kali:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">remmina -c rdp://kali:Nq7turSoD7g<span class="token operator">=</span>@192.168.1.111<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>To change the resolution, click here:</p>
+<p><img src="https://i.imgur.com/dWo9gg9.png"></p>
+<p>Remmina is cool but, I don’t like it very much, he can resize himself but there is too much things.<br>I would like to have just a window without anyhing on the borders.</p>
+<p>You can add aliases like:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">alias</span> <span class="token assign-left variable">kalis</span><span class="token operator">=</span><span class="token string">"ssh -Y kali@192.168.1.111"</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">kalir</span><span class="token operator">=</span><span class="token string">"remmina -c rdp://kali:Nq7turSoD7g=@192.168.1.111"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h1 id="Result"><a href="#Result" class="headerlink" title="Result:"></a>Result:</h1><p><img src="https://i.imgur.com/HgV9pmA.jpg"></p>
 
       
        
