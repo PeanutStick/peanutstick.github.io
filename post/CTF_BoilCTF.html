@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Create an IRC bot with python | Peanutstick</title>
-  <meta name="keywords" content=" IRC Python ">
-  <meta name="description" content="Create an IRC bot with python | Peanutstick">
+  <title>CTF BoilCTF | Peanutstick</title>
+  <meta name="keywords" content=" Linux ">
+  <meta name="description" content="CTF BoilCTF | Peanutstick">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="rustcanrustscan -a 10.10.242.254 Output: PORT      STATE SERVICE          REASON 21&#x2F;tcp    open  ftp              syn-ack 80&#x2F;tcp    open  http             syn-ack 10000&#x2F;tcp open  snet-sensor-mgmt syn-">
 <meta property="og:type" content="article">
@@ -1142,9 +1142,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="programing-Create-an-IRC-bot-with-python" class="article article-type-programing" itemscope itemprop="blogPost">
+        <article id="post-CTF_BoilCTF" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Create an IRC bot with python</h1>
+        <h1 class="article-title">CTF BoilCTF</h1>
     
     <div class="article-meta">
         
@@ -1154,7 +1154,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="Programing">Programing</a>
+            <a  data-rel="CTF">CTF</a>
             
         </span>
         
@@ -1162,19 +1162,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color1">IRC Python</a>
+            <a class="color1">Linux</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-09-27 09:49:09'>2021-06-21 21:25</time>
+            Created At : <time class="date" title='Updated At: 2023-02-19 12:29:08'>2023-03-19 19:00</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:544</span>
+        <span>Count:148</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1193,7 +1193,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Create-an-IRC-bot-with-Python3"><span class="toc-text">Create an IRC bot with Python3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Installation-of-python3"><span class="toc-text">Installation of python3.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-the-project-and-start-to-code"><span class="toc-text">Create the project and start to code.</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Import-some-necessary-libraries"><span class="toc-text">Import some necessary libraries.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-the-configuration-variables"><span class="toc-text">Add the configuration variables.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Connect-to-the-server"><span class="toc-text">Connect to the server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-the-loop-to-receive-the-buffer"><span class="toc-text">Create the loop to receive the buffer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-the-functions"><span class="toc-text">Create the functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thanks"><span class="toc-text">Thanks</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#rustcan"><span class="toc-text">rustcan</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FTP"><span class="toc-text">FTP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Robots-txt"><span class="toc-text">Robots.txt</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Port-10000"><span class="toc-text">Port 10000</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gobuster"><span class="toc-text">gobuster</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Get-shell"><span class="toc-text">Get shell</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Enum"><span class="toc-text">Enum</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1209,83 +1209,38 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Create-an-IRC-bot-with-Python3"><a href="#Create-an-IRC-bot-with-Python3" class="headerlink" title="Create an IRC bot with Python3"></a>Create an IRC bot with Python3</h1><h2 id="Installation-of-python3"><a href="#Installation-of-python3" class="headerlink" title="Installation of python3."></a>Installation of python3.</h2><pre class="line-numbers language-none"><code class="language-none">apt update
-apt upgrade
-apt install python3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+        <h1 id="rustcan"><a href="#rustcan" class="headerlink" title="rustcan"></a>rustcan</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">rustscan -a <span class="token number">10.10</span>.242.254<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Output:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PORT      STATE SERVICE          REASON
+<span class="token number">21</span>/tcp    <span class="token function">open</span>  <span class="token function">ftp</span>              syn-ack
+<span class="token number">80</span>/tcp    <span class="token function">open</span>  http             syn-ack
+<span class="token number">10000</span>/tcp <span class="token function">open</span>  snet-sensor-mgmt syn-ack
+<span class="token number">55007</span>/tcp <span class="token function">open</span>  unknown          syn-ack<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="Create-the-project-and-start-to-code"><a href="#Create-the-project-and-start-to-code" class="headerlink" title="Create the project and start to code."></a>Create the project and start to code.</h2><p>You have to create a file like “main.py” in a directory where will be your bot.</p>
-<h3 id="Import-some-necessary-libraries"><a href="#Import-some-necessary-libraries" class="headerlink" title="Import some necessary libraries."></a>Import some necessary libraries.</h3><p>In main.py.</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> socket<span class="token punctuation">,</span> ssl<span class="token punctuation">,</span> threading
-<span class="token keyword">import</span> score_board <span class="token keyword">as</span> score<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h1 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h1><pre class="line-numbers language-bsah" data-language="bsah"><code class="language-bsah">ftp 10.10.242.254 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h3 id="Add-the-configuration-variables"><a href="#Add-the-configuration-variables" class="headerlink" title="Add the configuration variables."></a>Add the configuration variables.</h3><p>Don’t forget to comment the code, it’s  important.</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">server <span class="token operator">=</span> <span class="token string">'irc.evilcorp.ga'</span> <span class="token comment"># Server</span>
-port <span class="token operator">=</span> <span class="token number">6697</span> <span class="token comment"># Port</span>
-channel <span class="token operator">=</span> <span class="token string">"#lobby"</span> <span class="token comment"># Channel</span>
-botnick <span class="token operator">=</span> <span class="token string">"Dovahkiin"</span> <span class="token comment"># Your bots nick</span>
-password <span class="token operator">=</span> <span class="token string">""</span>
-user <span class="token operator">=</span> botnick <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> botnick <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> botnick <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> <span class="token string">"HODL the line apes!"</span> <span class="token comment"># This is username, hostname, identity and description in the order</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/SVviT7S.png"></p>
+<p>Let’s download it.<br><img src="https://i.imgur.com/XQdg1Ms.png"></p>
+<p><img src="https://i.imgur.com/lq73H6v.png"><br>You can decode it: <a href="https://www.dcode.fr/rot-13-cipher">https://www.dcode.fr/rot-13-cipher</a></p>
+<p>Just wanted to see if you find it. Lol. Remember: Enumeration is the key!</p>
+<p>Nothing int he ftp.</p>
+<h1 id="Robots-txt"><a href="#Robots-txt" class="headerlink" title="Robots.txt"></a>Robots.txt</h1><p><a href="http://10.10.242.254/robots.txt">http://10.10.242.254/robots.txt</a><br><img src="https://i.imgur.com/Aso9SCm.png"></p>
+<p><img src="https://i.imgur.com/WThokwo.png"></p>
+<p><img src="https://i.imgur.com/jenfpRM.png"></p>
+<p><img src="https://i.imgur.com/phtH4HS.png"></p>
+<p>kidding</p>
+<h1 id="Port-10000"><a href="#Port-10000" class="headerlink" title="Port 10000"></a>Port 10000</h1><p>Change the /etc/hosts<br><img src="https://i.imgur.com/CTrhz5W.png"></p>
+<h1 id="gobuster"><a href="#gobuster" class="headerlink" title="gobuster"></a>gobuster</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gobuster <span class="token function">dir</span> -u http://10.10.242.254/ -x txt,html,php -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h3 id="Connect-to-the-server"><a href="#Connect-to-the-server" class="headerlink" title="Connect to the server"></a>Connect to the server</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">socketHandler <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span><span class="token comment"># Opening up a normal socket.</span>
-
-socketHandler<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token punctuation">(</span>server<span class="token punctuation">,</span>port<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment"># Binding socket to socket address(server ip and port).</span>
-
-ircsock <span class="token operator">=</span> ssl<span class="token punctuation">.</span>wrap_socket<span class="token punctuation">(</span>socketHandler<span class="token punctuation">)</span><span class="token comment"># Wraping the socket with ssl.</span>
-
-ircbuff <span class="token operator">=</span> ircsock<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">2048</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span> <span class="token comment"># Receive buffer from the server.</span>
-        
-ircbuff <span class="token operator">=</span> ircbuff<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token string">'\r\n'</span><span class="token punctuation">)</span> <span class="token comment"># Removing any unnecessary linebreaks.</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>ircbuff<span class="token punctuation">)</span>	<span class="token comment"># Printing buffer for once.</span>
-<span class="token keyword">del</span> ircbuff	<span class="token comment"># Deleting buffer for re-use.</span>
-
-ircsend<span class="token punctuation">(</span><span class="token string">"NICK "</span><span class="token operator">+</span> botnick <span class="token operator">+</span><span class="token string">"\r\n"</span><span class="token punctuation">)</span> <span class="token comment"># Here we actually assign the nick to the bot</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Sending Nick "</span> <span class="token operator">+</span> botnick <span class="token operator">+</span> <span class="token string">" to server"</span><span class="token punctuation">)</span>
-
-ircsend<span class="token punctuation">(</span><span class="token string">"USER "</span><span class="token operator">+</span> user <span class="token operator">+</span> <span class="token string">"\r\n"</span><span class="token punctuation">)</span> <span class="token comment"># User authentication</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Sending UserName and hostname and identity and description \""</span> <span class="token operator">+</span> user <span class="token operator">+</span> <span class="token string">"\" to server"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="Create-the-loop-to-receive-the-buffer"><a href="#Create-the-loop-to-receive-the-buffer" class="headerlink" title="Create the loop to receive the buffer"></a>Create the loop to receive the buffer</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">while</span> <span class="token number">1</span><span class="token punctuation">:</span> <span class="token comment"># Be careful with these! it might send you to an infinite loop</span>
-    ircbuff <span class="token operator">=</span> ircsock<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">2048</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span> <span class="token comment"># Receive buffer from the server.</span>
-    ircbuff <span class="token operator">=</span> ircbuff<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token string">'\r\n'</span><span class="token punctuation">)</span> <span class="token comment"># Removing any unnecessary linebreaks.</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>ircbuff<span class="token punctuation">)</span>	<span class="token comment"># Here we print the buffer from the server.</span>
-    <span class="token keyword">if</span> ircbuff<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">"PING :"</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token comment"># If the server pings us then we've got to respond!</span>
-        ping<span class="token punctuation">(</span>ircbuff<span class="token punctuation">)</span>
-    <span class="token keyword">elif</span> ircbuff<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">"NOTICE "</span> <span class="token operator">+</span> botnick <span class="token operator">+</span> <span class="token string">" ::This nickname is registered"</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span>
-        ircsend<span class="token punctuation">(</span><span class="token string">"/msg NickServ IDENTIFY "</span><span class="token operator">+</span>password<span class="token punctuation">)</span>
-                
-        
-    <span class="token keyword">elif</span> ircbuff<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">"NOTICE "</span> <span class="token operator">+</span> botnick <span class="token operator">+</span> <span class="token string">" :*** You are connected to"</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token comment"># If connected successfully, do the below functions and codes.</span>
-        joinchan<span class="token punctuation">(</span>channel<span class="token punctuation">)</span> <span class="token comment"># Join the channel using the functions we previously defined</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>And your code will be just after that with an another elif, like this:</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">elif</span> ircbuff<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">"coffee"</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token comment"># Bring you a coffee</span>
-    coffee<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>And we delete the buffer because the script will process the previous messages and send too much messages to the server.</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">del</span> ircbuff<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>now we have to create the function: </p>
-<ul>
-<li>ping for ping(ircbuff)</li>
-<li>ircsend for ircsend(“/msg NickServ IDENTIFY “+password) </li>
-<li>joinchan for joinchan(channel)</li>
-<li>coffee for coffee()</li>
-</ul>
-<h3 id="Create-the-functions"><a href="#Create-the-functions" class="headerlink" title="Create the functions"></a>Create the functions</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">ircsend</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment"># I had to make another function for send() because in python3 and above the socket incoming and outgoing messages are in bytes format. So you have to encode and decode it accordingly.</span>
-        ircsock<span class="token punctuation">.</span>send<span class="token punctuation">(</span>msg<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-<span class="token keyword">def</span> <span class="token function">ping</span><span class="token punctuation">(</span>ircbuff<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment"># This is our first function! It will respond to server Pings.</span>
-        pongReply <span class="token operator">=</span> ircbuff<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">':'</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>	<span class="token comment"># This strips out ping reply and server name for pong. If not defined it can cause the bot to break in some servers</span>
-        ircsend<span class="token punctuation">(</span><span class="token string">"PONG :"</span> <span class="token operator">+</span> pongReply <span class="token operator">+</span> <span class="token string">'\r\n'</span><span class="token punctuation">)</span>
-
-<span class="token keyword">def</span> <span class="token function">joinchan</span><span class="token punctuation">(</span>chan<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment"># This function is used to join channels.</span>
-        ircsend<span class="token punctuation">(</span><span class="token string">"JOIN "</span><span class="token operator">+</span> chan <span class="token operator">+</span><span class="token string">"\r\n"</span><span class="token punctuation">)</span>
-<span class="token keyword">def</span> <span class="token function">coffee</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment"># This function responds to a user that inputs "Hello Mybot"</span>
-        ircsend<span class="token punctuation">(</span><span class="token string">"PRIVMSG "</span><span class="token operator">+</span> channel <span class="token operator">+</span><span class="token string">" :  ,--.\r\n"</span><span class="token punctuation">)</span>
-        ircsend<span class="token punctuation">(</span><span class="token string">"PRIVMSG "</span><span class="token operator">+</span> channel <span class="token operator">+</span><span class="token string">" : C|:p| Here is your coffee !\r\n"</span><span class="token punctuation">)</span>
-        ircsend<span class="token punctuation">(</span><span class="token string">"PRIVMSG "</span><span class="token operator">+</span> channel <span class="token operator">+</span><span class="token string">" :  `=='\r\n"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="Thanks"><a href="#Thanks" class="headerlink" title="Thanks"></a>Thanks</h3><p>Thank to Shadow Lobster for the help.</p>
+<p><img src="https://i.imgur.com/ARfm8ax.png"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gobuster <span class="token function">dir</span> -u http://10.10.242.254/joomla -x txt,html,php -w /usr/share/wordlists/dirb/common.txt <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/HeoS3sA.png"></p>
+<h1 id="Get-shell"><a href="#Get-shell" class="headerlink" title="Get shell"></a>Get shell</h1><p><a href="https://www.exploit-db.com/exploits/47204">https://www.exploit-db.com/exploits/47204</a><br><img src="https://i.imgur.com/Yz85lH7.png"></p>
+<h1 id="Enum"><a href="#Enum" class="headerlink" title="Enum"></a>Enum</h1><p>inside log.txt<br><code>superduperp@$$</code><br><img src="https://i.imgur.com/3u3rB5e.png"></p>
+<p><img src="https://i.imgur.com/vWnxfD8.png"></p>
+<p><img src="https://i.imgur.com/XBFWC5l.png"></p>
+<p><img src="https://i.imgur.com/3eEcrEf.png"></p>
+<p>Into backup.sh:<br><img src="https://i.imgur.com/jZYPdJC.png"><br><code>superduperp@$$no1knows</code></p>
 
       
        
